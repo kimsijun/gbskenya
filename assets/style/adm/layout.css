@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+/** header **/
+
+.wrapper {
+    padding-top: 50px;
+}
+/** 좌측 GNB **/
+.sidebar  {width: 250px; min-height: 100%; float:left; padding:10px; position: absolute; background-color: #f8f8f8;}
+.glyphicon { margin-right:10px; }
+.panel > .active{background-color: #d4e6f1;}
+.panel-body { padding:0px; }
+.panel-body ul li {position: relative; padding: 10px;}
+.panel-body ul li a{ padding: 10px 30px; }
+.panel-body ul li a:hover{text-decoration:underline; color:#000000; font-weight: bold;}
+.panel-body ul li .active{text-decoration:underline; color:#000000; font-weight: bold;}
+.panel-body .table {margin-bottom: 0px; }
+
+/** 우측 영역 **/
+.contentWrap {margin-left: 262px; margin-right:10px; min-height: 100%; margin-bottom: 100px;}
+/** 상단 LNB **/
+.breadcrumb {position: fixed; top:52px; width: 100%; min-height: 35px;z-index: 1000;}
+
+/** content **/
+.content {margin-top: 50px;}
+.bordered {border-bottom: 1px solid #ddd; padding: 15px;}
+
+
+.menuList { font-size:14px; }
+.menuList .panel{border-top:1px solid #999;margin-bottom: 0px; border-radius: 0px; }
+.menuList .panel li {padding:10px;}
+
+

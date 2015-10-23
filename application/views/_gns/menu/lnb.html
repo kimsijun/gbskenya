@@ -1,0 +1,14 @@
+{? controller != 'main'}
+    {@ menu.depth1}
+        {?controller == .mCode}
+            <div class="main-bg text-center"><img src="/images/common/sub_visual_0{.index_+1}.png"></div>
+        {/}
+    {/}
+<div class="subMenu text-center">
+    <ul class="nav nav-pills nav-justified">
+        {@ menu.depth2}
+        <li class="{?method == .mCode2}active{/}"><a href="{.mLink}">{.mName}</a></li>
+        {/}
+    </ul>
+</div>
+{/}

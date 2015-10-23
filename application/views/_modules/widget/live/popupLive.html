@@ -1,0 +1,18 @@
+<div class="live-titbox">
+    <div style="color:white;font-weight:900">GBS LIVE</div>
+    { @channelNames }
+    <a href="/live/popup/chNO/{channelNames.chNO}" class="live_tab">
+        <span {? channel.chNO == channelNames.chNO || channel.chNO == ""} class="live_tab_hover" {/}>{channelNames.chName}</span>
+    </a>
+    {/}
+</div>
+<div class="live-list">
+    <ul>
+        { @liveSchedule}
+        <li>
+            <span class="time">{liveSchedule.lsSTime}</span>
+            <span class="txt">{liveSchedule.lcName}</span>
+        </li>
+        {/}
+    </ul>
+</div>

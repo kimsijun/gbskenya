@@ -1,0 +1,25 @@
+<div class="recombox" style="border-top:0px;">
+
+    <div class="content-recom">
+        {@ contentMain}
+        <dl>
+            <dt>[{.program.prName}]</dt>
+            <dd>{.ctNameShort}</dd>
+            <dd class="img">
+                <a href="/content/view/ctNO/{contentMain.ctNO}/ctName/{=strtolower(url_title(.ctName))}">
+                    <img src="/uploads/content/thumbs/{contentMain.ctThumbS}" width="{config.fst.width}" height="{config.fst.height}" alt="" />
+                    <p class="thumbLeft"style="height:{config.fst.height}px;background:#fbfbfb;"></p>
+                    <p class="thumbRight"style="height:{config.fst.height}px;background:#fbfbfb;"></p>
+                </a>
+            </dd>
+        </dl>
+        {/}
+    </div>
+
+    <!--dl class="content-best">
+        <dt>인기 콘텐츠 TOP10</dt>
+        {@ viewContentTop}
+        <dd><a href="/content/view/ctNO/{.ctNO}">{.ctName}</a></dd>
+        {/}
+    </dl-->
+</div>

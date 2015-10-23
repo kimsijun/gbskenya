@@ -1,0 +1,64 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">MyPage</a> >
+            <a href="/member/view">My profile</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{mbNick}</strong> <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+            <div class="memberlist">
+                <div class="mypagelistbox">
+                    <div class="member">
+                        <p class="member-info pb10"><span class="">Unsubscribe using the existing information is no longer available.</span></p>
+                        <form method="post" action="/member/process" class="frmMemberWithdraw" enctype="multipart/form-data">
+                            <input type="hidden" name="mode" value="withdraw">
+                            <input type="hidden" name="mbID" value="{mbID}">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>User Account</td>
+                                    <td>{mbID}</td>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>{mbFirstName} {mbLastName}</td>
+                                </tr>
+                                <tr>
+                                    <td>Reason</td>
+                                    <td>
+                                        <label><p class="pt10"><input type="radio" name="mbWdReason" value="1"> Not often used</p></label>
+                                        <label><p class="pt10"><input type="radio" name="mbWdReason" value="2"> In order to sign up again</p></label>
+                                        <label><p class="pt10"><input type="radio" name="mbWdReason" value="3"> Unsatisfactory use</p> </label>
+                                        <label><p class="pt10 pb10"><input type="radio" name="mbWdReason" value="4"> Etc.(Please enter reasons)</p></label>
+                                        <textarea name="mbWdReasonTxt" class="mbWdReasonTxt mb10" style="display:none; width:500px; height:80px; "></textarea>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </form>
+                    </div>
+
+                    <div class="modSubmit">
+                        <span class="join-btn mrt5 wdSubmit">Withdraw</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</article>
+
+{ #layout_footer }

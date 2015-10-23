@@ -1,0 +1,14 @@
+<div class="mainbox6">
+    <p class="event-tit pt20">Latest update</p>
+    {@updateContent}
+    <dl class="event-imglist">
+        <a href="/content/view/ctNO/{updateContent.ctNO}/ctName/{=strtolower(url_title(.ctName))}">
+            <dt><p>{.ctNameShort}</p></dt>
+            <dd>
+                <p>hit : {.ctViewCount}</p>
+            </dd>
+            <dd class="img"><img src="/uploads/content/thumbs/{.ctThumbS}" width="86" height="60"></dd>
+        </a>
+    </dl>
+    {/}
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title> {title} </title>
+	<meta name="description" content="{metaDescription}">
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+
+	<link rel="stylesheet" type="text/css" href="/assets/style/common.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/style/layout.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/style/default.css" />
+
+	<!-- jquery 가동 -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/assets/script/common.js"></script>
+    <script src="/assets/script/jquery.validate.min.js"></script>
+    <script src="/assets/script/jquery.validate.msg_ko.js"></script>
+    {?controller === "member"}
+        <script src="/assets/script/member.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    {:controller === "main"}
+        <script src="/assets/script/main.js"></script>
+    {:controller === "board"}
+        <script src="/assets/script/board.js"></script> 
+    {:controller === "news" || controller === "news_category"}
+        <script src="/assets/script/news.js"></script>       
+    {:controller === "live"}
+        <script src="/assets/script/live.js"></script>
+    {:controller === "content"}
+        <script src="/assets/script/content.js"></script>
+    {:controller === "program"}
+        <script src="/assets/script/program.js"></script>
+    {:controller === "mypage" || controller === "mypage_like" || controller === "mypage_favor" || controller === "mypage_view"}
+        <script src="/assets/script/mypage.js"></script>
+    {:controller === "search"}
+        <script src="/assets/script/search.js"></script>
+    {/}
+	<!--[if lte IE 8]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script>//<![CDATA[
+		var url_suffix = "{url_suffix}";
+	//]]></script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46093010-1', 'gbskenya.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>

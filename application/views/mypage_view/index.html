@@ -1,0 +1,121 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a> >
+            <a href="/mypage_view/index">Watched News/Videos</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                    <form  class="frmMyPageView" method="post" action="/mypage_view/delete">
+                        {?nwView}
+                        <div style="clear: both;" class="vnPage">
+                            <h4 class="mb10">News</h4>
+                            {@ viewNews}
+                            <ul class="vnPage{.index_}" style="display: none; ">
+                                {@ .page}
+                                { ?..nwName}
+                                <dl>
+                                    {? ..ncCode }
+                                    <a href="/news/view/nwNO/{..nwNO}">
+                                    {/}
+                                        <dt><p>{..nwName}</p></dt>
+                                        <dd>
+                                            <p>Hit : {..nwViewCount}</p>
+                                            <p>Watching Date : {..mpRegDate}</p>
+                                        </dd>
+
+                                        <dd class="sel_ck">
+                                            <label>
+                                                <input type="checkbox" name="nwNO[]" value="{..nwNO}">
+                                                {..nwDepth1.ncName}
+                                                {?..nwDepth2} > {..nwDepth2.ncName} {/}
+                                                {?..nwDepth3} > {..nwDepth3.ncName} {/}
+                                                {?..nwDepth4} > {..nwDepth4.ncName} {/}
+                                            </label>
+                                        </dd>
+                                        <dd class="img">
+                                            <img src="/uploads/news/thumbs/{..nwThumbS}" width="213" height="143">
+                                        </dd>
+                                    </a>
+                                </dl>
+                                {/}
+                                {/}
+                            </ul>
+                            {/}
+                        </div>
+                        {/}
+
+                        {?ctView}
+                        <div style="clear: both;" class="vcPage">
+                            <h4 class="mb10">Contents</h4>
+                            {@ viewContent}
+                            <ul class="vcPage{.index_}" style="display: none; ">
+                                {@ .page}
+                                { ?..ctName}
+                                <dl>
+                                    {? ..prCode }
+                                    <a href="/{?.prType=='program'}program{:}sermon{/}/view/prCode/{..prCode}/ctNO/{..ctNO}/ctPage/{..ctPlayListPage}">
+                                        {:}
+                                        <a href="/content/view/ctNO/{..ctNO}">
+                                            {/}
+                                            <dt><p>{..ctName}</p></dt>
+                                            <dd>
+                                                <p>Hit : {..ctViewCount}</p>
+                                                <p>Watching Date : {..mpRegDate}</p>
+                                            </dd>
+
+                                            <dd class="sel_ck">
+                                                <label>
+                                                    <input type="checkbox" name="ctNO[]" value="{..ctNO}">
+                                                    {..prDepth1.prName}
+                                                    {?..prDepth2} > {..prDepth2.prName} {/}
+                                                    {?..prDepth3} > {..prDepth3.prName} {/}
+                                                    {?..prDepth4} > {..prDepth4.prName} {/}
+                                                </label>
+                                            </dd>
+                                            <dd class="img">
+                                                <img src="/uploads/content/thumbs/{..ctThumbS}" width="213" height="143">
+                                            </dd>
+                                        </a>
+                                </dl>
+                                {/}
+                                {/}
+                            </ul>
+                            {/}
+                        </div>
+                        {/}
+                    </form>
+                </div>
+                {?nwView || ctView || prView}
+                <div class="btnbox">
+                    <span class="all_ck check_all">Select all</span>
+                    <span class="all_del mpV_del">Delete Selected</span>
+                    <input type="hidden" class="mbLoginId" value="{member.mbID}">
+                </div>
+                {/}
+
+                {?nwView.size_ > 6 || ctView.size_ > 6 }<p class="tc page_more"><a href="#">More</a></p>{/}
+            </div>
+        </div>
+    </div>
+</article>
+
+{ #layout_footer }

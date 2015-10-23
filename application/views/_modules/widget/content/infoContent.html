@@ -1,0 +1,233 @@
+<div class="mainbox5 movie-view" style=" width:720px; padding: 0 0 30px 0;">
+<input type="hidden" class="mbLoginId" value="{mbLoginID}">
+<div class="infoTop mt30">
+    <p class="movietit plt30">{ctName}</p>
+    <div class="good-bad plt30">
+        <form class="frmlike">
+            <input type="hidden" name="mpLType" value="ctNO"/>
+            <input type="hidden" name="mpLKey" value="{ctNO}"/>
+        </form>
+        <span class="Like" style="float:left;"><img src="/images/common/good.gif" alt="" /> Like</span>
+        <form class="frmfavor">
+            <input type="hidden" name="mpFType" value="ctNO"/>
+            <input type="hidden" name="mpFKey" value="{ctNO}"/>
+        </form>
+        <span class="Favor"  style="float: left;"><img src="/images/common/favorite.png" alt="" width="15px" height="15px"/> Favorites</span>
+        <ul class="viewTab">
+            <li class="on">About</li>
+        </ul>
+    </div>
+    <div class="share" >
+        <span class="snsShare facebook" url_string="{uri_string}" style="padding:0px;margin:0px;"><img src="/images/common/facebook.gif" alt=""width="24px" height="24px" /></span>
+        <span class="snsShare twitter" url_string="{uri_string}" style="padding:0px;margin:0px;"><img src="/images/common/twitter.gif" alt="" width="24px" height="24px"/></span>
+    </div>
+</div>
+<div class="viewContainer mt20 mrt30 plt30" style="display: block;">
+    <p class="mb10 ">Home > Programmes > {prDepth1} {?prDepth2} > {prDepth2} {/}{?prDepth3} > {prDepth3} {/}</p>
+    {?ctEventDate != '0000-00-00'}
+    <p class="mb10 mrt20">{ctEventDate}</p>
+    {/}
+
+</div>
+
+<div class="mlt30 pt20 mrt30" style="border-top:1px solid #E6E6E6; ">
+    <p class="movietit">Tag</p>
+    <p class="mb10">What is arising word when you see this contents? Please put the appropriate tags.(1 or more up to 5)</p>
+    <div class="mb10 tagArea">
+        <form method="post" class="frmTag" onsubmit="return false;">
+            <input type="hidden" name="mode" value="addTag">
+            <input type="hidden" name="ctNO" value="{ctNO}"/>
+            {@tag}
+            	<span class="tagList">
+           		    <span class="tagTxt">{.tgTag}</span>
+            	    <span class="tagDel" tgNO="{.tgNO}"></span>
+            	</span>
+            {/}
+            <input class="tagAdd" type="text" name="tagTxt">
+        </form>
+    </div>
+</div>
+<p class="mb30 plt30"></p>
+<div class="replybox plt30">
+    <div class="ctCommentList">
+        <div class="comment_text">
+            <p class="reply-sum">All comments(0)</p>
+            <ul class="sns_login">
+                <li type="GBS" class="sns01{? mbAccountType == "GBS" || !mbAccountType} snsCurrent01 {/}"></li>
+                <li type="FACEBOOK" class="sns02{? mbAccountType == "FACEBOOK"} snsCurrent02 {/}" loginUrl={mbFBLoginUrl}></li>
+                <li type="TWITTER" class="sns03{? mbAccountType == "TWITTER"} snsCurrent03 {/}" loginUrl="{mbTWLoginUrl}"></li>
+            </ul>
+            <form method="post" class="frmCommentAdd">
+                <input type="hidden" name="mbAccountType" class="mbAccountType" value="{mbAccountType}">
+                <input type="hidden" name="mode" value="write"/>
+                <input type="hidden" name="ctNO" value="{ctNO}"/>
+                {? is_Admlogin}
+                Notice <input type="checkbox" name="cbcoIsNotice" value="YES">
+                {/}
+                <p class="replay-txt"><textarea name="cbcoContent" class="ctCommentTxt" onkeyup="getsize(cbcoContent.value);"></textarea></p>
+            </form>
+        </div>
+        <div class="CommentList">
+            {@noticeComment}
+            {?.cbcoIsDelete=="YES"}
+            <div class="replay-txtbox">
+                {? .cbcoDepth }
+                <div style="margin:0 10px 10px 0; float: left;">
+                    <img src="/images/common/blank.png" style="width:{=(.cbcoDepth-1)*40}px;height:15px;">
+                    <img src="/images/godo_admin/board_re.gif">
+                </div>
+                {/}
+                <div class="txtbox">
+                    <div class="txt">Deleted posts.
+                        <span class="date">{.cbcoModDate}</span>
+                    </div>
+                </div>
+            </div>
+            {:}
+            <div class="replay-txtbox">
+                {? .cbcoDepth }
+                <div style="margin:0 10px 10px 0; float: left;">
+                    <img src="/images/common/blank.png" style="width:{=(.cbcoDepth-1)*40}px;height:15px;">
+                    <img src="/images/godo_admin/board_re.gif">
+                </div>
+                {/}
+                {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                <p class="img">
+                    {? .mbAccountType == "FACEBOOK" }
+                    <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+                    {: .mbAccountType == "TWITTER"}
+                    <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+                    {/}
+                    {? .mbThumb }
+                    <img src="/uploads/member/thumb/{? .mbAccountType == "FACEBOOK" }facebook/{: .mbAccountType == "TWITTER" }twitter/{/}{.mbThumb}" style="float: left;"/>
+                    {:}
+                    <img src="/images/common/none.jpg" style="float: left;"/>
+                    {/}
+                </p>
+                {? .mbLink } </a> {/}
+                <div class="txtbox">
+                    <div class="mb20">
+                        {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                        <span class="nick">{.mbNick}</span>
+                        {? .mbLink } </a> {/}
+                        <span class="date">{.cbcoRegDate}</span>
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <form method="post" class="frmCommentDel" style="float: right;">
+                            <input type="hidden" name="mode" value="delete">
+                            <input type="hidden" name="ctNO" value="{ctNO}"/>
+                            <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                            <span class="ctCommentDel">Delete</span>
+                        </form>
+                        {/}
+                    </div>
+                    {?member.mbID == .mbID}
+                    <p class="replay-txt"><textarea name="cbcoContent" class="ctCommentModify" style="width:{400-(.cbcoDepth-1)*45}px;">{.cbcoContent}</textarea></p>
+                    <form method="post" class="frmCommentModify" >
+                        <input type="hidden" name="mode" value="modify">
+                        <input type="hidden" name="ctNO" value="{ctNO}"/>
+                        <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                    </form>
+                    {:}
+                    <div class="txt">{.cbcoContent}</div>
+                    {/}
+                    <div class="good-bad">
+                        <span><img src="/images/common/good2.gif" alt="" /></span>
+                        <span><img src="/images/common/bad2.gif" alt="" /></span>
+                        <span class="ctCommentReply" >Reply</span>
+                        <form method="post" class="frmCommentReply" style="display: none; z-index: 1;">
+                            <input type="hidden" name="mode" value="reply"/>
+                            <input type="hidden" name="ctNO" value="{ctNO}"/>
+                            <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                            <p class="img"><img src="/images/common/none.jpg" style="float: left;"/></p>
+                            <p class="mb20"><span class="nick">{member.mbNick}</span></p>
+                            <p class="replay-txt"><textarea name="cbcoContent" class="ctCommentReplyTxt" style="width:{330-(.cbcoDepth-1)*45}px;"></textarea></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {/}
+            {/}
+            <div class="replay-txtbox"></div>
+            {@comment}
+            {?.cbcoIsDelete=="YES"}
+            <div class="replay-txtbox">
+                {? .cbcoDepth }
+                <div style="margin:0 10px 10px 0; float: left;">
+                    <img src="/images/common/blank.png" style="width:{=(.cbcoDepth-1)*40}px;height:15px;">
+                    <img src="/images/godo_admin/board_re.gif">
+                </div>
+                {/}
+                <div class="txtbox">
+                    <div class="txt">Deleted posts.
+                        <span class="date">{.cbcoModDate}</span>
+                    </div>
+                </div>
+            </div>
+            {:}
+            <div class="replay-txtbox">
+                {? .cbcoDepth }
+                <div style="margin:0 10px 10px 0; float: left;">
+                    <img src="/images/common/blank.png" style="width:{=(.cbcoDepth-1)*40}px;height:15px;">
+                    <img src="/images/godo_admin/board_re.gif">
+                </div>
+                {/}
+                {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                <p class="img">
+                    {? .mbAccountType == "FACEBOOK" }
+                    <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+                    {: .mbAccountType == "TWITTER"}
+                    <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+                    {/}
+                    {? .mbThumb }
+                    <img src="/uploads/member/thumb/{? .mbAccountType == "FACEBOOK" }facebook/{: .mbAccountType == "TWITTER" }twitter/{/}{.mbThumb}" style="float: left;"/>
+                    {:}
+                    <img src="/images/common/none.jpg" style="float: left;"/>
+                    {/}
+                </p>
+                {? .mbLink } </a> {/}
+                <div class="txtbox">
+                    <div class="mb20">
+                        {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                        <span class="nick">{.mbNick}</span>
+                        {? .mbLink } </a> {/}
+                        <span class="date">{.cbcoRegDate}</span>
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <form method="post" class="frmCommentDel" style="float: right;">
+                            <input type="hidden" name="mode" value="delete">
+                            <input type="hidden" name="ctNO" value="{ctNO}"/>
+                            <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                            <span class="ctCommentDel">Delete</span>
+                        </form>
+                        {/}
+                    </div>
+                    {?member.mbID == .mbID}
+                    <p class="replay-txt"><textarea name="cbcoContent" class="ctCommentModify" style="width:{400-(.cbcoDepth-1)*45}px;">{.cbcoContent}</textarea></p>
+                    <form method="post" class="frmCommentModify" >
+                        <input type="hidden" name="mode" value="modify">
+                        <input type="hidden" name="ctNO" value="{ctNO}"/>
+                        <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                    </form>
+                    {:}
+                    <div class="txt">{.cbcoContent}</div>
+                    {/}
+                    <div class="good-bad">
+                        <span><img src="/images/common/good2.gif" alt="" /></span>
+                        <span><img src="/images/common/bad2.gif" alt="" /></span>
+                        <span class="ctCommentReply" >Reply</span>
+                        <form method="post" class="frmCommentReply" style="display: none; z-index: 1;">
+                            <input type="hidden" name="mode" value="reply"/>
+                            <input type="hidden" name="ctNO" value="{ctNO}"/>
+                            <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                            <p class="img"><img src="/images/common/none.jpg" style="float: left;"/></p>
+                            <p class="mb20"><span class="nick">{member.mbNick}</span></p>
+                            <p class="replay-txt"><textarea name="cbcoContent" class="ctCommentReplyTxt" style="width:{330-(.cbcoDepth-1)*45}px;"></textarea></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {/}
+            {/}
+        </div>
+    </div>
+</div>
+</div>

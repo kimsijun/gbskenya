@@ -1,0 +1,108 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/popupschedule/index">방송창스케쥴 관리</a></li>
+    <li class="active">정보수정</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" id="form-validate"  action="/adm/popupschedule/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="psNO" value="{psNO}">
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">행사제목</label>
+            <div class="col-lg-10"><input type="text" class="form-control" id="psName" name="psName" placeholder="행사제목" value="{psName}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">행사설명</label>
+            <div class="col-lg-8">
+                <textarea id="psContent" name="psContent" class="form-control">{psContent}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">팝업 사이트</label>
+            <div class="col-lg-6">
+                <label class="radio-inline"><input type="radio" name="psPopupSite[]"  value="goodnews" {? psPopupSite_goodnews == "YES"}checked="checked"{/}>선교회</label>
+                <label class="radio-inline"><input type="radio" name="psPopupSite[]"  value="iyf" {? psPopupSite_iyf == "YES"}checked="checked"{/}>IYF</label>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">행사시작날짜</label>
+            <div class="col-lg-4"><input type="text" class="form-control popDtpicker" name="psSDate" placeholder="행사시작날짜" value="{psSDate}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">행사종료날짜</label>
+            <div class="col-lg-4"><input type="text" class="form-control popDtpicker" name="psEDate" placeholder="행사종료날짜" value="{psEDate}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">생중계방송시간</label>
+            <div class="col-lg-4"><input type="text" class="form-control " name="psLiveTime" placeholder="생중계방송시간" value="{psLiveTime}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">탑이미지</label>
+            <div class="col-lg-4">
+                <input type="file" class="form-control" name="psTopImg">{psTopImg}<br>
+                {? psTopImg }
+                <img src="/uploads/popupschedule/{psTopImg}" class="marginT10" style="width:740px;height:160px"><br>
+                {/}
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">행사다시보기 URL</label>
+            <div class="col-lg-10"><input type="text" class="form-control" id="psVodLink" name="psVodLink" placeholder="행사다시보기 URL" value="{psVodLink}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">채널 관리</label>
+            <div class="col-lg-6">
+                {@ channel}
+                <label class="checkbox-inline"><input type="checkbox" name="chNO[]" {? in_array(channel.chNO, chNO)}checked="checked"{/}  value="{channel.chNO}">{channel.chName}</label>
+                {/}
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">상세일정</label>
+            <div class="col-lg-10">
+                <button class="btn btn-default" onclick="add_dt_mod(); return false;">추가</button>
+                <button class="btn btn-default" onclick="del_dt(); return false;">삭제</button>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-12">
+                <table id="evt_dt_frm" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td width="30px">&nbsp;</td>
+                        <td>세부제목</td>
+                        <td>시작시간</td>
+                        <td>종료시간</td>
+                        <td>비디오 ID</td>
+                        <td>MP3 경로</td>
+                    </tr>
+                    </thead>
+                    <tbody id="evt_dt_list" >
+                        <!--{ @ dt }-->
+                        <tr>
+                            <td style="width:30px;"><input type="checkbox" name="dt_chk[]" value="{dt.dtNO}"></td>
+                            <input type="hidden" name="dtNO[]"  value="{dt.dtNO}"></td>
+                            <td><input type="text" name="dtName[]" value="{dt.dtName}" class="form-control"></td>
+                            <td><input type="text" name="dtSTime[]" value="{dt.dtSTime}" class="popDtpicker form-control" ></td>
+                            <td><input type="text" name="dtETime[]" value="{dt.dtETime}" class="popDtpicker form-control"></td>
+                            <td><input type="text" name="dtVideo[]" value="{dt.dtVideo}" class="form-control"></td>
+                            <td><input type="text" name="dtMp3[]" value="{dt.dtMp3}" class="form-control"></td>
+                        </tr>
+                        <!--{ / }-->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <button onclick="location.href=('/adm/popupschedule/view/psNO/{psNO}');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

@@ -1,0 +1,49 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li class="active">사용자 검색 로그</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/search/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th></th>
+                <th>아이디</th>
+                <th>키워드</th>
+                <th>선택컨텐츠</th>
+                <th>날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr>
+                <td>{listCnt - secParams.page - list.index_}</td>
+                <td>{.mbID}</td>
+                <td>{.scKeyword}</td>
+                <td style="text-align:left;padding-left:30px">
+                    {@ .scSecResult}
+                    <a href="{..scLink}">{ ..scName}</a><br>
+                    {/}
+                </td>
+                <td style="text-align:center;">
+                    {.scRegDate}
+                </td>
+            </tr>
+            {:}
+            <tr>
+                <td colspan="12">등록된 데이터가 없습니다.</td>
+            </tr>
+            {/}
+            </tbody>
+        </table>
+    </form>
+    {pager}
+</div>
+
+{ #layout_admin_footer }
+
+
+

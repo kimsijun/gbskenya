@@ -1,0 +1,50 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/news_category/index">뉴스 카테고리</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/news_category/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+            <a href="/adm/news_category/write"><button class="btn btn-primary" type="button" >등록</button></a>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th></th>
+                <th>번호</th>
+                <th>프로그램명</th>
+                <th>추가</th>
+                <th>수정</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr height="35" align="center">
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{list.ncCode}" class="styled" /></td>
+                <td><font color="#616161" class="ver81">{list.index_ + secParams.adm.page + 1}</font></td>
+                <td style="text-align:left;padding-left:100px; ">
+                    {? list.ncDepth }<img src="/images/common/blank.png" style="width:{=(list.ncDepth-1)*20}px;height:15px;">ㄴ{/}
+                    <a href="/adm/news_category/view/ncCode/{list.ncCode}">{list.ncName}</a>
+                </td>
+                <td><a href="/adm/news_category/write/ncCode/{list.ncCode}"><span class="icon12  icomoon-icon-plus "></span></a></td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="ncCode" ncCode="{.ncCode}"></span></td>
+                <td>{list.ncRegDate}</td>
+            </tr>
+            { / }
+            </tbody>
+        </table>
+    </form>
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/news_category/modify" method="post">
+        <input type="hidden" name="ncCode" value="">
+    </form>
+</div>
+
+
+{ #layout_admin_footer }

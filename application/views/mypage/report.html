@@ -1,0 +1,77 @@
+{ #layout_header }
+<article class="content">
+	<div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a> 
+            <!--a href="/mypage/report/bodID/report">My Report list</a-->
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view">MyInfo</a></p>
+        </div>
+
+        <div class="infor-cont">
+            {# widget_mypage_mymenu}
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                    <table height="100%" width="100%" >
+                        <tbody>
+                        <tr>
+                            <td valign="top" height="100%" width="100%" style="background:url('/images/godo_admin/sub_topback.gif') repeat-x;">
+                                <table width="100%" cellpadding="0" cellspacing="0" bgcolor="white" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td valign="top" style="padding-left:6px; padding-right:6px;">
+                                            <form method="post" name="fmList">
+                                                <input type="hidden" name="mode">
+
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody><tr><td colspan="15" class="rnd"></td></tr>
+                                                    <tr class="rndbg">
+                                                        <th>No</th>
+                                                        <th>Title</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                    <tr><td colspan="15" class="rnd"></td></tr>
+                                                    </tbody><colgroup>
+                                                    <col width="20" align="center">
+                                                    <col width="200" align="center">
+                                                    <col width="100" align="center">
+                                                </colgroup><tbody>
+                                                {@ list}
+                                                <tr height="35" align="center">
+                                                    <td><font color="#616161" class="ver81">{list.index_ + secParams.adm.page + 1}</font></td>
+                                                    <td align="left" style="padding-left:30px">
+                                                        {? list.boDepth }<img src="/images/common/blank.png" style="width:{=(list.boDepth-1)*20}px;height:15px;"><img src="/images/godo_admin/board_re.gif">{/}
+                                                        <a href="/mypage/report_view/bodID/{list.bodID}/boNO/{list.boNO}">{list.boName} [{list.bco_count}]</a>
+                                                    </td>
+                                                    <td>{list.boRegDate}</td>
+                                                </tr>
+                                                <tr><td class="rndline" colspan="15"></td></tr>
+                                                {:}
+                                                <tr height="35" align="center">
+                                                    <td colspan="3"> There is nothing. </td>
+                                                </tr>
+                                                { / }
+                                                </tbody></table>
+
+                                                <div align="center" class="pageNavi"><font class="ver9"> <b>{ pager }</b> </font></div>
+
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{ #layout_footer }

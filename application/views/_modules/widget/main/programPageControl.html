@@ -1,0 +1,85 @@
+<div class="content-banner">
+    <div class="roll-box">
+        <p class="programArrow prev"><img src="/images/common/prev.gif" alt="이전" /></p>
+        <div style="width:{config.fst.perPageWidth}px;height:{config.fst.height + 80}px; margin: 0 auto; position: relative; overflow: hidden;">
+            <div class="roll-main programList" style="width:{config.fst.totalWidth}px;height:{config.fst.height + 70}px;">
+                {@ mainFocus}
+                    {? mainFocus.inData}
+                    <dl style="width:{config.fst.width}px;padding:232px {config.fst.margin}px 0 {config.fst.margin}px">
+                        {? .mFType != 'banner'}
+                        <a href="/{.mFType}/view/{.mFCodeType}/{.mFCode}">
+                            <dt>[{.mFType}]</dt>
+                            <dd>{.mFName}</dd>
+                            {@ .inData}
+                            <dd class="img">
+                                <img src="/uploads/{.inData.mFType}/{?.inData.mFType=='content'}/thumbs/{.inData.ctThumbS}{:}{.inData.prThumb}{/}" width="{config.fst.width}" height="{config.fst.height}" alt="" />
+                            </dd>
+                            {/}
+                        </a>
+                        {/}
+                    </dl>
+                    {/}
+                    {? .mFType == 'banner'}
+                    <dl style="width:{config.fst.width}px;padding:232px {config.fst.margin}px 0 {config.fst.margin}px">
+                        <a href="{.mFLink}" target="_blank">
+                            <dt>[{.mFType}]</dt>
+                            <dd>{.mFName}</dd>
+                            <dd class="img">
+                                <img src="/uploads/mainFocus/{.mFThumb}" width="{config.fst.width}" height="{config.fst.height}" alt="" />
+                            </dd>
+                        </a>
+                    </dl>
+                    {/}
+                {/}
+            </div>
+
+            <div class="btn_box focusProgramBtn">
+                <span><img src="/images/common/btn_b_on.png" alt="" /></span>
+                {@config.fst.pageControlCount}
+                <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+                {/}
+            </div>
+
+        </div>
+        <p class="programArrow next"><img src="/images/common/next.gif" alt="다음" /></p>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var programBulletIdx = 0;
+    $(".focusProgramBtn span").click(function(){
+        var selectIdx = $(".focusProgramBtn span").index(this);
+        if(selectIdx == programBulletIdx) return false;
+        $(".focusProgramBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".focusProgramBtn span").children("img").eq(selectIdx).attr("src", "/images/common/btn_b_on.png");
+
+        if(selectIdx > programBulletIdx){
+            for(i=programBulletIdx; i<selectIdx; i++)
+                $(".programList").animate({left:"-={config.fst.perPageWidth}px"});
+        } else {
+            for(i=programBulletIdx; i>selectIdx; i--)
+                $(".programList").animate({left:"+={config.fst.perPageWidth}px"});
+        }
+        programBulletIdx = selectIdx;
+    });
+
+    $(".programArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(programBulletIdx == 0)    return false;
+            programBulletIdx--;
+            $(".programList").animate({left:"+={config.fst.perPageWidth}px"});
+        } else {
+            if(programBulletIdx == {config.fst.slideCount})    return false;
+            programBulletIdx++;
+            $(".programList").animate({left:"-={config.fst.perPageWidth}px"});
+        }
+        $(".focusProgramBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".focusProgramBtn span").children("img").eq(programBulletIdx).attr("src", "/images/common/btn_b_on.png");
+    });
+</script>
+
+
+
+

@@ -1,0 +1,102 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/popupschedule/index">방송창스케쥴 관리</a></li>
+    <li class="active">정보보기</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate"  action="/adm/popupschedule/modify" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="psNO" value="{psNO}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">행사제목</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">행사설명</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psContent}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">행사시작날짜</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psSDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">행사종료날짜</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psEDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">생중계방송시간</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psLiveTime}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">탑이미지</span></div>
+            <div class="col-lg-10"><span class="mlt20">
+                {? psTopImg}
+                    <img src="/uploads/popupschedule/{psTopImg}" style="width:740px;height:160px">
+                {/}
+            </span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">행사다시보기 URL</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psVodLink}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">팝업 사이트</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psPopupSite}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">최종 수정일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psModDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">등록일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{psRegDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">채널 관리</span></div>
+            <div class="col-lg-10"><span class="mlt20">{chNO}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">상세일정</span></div>
+            <div class="col-lg-10">
+                <table id="evt_dt_frm" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td>세부제목</td>
+                        <td>시작시간</td>
+                        <td>종료시간</td>
+                        <td>비디오 ID</td>
+                        <td>MP3 경로</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--{ @ dt }-->
+                    <tr>
+                        <td width="150px">{dt.dtName}</td>
+                        <td width="180px">{dt.dtSTime}</td>
+                        <td width="180px">{dt.dtETime}</td>
+                        <td width="110px">{dt.dtVideo}</td>
+                        <td width="110px">{dt.dtMp3}</td>
+                    </tr>
+                    <!--{ / }-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/popupschedule/index');"  type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/adm/popupschedule/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="psNO" value="{psNO}">
+        <button type="submit" class="btn btn-danger pull-right">삭제</button>
+    </form>
+</div>
+
+{ #layout_admin_footer }

@@ -1,0 +1,41 @@
+<article class="content">
+    <div id="navi" class="navigation">
+		<div class="navi_wrap">
+			<a href="" class="home">Home</a> >
+			<a href="/program/index">Programmes</a>
+            {? params.prCode } >
+            {? prDepth1 } <a href="/program/index/prCode/{prDepth1.prCode}">{prDepth1.prName}</a> {/}
+            {? prDepth2 }> <a href="/program/index/prCode/{prDepth2.prCode}">{prDepth2.prName}</a> {/}
+            {? prDepth3 }> <a href="/program/index/prCode/{prDepth3.prCode}">{prDepth3.prName}</a> {/}
+            {? prDepth4 }> <a href="/program/index/prCode/{prDepth4.prCode}">{prDepth4.prName}</a> {/}
+            {/}
+		</div>
+    </div>
+    <div class="content-main">
+        <div class="programbox">
+            {@ programPrList}
+            <p class="content-tit">{.prName}</p>
+            <div class="program-list inw660 mb30">
+                {@ prSub}
+                <dl class="livecont" style="margin-bottom:30px;">
+                    <a href="/program/{ ?..prSub > 0 }index{:}view{/}/prCode/{..prCode}/prName/{=str_replace(" ", "-", ..prName)}">
+                    <dt  class="img">
+                        {?..prThumbS}
+                        <img src="/uploads/program/{..prThumbS}" width="216" height="144">
+                        {:}
+                        <img src="/uploads/program/{..prThumb}" width="216" height="144">
+                        {/}
+                    </dt>
+                    <dd>{..prName} { ? ..prSub >0}+{/}{? ..prNew > 0}<span class="icomoon-icon-new icon16"></span>{/}</dd>
+                    </a>
+                </dl>
+                {/}
+            </div>
+            <hr class="mb30 cl">
+            {/}
+        </div>
+         
+    </div>
+</article>
+
+{ #layout_footer }

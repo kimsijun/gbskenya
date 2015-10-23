@@ -1,0 +1,71 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/mainFocus/index">메인포커스 관리</a></li>
+    <li class="active">등록</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" id="form-validate"  action="/adm/mainFocus/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="write">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">타입</label>
+            <div class="col-lg-2">
+                <select name="mFType" class="form-control">
+                    <option value="">선택</option>
+                    <option value="CONTENT">콘텐츠</option>
+                    <option value="PROGRAM">프로그램</option>
+                    <option value="BANNER">배너</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered PROGRAM_cate">
+            <label class="col-lg-2 control-label">프로그램 선택</label>
+            <div class="col-lg-6 ">
+                <select name="prCode" class="form-control prCode">
+                    <option value="">선택</option>
+                    {@ prList}
+                    <option {? .prCode === prCode} selected="selected" {/} value="{.prCode}">{.prName}</option>
+                    {/}
+                    <option value="{prPreCode}back">뒤로</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered CONTENT_cate">
+            <label class="col-lg-2 control-label">콘텐츠 선택</label>
+            <div class="col-lg-6 ctNO"></div>
+        </div>
+        <div class="row bordered BANNER_cate hide">
+            <label class="col-lg-2 control-label">썸네일</label>
+            <div class="col-lg-10"><input type="file" class="form-control" id="mFThumb" name="mFThumb" placeholder="썸네일" value=""></div>
+        </div>
+        <div class="row bordered BANNER_cate hide">
+            <label class="col-lg-2 control-label">링크</label>
+            <div class="col-lg-10"><input type="text" class="form-control" id="mFLink" name="mFLink" placeholder="링크" value=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">제목</label>
+            <div class="col-lg-6"><input type="text" class="form-control" id="mFName" name="mFName" placeholder="제목" value=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">기간</label>
+            <div class="col-lg-3"><input type="date" class="form-control" name="mFSDate" value=""></div>
+            <div class="col-lg-1 btn"> ~ </div>
+            <div class="col-lg-3"><input type="date" class="form-control" name="mFEDate" value=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">순서</label>
+            <div class="col-lg-2"><input type="text" class="form-control" id="mFOrder" name="mFOrder" placeholder="순서" value=""></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">저장</button>
+                <button onclick="location.href=('/adm/mainFocus/index');"  type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{ #layout_admin_footer }

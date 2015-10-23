@@ -1,0 +1,6 @@
+<select class="slc_content form-control" name="in_lcNO" >
+    <option value="">선택</option>
+    {@ data}
+    <option value="{.lcNO}" class="lcNO{.lcNO}" lcDuration="{.lcDuration}">{.lcName}</option>
+    {/}
+</select>

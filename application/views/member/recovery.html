@@ -1,0 +1,58 @@
+{ #layout_header }
+
+<article class="content">
+    <div class="content-mypage">
+        <div class="recovery">
+            <h1>Having trouble signing in?</h1>
+            <form action=" " method="POST" class="frmRecovery">
+                <input type="hidden" name="mode" value="recovery">
+                <div class="errorbox-bad"><div class="errormsg">Please select one of the following options.</div></div>
+                <p>
+                    <div class="radio-option">
+                        <input type="radio" name="preoption" value="2" id="2" onclick="recoveryOptionSelected()">
+                        <label class="radio-label" for="2">I don't know my user account</label>
+                    </div>
+                </p>
+                <p>
+                    <div class="radio-option">
+                        <input type="radio" name="preoption" value="1" id="1" onclick="recoveryOptionSelected()">
+                        <label class="radio-label" for="1">I don't know my password</label>
+                        <div class="hideable-wrapper" id="hideable-box1">
+                            <div class="hideable-box">
+                                <div class="secondary">
+                                    To reset your password, enter the user account(email address) you use to sign in to GBS.
+                                </div>
+                                <label class="stacked-label">Email address
+                                    <p><input type="text" name="Email" value="" class="english-text" size="30"></p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+                <p>
+                    <div class="radio-option">
+                        <input type="radio" name="preoption" value="3" id="3" onclick="recoveryOptionSelected()">
+                        <label class="radio-label" for="3">I'm having other problems signing in</label>
+                        <div class="hideable-wrapper" id="hideable-box3">
+                            <div class="hideable-box">
+                                <div class="secondary">
+                                    Enter the your email address.
+                                </div>
+                                <label class="stacked-label">Email address
+                                    <p><input type="text" name="Email2" value="" class="english-text" size="30"></p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+                <p class="recovery-submit">
+                    <input type="button" value="Continue" class="button g-button g-button-submit recoverySubmit" style="cursor:pointer;">
+                </p>
+            </form>
+            <script type="text/javascript">
+                recoveryOptionSelected();
+            </script>
+        </div>
+    </div>
+</article>
+{ #layout_footer }

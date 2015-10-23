@@ -1,0 +1,46 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/cfg_board/index">게시판관리</a></li>
+    <li class="active">게시판 정보수정</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" action="/adm/cfg_board/process" method="post">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="bodID" value="{bodID}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">게시판 ID</span></div>
+            <div class="col-lg-10"><span class="mlt20">{bodID}</span></div>
+        </div>
+        <div class="row bordered">
+            <label for="bodName" class="col-lg-2 control-label">게시판 이름</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="bodName" placeholder="이름" name="bodName" value="{bodName}">
+            </div>
+        </div>
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">삭제여부</label>
+            <div class="col-lg-10">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default{?bodIsDelete==='YES'} active{/}">
+                    <input type="radio" name="bodIsDelete" value="YES"> YES
+                    </label>
+                    <label class="btn btn-default{?bodIsDelete==='NO'} active{/}">
+                    <input type="radio" name="bodIsDelete" value="NO"> NO
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <a href="/adm/cfg_board/view/bodID/{bodID}" class="btn btn-default">취소</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

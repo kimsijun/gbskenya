@@ -1,0 +1,63 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/cfg_board/index">게시판관리</a></li>
+    <li class="active">게시판 리스트</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/cfg_board/process">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+            <button class="btn btn-primary" onclick="location.href=('/adm/cfg_board/write');" type="button" >등록</button>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="checkbox" value="" class="styled uncheck_all" /></th>
+                <th>번호</th>
+                <th>아이디</th>
+                <th>게시판이름</th>
+                <th>게시글수</th>
+                <th>수정</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr height="40" align="center">
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{list.bodID}" class="styled" /></td>
+                <td><font color="#616161" class="ver81">{list.index_ + secParams.adm.page + 1}</font></td>
+                <td>
+                    <a href="/adm/cfg_board/view/bodID/{list.bodID}">
+                        {? list.bodIsDelete === "YES"}
+                        <i style="text-decoration:line-through">{list.bodID}</i>
+                        {:}
+                        <font color="#0074ba" class="small1"><b>{list.bodID}</b></font>
+                        {/}
+                    </a>
+                </td>
+                <td>
+                    {? list.bodIsDelete === "YES"}
+                    <i style="text-decoration:line-through">{list.bodName}</i>
+                    {:}
+                    <b>{list.bodName}</b>
+                    {/}
+                </td>
+                <td>{list.bo_cnt}</td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="bodID" bodID="{.bodID}"></span></td>
+            </tr>
+            { / }
+            </tbody>
+        </table>
+
+        <div align="center" class="pageNavi"><font class="ver9"> <b>{ pager }</b> </font></div>
+    </form>
+    { pager }
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/cfg_board/modify" method="post">
+        <input type="hidden" name="bodID" value="">
+    </form>
+</div>
+
+{ #layout_admin_footer }

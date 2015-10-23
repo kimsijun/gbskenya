@@ -1,0 +1,59 @@
+</div>
+<footer>
+		<div class="footer_menubox" >
+			<p>Explorer the GBS</p>
+			{ @ programList}
+                {? .index_ != '3' }
+                <dl class="menu{ .index_ +1 } ">
+                    <dt>{programList.prName}</dt>
+                    { @programList.prSub}
+                    <dd>
+                        <a href="/program/{ ? ..prSub}index{:}view{/}/prCode/{..prCode}">
+                            {..prName} { ? ..prSub}+{/}
+                        </a>
+                    </dd>
+                    {/}
+                </dl>
+                {/}
+            {/}
+            { @ programList}
+                {? .index_ == '3' }
+                <dl class="menu{ .index_ +1 } ">
+                    <dt>{programList.prName}</dt>
+                    { @programList.prSub}
+                    <dd>
+                        <a href="/program/{ ? ..prSub}index{:}view{/}/prCode/{..prCode}">
+                            {..prName} { ? ..prSub}+{/}
+                        </a>
+                    </dd>
+                    {/}
+                </dl>
+                {/}
+            {/}
+		</div>
+	<hgroup>
+
+        <p class="bottom-icon"><img src="/images/common/bottom_logo.gif" alt="GBS" /></p>
+        <div class="bottom-info">
+            Copyright © 2013 GBS All right reserved.
+			<div class="float:right">
+			</div>
+        </div>
+        <div class="bottom-link">
+			<div class="fl">
+				<span onclick="location.href='/main/advertise';">Advertise with GBS	</span>
+				<span onclick="location.href();">Mobile Site</span>
+				<span onclick="location.href();">Mobile Application</span>
+			</div>
+			<div class="fl mlt50">
+				<span onclick="location.href();">Privacy</span>
+				<span onclick="location.href();">Cookies</span>
+			</div>
+			<div class="fl">
+				<span onclick="location.href();">About GBS</span>
+				<span onclick="location.href='/main/contact';;">Contact GBS</span>
+			</div>
+        </div>
+	</hgroup>
+</footer>
+{ #common_html_footer }

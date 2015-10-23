@@ -1,0 +1,94 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/content/index">콘텐츠 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                상세검색
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal mt20 mb20" role="form" action="/adm/content/index" method="post">
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">프로그램</label>
+                    <div class="col-lg-2">
+                        <select name="prCode" class="form-control">
+                            <option value="">선택</option>
+                            {@ prlist}
+                            <option value="{.prCode}">{.prName}</option>
+                            {/}
+                        </select>
+                    </div>
+                    <div class="col-lg-3"><button type="submit" class="btn btn-info">Search</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <form method="post" name="boList" action="/adm/content/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+            <a href="/adm/content/write"><button class="btn btn-primary" type="button" >등록</button></a>
+            <a href="/media_link/index" target="_blank">
+                <button class="btn " type="button" >Vimeo / Youtube 컨텐츠 업데이트</button>
+            </a>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th id="masterCh" class="ch"><input type="checkbox" name="checkbox" value="all" class="styled" /></th>
+                <th>번호</th>
+                <th>프로그램</th>
+                <th>제목</th>
+                <th>타입</th>
+                <th>조회수</th>
+                <th>추천수</th>
+                <th>공유횟수</th>
+                <th>관련동영상모드</th>
+                <th>생성일</th>
+                <th>수정</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr height="35" align="center">
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{.ctNO}" class="styled" /></td>
+                <td>{.ctNO}</td>
+                <td>{.prName}</td>
+                <td><a href="/adm/content/view/ctNO/{.ctNO}">{.ctName}</a></td>
+                <td>{.ctType}</td>
+                <td>{.ctViewCount}</td>
+                <td>{.ctLikeCount}</td>
+                <td>{.ctShareCount}</td>
+                <td>{.ctRelativeMode}</td>
+                <td>{.ctRegDate}</td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="ctNO" ctNO="{.ctNO}"></span></td>
+            </tr>
+            <!--{:}-->
+            <tr>
+                <td colspan="12">등록된 데이터가 없습니다.</td>
+            </tr>
+            <!--{/}-->
+
+            </tbody>
+        </table>
+    </form>
+
+    {pager}
+
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/content/modify" method="post">
+        <input type="hidden" name="ctNO" value="">
+    </form>
+</div>
+
+
+{ #layout_admin_footer }
+
+

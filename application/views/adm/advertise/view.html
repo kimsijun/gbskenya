@@ -1,0 +1,53 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/advertise/index">광고/제휴 문의</a></li>
+    <li class="active">정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/advertise/modify" method="post">
+        <input type="hidden" name="adNO" value="{adNO}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">번호</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adNO}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">회사명</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adCompany}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">성명</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">연락처</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adContact}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">Email</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adEmail}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">광고타입</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adType}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">진행상황</span></div>
+            <div class="col-lg-10"><span class="mlt20">{adStatus}</span></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <a href="/adm/advertise/index" class="btn btn-default">취소</a>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/adm/advertise/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="adNO" value="{adNO}">
+        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+</div>
+{ #layout_admin_footer }

@@ -1,0 +1,10 @@
+    { @scripts }
+    { ? preg_match("/(http|https)\:\/\//", .value_) // 절대경로가 들어오는 경우를 대비합니다}
+    <script type="text/javascript" src="{.value_}"></script>
+    { : }
+    <script type="text/javascript" src="/script/{.value_}"></script>
+    { / }
+    { / }
+
+    </body>
+</html>

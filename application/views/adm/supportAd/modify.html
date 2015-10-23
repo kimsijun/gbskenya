@@ -1,0 +1,53 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/supportAd/index">협찬광고 관리</a></li>
+    <li class="active">정보수정</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" id="form-validate"  action="/adm/supportAd/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="sANO" value="{sANO}">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">번호</label>
+            <div class="col-lg-10"><span class="mlt20">{sANO}</span></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">제목</label>
+            <div class="col-lg-6"><input type="text" class="form-control" id="sAName" name="sAName" placeholder="제목" value="{sAName}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">순서</label>
+            <div class="col-lg-2"><input type="text" class="form-control" id="sAOrder" name="sAOrder" placeholder="순서" value="{sAOrder}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">기간</label>
+            <div class="col-lg-3"><input type="date" class="form-control" name="sASDate" value="{sASDate}"></div>
+            <div class="col-lg-1 btn"> ~ </div>
+            <div class="col-lg-3"><input type="date" class="form-control" name="sAEDate" value="{sAEDate}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">링크</label>
+            <div class="col-lg-10"><input type="text" class="form-control" id="sALink" name="sALink" placeholder="링크" value="{sALink}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">이미지</label>
+            <div class="col-lg-10">
+                <b>{sAThumbOrigin}</b><br>
+                <img src="/uploads/supportAd/{sAThumb}" >
+                <input type="file" class="form-control" id="sAThumb" name="sAThumb" placeholder="이미지" value="">
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">저장</button>
+                <button onclick="location.href=('/adm/supportAd/view/sANO/{sANO}');"  type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{ #layout_admin_footer }

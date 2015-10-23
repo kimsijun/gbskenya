@@ -1,0 +1,43 @@
+{ #layout_header }
+
+<article class="content">
+	<div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/content/index">Video</a> >
+            <a href="/content/view/ctNO/{ctNO}">View</a>
+        </div>
+    </div>
+     <div class="content-main">
+     <input type="hidden" class="mbID" value="{mbID}">
+        <div class="live-box-view">
+            <div class="live-box2">
+                <div class="movie">
+                    <iframe width="720" height="480" src="{?ctType ==='YOUTUBE'}//www.youtube.com/embed/{:ctType ==='VIMEO'}//player.vimeo.com/video/{/}{ctSource}?autoplay=1&wmode=opaque" frameborder="0" wmode="Opaque" allowfullscreen ></iframe>
+                </div>
+
+                <!--div class="movie-selectbox">
+                    <dl class="selectbox"><dt>About</dt></dl>
+                    <dl class="selectbox"><dt>Report</dt></dl> 
+                </div-->
+                <div class="movie-selectbox2">
+                    <dl class="selectbox downloadBtn">
+                        <dt>Download</dt>
+                        <dd class="downloadContainer">
+                            <p><a href="{videoDownload}" target="_blank">VIDEO</a></p>
+                            {? ctMP3 }
+                                <p><a href="{ctMP3}" target="_blank">MP3</a></p>
+                            {/}
+                        </dd>
+                    </dl>
+                   
+                </div>
+                
+            </div>
+        {# widget_content_infoContent}
+        </div>
+        {# widget_content_relativeContent}
+    </div>
+</article>
+
+{ #layout_footer }

@@ -1,0 +1,80 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/contentTag/index">콘텐츠 태그 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+
+<div class="content">
+    <form method="post" class="tagList" action="/adm/contentTag/process">
+        <input type="hidden" name="oderkey" class="tagOrderKey" value="">
+        <input type="hidden" name="mode" value="changeTagMode">
+    </form>
+    <form method="post" action="/adm/contentTag/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="oderkey" class="tagOrderKey" value="">
+        <div class="mb10">
+            <div class="col-lg-4">
+                <select name="tagMode" class="form-control">
+                    <option>선택</option>
+                    <option value="recentTag"{?secParams.oderkey =='recentTag' || !secParams.oderkey} selected="selected"{/}>최신 태그 순</option>
+                    <option value="countTag"{?secParams.oderkey =='countTag'} selected="selected"{/}>태그 많은 순</option>
+                </select>
+            </div>
+
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="checkbox"/></th>
+                {?recentTag}
+                <th>번호</th>
+                <th>태그내용</th>
+                <th>콘텐츠명</th>
+                {:}
+                <th>태그내용</th>
+                <th>콘텐츠명</th>
+                {/}
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ recentTag}
+            <tr>
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{.tgNO}" class="styled" /></td>
+                <td>{listCnt - secParams.page - .index_}</td>
+                <td>{.tgTag}</td>
+                {? .prCode }
+                <td><a href='/{?.prType=="program"}program{:}sermon{/}/view/prCode/{.prCode}/ctNO/{.ctNO}/ctPage/{.ctPlayListPage}' target="_blank">{.ctName}</a></td>
+                {:}
+                <td><a href="/content/view/ctNO/{.ctNO}" target="_blank">{.ctName}</a></td>
+                {/}
+                <td>{.mbID}</td>
+                <td>{.tgRegDate}</td>
+            </tr>
+            {:}
+            {@countTag}
+            <tr>
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{.tgNO}" class="styled" /></td>
+                <td>{.tgTag}</td>
+                {? .prCode }
+                <td><a href='/{?.prType=="program"}program{:}sermon{/}/view/prCode/{.prCode}/ctNO/{.ctNO}/ctPage/{.ctPlayListPage}' target="_blank">{.ctName}</a></td>
+                {:}
+                <td><a href="/content/view/ctNO/{.ctNO}" target="_blank">{.ctName}</a></td>
+                {/}
+                <td>{.mbID}</td>
+                <td>{.tgRegDate}</td>
+            </tr>
+            {/}
+            {/}
+            </tbody>
+        </table>
+    </form>
+    {pager}
+</div>
+
+{ #layout_admin_footer }

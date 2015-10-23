@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Login with Facebook</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+
+<body>
+<span id="test">dfdfdfdf</span>
+<div id="fb-root"></div>
+
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId:'253205698167612', // App ID
+            cookie:true, // enable cookies to allow the server to access the session
+            status:true, // check login status
+            xfbml:true, // parse XFBML
+            oauth : true //enable Oauth
+        });
+    };
+
+
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+
+    $(function(){
+
+        $("#test").click(function(){
+            FB.login(function(response) {
+                if(response.authResponse) {
+                    parent.location ='http://gbskenya.com/fbci/fblogin';
+                }
+            },{scope: 'read_stream'});
+        });
+    })
+
+</script>
+</body>
+</html>

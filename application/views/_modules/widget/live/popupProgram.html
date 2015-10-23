@@ -1,0 +1,49 @@
+<div class="live-titbox">
+    <div style="color:white;font-weight:900">Programmes</div>
+</div>
+<div class="live-list livePopupProgramContainer">
+
+    <ul class="popupProgramLoad fst">
+        {@programList}
+            <li prCode={.prCode}>
+                <span class="time">
+                    <img src="/uploads/program/{.prThumb}" width="47" height="35" alt="" />
+                </span>
+                <span class="txt mlt10">{.prName}</span>
+            </li>
+        {/}
+    </ul>
+
+    {@programList}
+    <ul class="popupProgramLoad scd">
+        <li class="back" idx="fst" eqIdx="0">뒤로가기</li>
+        {@.prSub}
+            <li prCode={..prCode}>
+                <span class="time">
+                    <img src="/uploads/program/{.prThumb}" width="47" height="35" alt="" />
+                </span>
+                <span class="txt mlt10">{..prName}</span>
+            </li>
+        {/}
+    </ul>
+    {/}
+
+    {@programList}
+        {@.prSub}
+        <ul class="popupProgramLoad trd">
+            <li class="back" idx="scd" eqIdx="{.index_}">뒤로가기</li>
+            {?..prSub}
+                {@..prSub}
+                    <li prCode={...prCode}>
+                        <span class="time">
+                            <img src="/uploads/program/{.prThumb}" width="47" height="35" alt="" />
+                        </span>
+                        <span class="txt mlt10">{...prName}</span>
+                    </li>
+                {/}
+            {/}
+        </ul>
+        {/}
+    {/}
+
+</div>

@@ -1,0 +1,86 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/channel/index">채널 관리</a></li>
+    <li class="active">등록</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" role="form" action="/adm/channel/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="write">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label" for="chName">채널이름</label>
+            <div class="col-lg-6"><input type="text" class="form-control" id="chName" name="chName" placeholder="채널이름" value=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">메인방송 타입</label>
+            <div class="col-lg-6">
+                <label class="radio-inline"><input type="radio" name="chMainBroad" checked="checked" value="USTREAM">USTREAM</label>
+                <label class="radio-inline"><input type="radio" name="chMainBroad" value="YOUTUBE">YOUTUBE</label>
+                <label class="radio-inline"><input type="radio" name="chMainBroad" value="TVPOT">TVPOT</label>
+                <label class="radio-inline"><input type="radio" name="chMainBroad" value="WOWZA">WOWZA</label>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">언어권</label>
+            <div class="col-lg-6">
+                <label class="checkbox-inline"><input type="checkbox" name="chLanguage[cn]" value="cn">중국어</label>
+                <label class="checkbox-inline"><input type="checkbox" name="chLanguage[es]" value="es">스페인어</label>
+                <label class="checkbox-inline"><input type="checkbox" name="chLanguage[en]" value="en">영어</label>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Youtube</label>
+            <div class="col-lg-8">
+                <textarea name="chYoutube" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Ustream</label>
+            <div class="col-lg-8">
+                <textarea name="chUstream" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Tvpot</label>
+            <div class="col-lg-8">
+                <textarea name="chTvpot" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Wowza</label>
+            <div class="col-lg-8">
+                <textarea name="chWowza" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">중국어</label>
+            <div class="col-lg-8">
+                <textarea name="chLangCN" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">스페인어</label>
+            <div class="col-lg-8">
+                <textarea name="chLangES" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">영어</label>
+            <div class="col-lg-8">
+                <textarea name="chLangEN" class="form-control" rows="20"></textarea>
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <a href="/adm/channel/index" class="btn btn-default">뒤로</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

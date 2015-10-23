@@ -1,0 +1,29 @@
+<div class="roll-content mb50">
+    { @viewContentRow1}
+    <a href="/content/view/ctNO/{viewContentRow1.ctNO}">
+        <dl>
+            <dt>{.ctName}</dt>
+            <dd>조회수 {.ctViewCount}회, {.ctEventDate}</dd>
+            <dd class="img">
+                <img src="/uploads/content/thumbs/{viewContentRow1.ctThumbS}" width="{config.trd.width}" height="{config.trd.height}" alt="" />
+            </dd>
+        </dl>
+    </a>
+    {/}
+</div>
+
+<div class="roll-content">
+    { @viewContentRow2}
+    <a href="/content/view/ctNO/{viewContentRow2.ctNO}">
+        <dl>
+            <dt>{.ctName}</dt>
+            <dd>조회수 {.ctViewCount}회, {.ctEventDate}</dd>
+            <dd class="img">
+                <img src="/uploads/content/thumbs/{viewContentRow2.ctThumbS}" width="{config.trd.width}" height="{config.trd.height}" alt="" />
+            </dd>
+        </dl>
+    </a>
+    {/}
+</div>
+
+

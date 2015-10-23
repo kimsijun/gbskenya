@@ -1,0 +1,96 @@
+{ #layout_header }
+
+<article class="content mb40 mt40">
+	<!--div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/liveschedule/index">Schedule</a>
+        </div>
+    </div-->
+    <div class="content-mypage">
+	<div class="content_left pb50">
+        <div class="daybox">
+            <div class="ch-content-banner">
+                <div class="roll-box">
+                    <p class="programArrow prev"><img src="/images/common/roll_prev.png" alt="이전" /></p>
+                    <div style="width:415px;height:50px; margin: 0 40px; position: relative; overflow: hidden;">
+                        <div class="roll-main programList" style="width:840px;height:50px;margin:2px 10px 0 0 ">
+                            <input type="hidden" class="weekIdx" value="{weekIdx}">
+                            {@ arrWeek}
+                            {? weekIdx == .index_ }
+                            <dl style="width:140px;">
+                                <dd style="font-size:18px;font-weight:900">{.strDate}</dd>
+                            </dl>
+                            {:}
+                            <dl style="width:100px;">
+                                <dd><a href="/liveschedule/index/{?chNO}chNO/{chNO}/{/}lsDate/{.lsDate}">{.strDate}</a></dd>
+                            </dl>
+                            {/}
+                            {/}
+                        </div>
+                    </div>
+                    <p class="programArrow next"><img src="/images/common/roll_next.png" alt="다음" /></p>
+
+                </div>
+            </div>
+
+
+            <script type="text/javascript">
+                var programBulletIdx = 0;
+
+                $(".programArrow").click(function(){
+                    if($(this).hasClass("prev") == true){
+                        if(programBulletIdx == 0)    return false;
+                        programBulletIdx--;
+                        $(".programList").animate({left:"0"});
+                    } else {
+                        if(programBulletIdx == 1)    return false;
+                        programBulletIdx++;
+                        $(".programList").animate({left:"-315px"});
+                    }
+                });
+                if($(".weekIdx").val() > 2){
+                    programBulletIdx++;
+                    $(".programList").css({left:"-315px"});
+                }
+            </script>
+        </div>
+
+        <ul class="pair_tab">
+            { @channelNames }
+            <li><a href="/liveschedule/index/chNO/{channelNames.chNO}"{? chNO == channelNames.chNO || chNO == ""}  class="on" {/}>{channelNames.chName}</a></li>
+            {/}
+        </ul>
+
+        <div class="pairinglist">
+            <table>
+                <thead>
+                <tr>
+                    <th class="time">Times</th>
+                    <th>Programmes</th>
+                </tr>
+                </thead>
+                <tbody>
+                { @liveSchedule}
+                <tr>
+                    <td class="time">{liveSchedule.lsSTime}</td>
+                    <td>{liveSchedule.lcName}</td>
+                </tr>
+                {/}
+
+                </tbody>
+            </table>
+        </div>
+
+		</div>
+		<div class="content_right">
+				<div class="ad_area">
+					<a href="#"><img src="/images/common/ad_img.jpg" alt="ad"></a>
+				</div>
+		</div>
+	</div>
+
+</article>
+
+
+{ #layout_footer }

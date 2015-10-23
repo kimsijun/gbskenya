@@ -1,0 +1,45 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/cfg_board/index">게시판관리</a></li>
+    <li class="active">게시판 정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/cfg_board/modify" method="post">
+        <input type="hidden" name="bodID" value="{bodID}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">게시판 ID</span></div>
+            <div class="col-lg-10"><span class="mlt20">{bodID}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">게시판 이름</span></div>
+            <div class="col-lg-10"><span class="mlt20">{bodName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">삭제여부</span></div>
+            <div class="col-lg-10"><span class="mlt20">{?bodIsDelete==="YES"}YES{:}NO{/}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">최종수정일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{bodModDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">생성일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{bodRegDate}</span></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10 pt20">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <a href="/adm/cfg_board/index" class="btn btn-default">목록</a>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/adm/cfg_board/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="bodID" value="{bodID}">
+        <button type="submit" class="btn btn-danger pull-right">삭제</button>
+    </form>
+</div>
+
+{ #layout_admin_footer }

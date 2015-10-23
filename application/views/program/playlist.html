@@ -1,0 +1,51 @@
+<ul>
+
+    {?page == "1"}
+        {? !ctNO }
+            <li class="programView selected" prCode="{prCode}" prName="{=str_replace(' ', '-', prName)}" style="height:43px;padding:0 12px 0 12px;">
+        {:}
+            <li class="programView" prCode="{prCode}" prName="{=str_replace(' ', '-', prName)}" style="height:43px;padding:0 12px 0 12px;">
+        {/}
+            <span class="mrt10 mt15">   {? !ctNO }  >  {:} - {/}    </span>
+            <span class="mt5"><img src="/uploads/program/{prThumb}" width="47" height="35"></span>
+            <span class="txt mlt10"><br>Program Intro.</span>
+        </li>
+    {/}
+
+
+    {@ data}
+        {? ctNO == .ctNO}
+            <li class="programView selected" ctNO="{.ctNO}" prCode="{.prCode}" prName="{=str_replace(' ', '-', prName)}">
+        {:}
+            <li class="programView" ctNO="{.ctNO}" prCode="{.prCode}" prName="{=str_replace(' ', '-', prName)}">
+        {/}
+            <span class="mrt10 mt15">   {? ctNO == .ctNO}  >  {:} {.index_ + offset + 1}   {/}    </span>
+            <span class="mt5"><img src="/uploads/content/thumbs/{.ctThumbS}" width="47" height="35"></span>
+            <span class="txt mlt10">{prName}<br/>{.ctName}</span>
+        </li>
+    {/}
+
+    </ul>
+    <div class="contentPage plprPagination"  style="width:{ctPageWidth}px">
+
+    {?pagePrev}
+        <span class="pageMove pagePrev" style="float:left">Prev</span>
+    {/}
+
+
+    {@ajaxPage}
+    <form class="frmplaylistPage" method="post">
+        <input type="hidden" name="total" value="{total}">
+        <input type="hidden" name="page"value="{.value_}">
+        <input type="hidden" name="ctPage" class="ctPage" value="{curCtPage}">
+        <input type="hidden" name="prCode" value="{prCode}">
+        <input type="hidden" name="ctNO" value="{ctNO}">
+        <span class="playlistPage {?curCtPage == .value_} ctPage {/}">{.value_}</span>
+    </form>
+    {/}
+
+    {?pageNext}
+        <span class="pageMove pageNext" style="float:left">Next</span>
+    {/}
+
+</div>

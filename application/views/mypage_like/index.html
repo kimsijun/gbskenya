@@ -1,0 +1,82 @@
+{ #layout_header }
+<article class="content ">
+	<div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a> >
+            <a href="/mypage_like/index">Like Videos/Programmes</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+            {# widget_mypage_mymenu}
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                    <form  class="frmMyPageLike" method="post" action="/mypage_like/delete">
+                        {?ctLike}
+                        <div>
+                            <h4>Contents</h4>
+                            <div>
+                                {@ ctLike}
+                                <dl>
+                                    <a href="/content/view/ctNO/{ctLike.content.ctNO}">
+                                        <dt><p>{.content.ctName}</p></dt>
+                                        <dd>
+                                            <p>Hit : {.content.ctViewCount}</p>
+                                            <p>Date : {.mpLRegDate}</p>
+                                        </dd>
+                                    </a>
+                                    <dd class="sel_ck">
+                                        <label><input type="checkbox" name="ctNO[]" value="{ctLike.content.ctNO}"> {.content.prDepth1} {?.content.prDepth2} > {.content.prDepth2} {/}{?.content.prDepth3} > {.content.prDepth3} {/}</label>
+                                    </dd>
+                                    <dd class="img"><img src="/uploads/content/thumbs/{ctLike.content.ctThumbS}" width="{config.trd.width}" height="{config.trd.height}"></dd>
+                                </dl>
+                                {/}
+                            </div>
+                        </div>
+                        {/}
+
+                        {?prLike}
+                        <div style="clear: both;">
+                            <h4>Programmes</h4>
+                            <div>
+                                { @ prLike}
+                                <dl>
+                                    <a href="/program/view/prCode/{prLike.program.prCode}">
+                                        <dt><p>{prLike.program.prName}</p></dt>
+                                        <dd>
+                                            <p>Date : {.mpLRegDate}</p>
+                                        </dd>
+                                    </a>
+                                    <dd class="sel_ck">
+                                        <label><input type="checkbox" name="prCode[]" value="{prLike.program.prCode}"> {.program.prDepth1} {?.program.prDepth3} > {.program.prDepth2} {/}{?.program.prDepth4} > {.program.prDepth3} {/}</label>
+                                    </dd>
+                                    <dd class="img"><img src="/uploads/program/{prLike.program.prThumb}" width="{config.trd.width}" height="{config.trd.height}"></dd>
+                                </dl>
+                                {/}
+                            </div>
+                        </div>
+                        {/}
+                    </form>
+                </div>
+
+                {?ctLike || prLike}
+                <div class="btnbox">
+                    <span class="all_ck check_all">Select all</span>
+                    <!--span class="all_ck uncheck_all">전체해제</span-->
+                    <span class="all_del mpL_del">Delete Selected</span>
+                </div>
+                {/}
+
+                {? ctLike.size_ > 6 || prLike.size_ > 6}<p class="tc page_more"><a href="#">More</a></p>{/}
+            </div>
+        </div>
+    </div>
+</article>
+
+
+{ #layout_footer }

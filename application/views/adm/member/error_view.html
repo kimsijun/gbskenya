@@ -1,0 +1,36 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/member/index">회원관리</a></li>
+    <li class="active">에러정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/member/error_modify" method="post">
+        <input type="hidden" name="erNO" value="{erNO}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">이메일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{erEmail}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">에러내용</span></div>
+            <div class="col-lg-10"><span class="mlt20">{erContent}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">확인여부</span></div>
+            <div class="col-lg-10"><span class="mlt20">{erIsCheck}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">등록일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{erRegDate}</span></div>
+        </div>
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10 pt20">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/member/error_index');" type="button" class="btn btn-default">목록</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

@@ -1,0 +1,108 @@
+{ #layout_header }
+<article class="content ">
+	<div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a> >
+            <a href="/mypage_favor/index">Favorite Videos/Programmes</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                    <form  class="frmMyPageFavor" method="post" action="/mypage_favor/delete">
+                        {?ctFavor}
+                        <div style="clear: both;" class="fcPage">
+                            <h4 class="mb10">Contents</h4>
+                            {@ FavorContent}
+                            <ul class="fcPage{.index_}" style="display: none; ">
+                                {@ .page}
+                                {?..ctName}
+                                <dl>
+                                    {? ..prCode }
+                                    <a href="/{?..prType=='program'}program{:}sermon{/}/view/prCode/{..prCode}/ctNO/{..ctNO}/ctPage/{..ctPlayListPage}">
+                                        {:}
+                                        <a href="/content/view/ctNO/{..ctNO}">
+                                            {/}
+                                            <dt><p>{..ctName}</p></dt>
+                                            <dd>
+                                                <p>Hit : {..ctViewCount}</p>
+                                                <p>Date : {..mpRegDate}</p>
+                                            </dd>
+
+                                            <dd class="sel_ck">
+                                                <label><input type="checkbox" name="ctNO[]" value="{..ctNO}">
+                                                    {..prDepth1.prName}
+                                                    {?..prDepth2} > {..prDepth2.prName} {/}
+                                                    {?..prDepth3} > {..prDepth3.prName} {/}
+                                                    {?..prDepth4} > {..prDepth4.prName} {/}
+                                                </label>
+                                            </dd>
+                                            <dd class="img"><img src="/uploads/content/thumbs/{..ctThumbS}" width="213" height="143"></dd>
+                                        </a>
+                                </dl>
+                                {/}
+                                {/}
+                            </ul>
+                            {/}
+                        </div>
+                        {/}
+
+                        {? prFavor}
+                        <div style="clear: both;" class="fpPage">
+                            <h4 class="mb10">Programmes</h4>
+                            {@ FavorProgram}
+                            <ul class="fpPage{.index_}" style="display: none; ">
+                                {@ .page}
+                                {?..prName}
+                                <dl>
+                                    <a href="/{?..prType=='program'}program{:}sermon{/}/view/prCode/{..prCode}">
+                                        <dt><p>{..prName}</p></dt>
+                                        <dd>
+                                            <p>Date : {..mpRegDate}</p>
+                                        </dd>
+
+                                        <dd class="sel_ck">
+                                            <label><input type="checkbox" name="prCode[]" value="{..prCode}"> {..prDepth1.prName} {?..prDepth3} > {..prDepth2.prName} {/}{?..prDepth4} > {..prDepth3.prName} {/}</label>
+                                        </dd>
+                                        <dd class="img"><img src="/uploads/program/{..prThumb}" width="213" height="143"></dd>
+                                    </a>
+                                </dl>
+                                {/}
+                                {/}
+                            </ul>
+                            {/}
+                        </div>
+                        {/}
+                    </form>
+                </div>
+
+                {?ctFavor || prFavor}
+                <div class="btnbox">
+                    <span class="all_ck check_all">Select all</span>
+                    <!--span class="all_ck uncheck_all">전체해제</span-->
+                    <span class="all_del mpF_del">Delete Selected</span>
+                    <input type="hidden" class="mbLoginId" value="{member.mbID}">
+                </div>
+                {/}
+
+                {? ctFavor.size_ > 6 || prFavor.size_ > 6}<p class="tc page_more"><a href="#">More</a></p>{/}
+            </div>
+        </div>
+    </div>
+</article>
+
+
+{ #layout_footer }

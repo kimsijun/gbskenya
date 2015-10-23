@@ -1,0 +1,180 @@
+{ #layout_header }
+<article class="content">
+    <div class="content-mypage">
+        <h1 class="login-tit"> Sign up for GBS </h1>
+        <div class="join-left fl">
+            <p class="join-tit">Joining is Beneficial</p>
+            <p class="join-txt">
+               1. Can see your watching history.<br/>
+               2. Can bookmark to video that you want watching often.<br/>
+               3. Can communicate with others .<br/>
+               4. Can report problems and requirements.
+            </p>
+        </div>
+        <div class="join-right fl">
+            <form method="post" action="/member/process" class="frmMemberJoin" enctype="multipart/form-data">
+                <input type="hidden" name="mode" value="join">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>Name</td>
+                        <td><input class="placeholderTxt" type="text" name="mbFirstName" placeholder="First name" value="First name">&nbsp;
+                            <input class="placeholderTxt" type="text" name="mbLastName" placeholder="Last name" value="Last name"></td>
+                    </tr>
+                    <tr>
+                        <td>Nick Name</td>
+                        <td><input type="text" name="mbNick" size="46"></td>
+                    </tr>
+                    <tr>
+                        <td>User Account</td>
+                        <td><input class="placeholderTxt" type="text" name="mbID" size="46" placeholder="input your email address" value="input your email address"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input class="placeholderTxt mbPW" type="password" name="mbPW" size="46" placeholder="********"  value="********"></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm<br/>Password</td>
+                        <td><input class="placeholderTxt" type="password" name="mbPWChk" size="46" placeholder="********"  value="********"></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile phone</td>
+                        <td>
+                            <input type="text" name="mbCellPhone" size="46">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Birthday</td>
+                        <td><input type="text" name="mbBirth" id="mb_birth" class="datepicker"> ex)1980-05-26</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                            <select name = "mbSex" >
+                                <option>I am...</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>
+                            <select id="mbNation" name="mbNation" >
+                                <option value="" >Choose</option>
+                                <option value="KE" >Kenya</option>
+                                <option value="KR" >Republic of Korea</option>
+                                <option value="CN" >China</option>
+                                <option value="JP" >Japan</option>
+                                <option value="AR" >Argentina</option>
+                                <option value="AT" >Austria</option>
+                                <option value="AU" >Australia</option>
+                                <option value="BF" >Burkina Faso</option>
+                                <option value="BG" >Bulgaria</option>
+                                <option value="BI" >Burundi</option>
+                                <option value="BJ" >Bénin</option>
+                                <option value="BO" >Bolivia</option>
+                                <option value="BR" >Brazil</option>
+                                <option value="BW" >Botswana</option>
+                                <option value="CA" >Canada</option>
+                                <option value="CD" >Republic of Congo</option>
+                                <option value="CF" >Central African Republic</option>
+                                <option value="CG" >Congo</option>
+                                <option value="CH" >Swizterland</option>
+                                <option value="CI" >Côte d’Ivoire</option>
+                                <option value="CL" >Chile</option>
+                                <option value="CM" >Cameroon</option>
+                                <option value="CO" >Colombia</option>
+                                <option value="CR" >Costa Rica</option>
+                                <option value="CZ" >Czech</option>
+                                <option value="DE" >Germany</option>
+                                <option value="DO" >Domincan Republic</option>
+                                <option value="EC" >Ecuador</option>
+                                <option value="ET" >Ethiopia</option>
+                                <option value="FI" >Finland</option>
+                                <option value="FJ" >Fiji</option>
+                                <option value="FR" >France</option>
+                                <option value="GA" >Gabon</option>
+                                <option value="GH" >Ghana</option>
+                                <option value="GM" >Gambia</option>
+                                <option value="GN" >Guinea</option>
+                                <option value="HK" >Hong Kong</option>
+                                <option value="HU" >Hungary</option>
+                                <option value="HT" >Haïti</option>
+                                <option value="IN" >India</option>
+                                <option value="IT" >Italy</option>
+                                <option value="JM" >Jamaica</option>
+                                <option value="KG" >Kyrgyzstan</option>
+                                <option value="KH" >Cambodia</option>
+                                <option value="KZ" >Kazakhstan</option>
+                                <option value="LA" >Laos</option>
+                                <option value="LR" >Liberia</option>
+                                <option value="ML" >Mali</option>
+                                <option value="MM" >Myanmar</option>
+                                <option value="MN" >Mongolia</option>
+                                <option value="MW" >Malawi</option>
+                                <option value="MX" >Mexico</option>
+                                <option value="MY" >Malaysia</option>
+                                <option value="MZ" >Mozambique</option>
+                                <option value="NA" >Namibia</option>
+                                <option value="NG" >Nigeria</option>
+                                <option value="NP" >Nepal</option>
+                                <option value="NZ" >New Zealand</option>
+                                <option value="PE" >Peru</option>
+                                <option value="PH" >The Philippines</option>
+                                <option value="PL" >Poland</option>
+                                <option value="PT" >Portugal</option>
+                                <option value="PY" >Paraguay</option>
+                                <option value="RO" >Romania</option>
+                                <option value="RU" >Russia</option>
+                                <option value="RW" >Rwanda</option>
+                                <option value="SG" >Singapore</option>
+                                <option value="SL" >Sierra Leone</option>
+                                <option value="SN" >Senegal</option>
+                                <option value="SO" >Somalia</option>
+                                <option value="SY" >Syria</option>
+                                <option value="TG" >Togo</option>
+                                <option value="TH" >Thailand</option>
+                                <option value="TR" >Turkey</option>
+                                <option value="TW" >Taiwan</option>
+                                <option value="TZ" >Tanzania</option>
+                                <option value="UA" >Ukraine</option>
+                                <option value="UG" >Uganda</option>
+                                <option value="UK" >UK</option>
+                                <option value="US" >United States of America</option>
+                                <option value="UY" >Uruguay</option>
+                                <option value="UZ" >Uzbekistan</option>
+                                <option value="VN" >Vietnam</option>
+                                <option value="ZA" >Republic of South Africa</option>
+                                <option value="ZM" >Zambia</option>
+                                <option value="ZW" >Zimbabwe</option>
+                                <option value="ETC" >Other (country not listed)</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Member Image</td>
+                        <td><input type="file" name="mbThumb" ></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="ckPrivacy">&nbsp; I agree to the GBS Terms of Service and Privacy Policy</label>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+        <div class="joinSubmit">
+            <span class="join-btn submit sign-in">Sign-up</span>
+        </div>
+    </div>
+</article>
+<script>
+    $(".datepicker").datepicker({
+        defaultDate:'1980-01-01',
+        changeYear:true,
+        yearRange: '1960:2020',
+        dateFormat: 'yy-mm-dd'
+    });
+</script>
+{ #layout_footer }

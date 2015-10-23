@@ -1,0 +1,144 @@
+@charset "utf-8";
+
+/************************************************************************
+* filename		: common.css
+* description	: common import
+* author		: Jeon young chang (ars9845@naver.com)
+* date			: 2011.10.19
++ version		: v2.0
+************************************************************************/
+
+
+/** 네비게이션 공통 **/
+.navi{position:absolute; right:20px; top:10px; height:13px; padding: 1px 0 0 15px; font-size:11px; text-align:right; color:#666666; z-index:100; background:url('/images/icon/icon_home.gif') left top no-repeat;}
+.navi .arrow{margin-left:6px; padding-left:10px; background:url('/images/icon/icon_navi.gif') left 1px no-repeat;}
+.navi .arrow2{padding: 0 10px 0 10px; background:url('/images/icon/icon_navi.gif') 3px 1px no-repeat;}
+
+/**  타이틀 공통 **/
+.titbox{position:relative; width:100%; height:29px; margin: 0 0 27px 0; text-align:left; background:url('/images/common/titline.gif') left top repeat-x;}
+
+
+/** 서브 타이틀 공통 **/
+.subtit{position:relative; padding:15px 0 0 0; border-top:2px dotted #993399;}
+.subtit h3{margin: 0 0 9px 0;}
+.subtit	h4{margin: 0 0 10px 0; padding: 0 0 0 19px; color:#555555; background:url("/images/icon/h4tit_blet.gif") left top no-repeat;}
+.subtit	h4.tit{margin: 0 0 10px 0; padding: 0 0 5px 19px; color:#555555; border-bottom:2px solid #E8E8E8; background:url("/images/icon/h4tit_blet.gif") left 4px no-repeat;}
+	
+	/**  서브 타이틀 + 셀렉트,조회 **/
+	.sel_box{position:absolute; right:0; top:-5px; height:21px;}	
+	.sel_box select{height:20px;}
+	.sel_box .sel_img{vertical-align:bottom;}
+
+
+/** input 공통 **/
+input.text{border:1px solid #DCDCDC; padding: 2px 0 2px 0; font-size:12px;}
+
+.inw10{width:10px;}
+.inw20{width:20px;}
+.inw30{width:30px;}
+.inw40{width:40px;}
+.inw50{width:50px;}
+.inw60{width:60px;}
+.inw70{width:70px;}
+.inw80{width:80px;}
+.inw90{width:90px;}
+.inw100{width:100px;}
+
+/** border **/
+.br0{border:0px;}
+
+/**  공통 여백 **/
+.mt5{margin-top:5px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt20{margin-top:20px;}
+.mt30{margin-top:30px;}
+.mt40{margin-top:40px;}
+.mt50{margin-top:50px;}
+
+.mrt5{margin-right:5px;}
+.mrt10{margin-right:10px;}
+.mrt20{margin-right:20px;}
+.mrt30{margin-right:30px;}
+.mrt40{margin-right:40px;}
+.mrt50{margin-right:50px;}
+
+.mb10{margin-bottom:10px;}
+.mb20{margin-bottom:20px;}
+.mb30{margin-bottom:30px;}
+.mb40{margin-bottom:40px;}
+.mb50{margin-bottom:50px;}
+
+.mlt10{margin-left:10px;}
+.mlt20{margin-left:20px;}
+.mlt30{margin-left:30px;}
+.mlt40{margin-left:40px;}
+.mlt50{margin-left:50px;}
+
+
+.pt10{padding-top:10px;}
+.pt20{padding-top:20px;}
+.pt30{padding-top:30px;}
+.pt40{padding-top:40px;}
+.pt50{padding-top:50px;}
+
+.prt10{padding-right:10px;}
+.prt20{padding-right:20px;}
+.prt30{padding-right:30px;}
+.prt40{padding-right:40px;}
+.prt50{padding-right:50px;}
+
+.pb10{padding-bottom:10px;}
+.pb20{padding-bottom:20px;}
+.pb30{padding-bottom:30px;}
+.pb40{padding-bottom:40px;}
+.pb50{padding-bottom:50px;}
+
+.plt10{padding-left:10px;}
+.plt20{padding-left:20px;}
+.plt30{padding-left:30px;}
+.plt40{padding-left:40px;}
+.plt50{padding-left:50px;}
+
+
+/** 공통 글자색 **/
+.f_col{color:#D20A06;}   /** 빨간색 **/
+.f_col2{color:#999999;}   /** 회색 **/
+.f_col3{color:#91622B;}   /** 갈색 **/
+
+
+
+/**  탭 공통 (기본형) **/
+.tabbox ul{overflow:hidden;}
+.tabbox li{float:left; height:24px;}
+.tabbox li img { vertical-align:top; }
+.tabbox .twoline { /*background:url('/images/bullet/bullet_tab.gif') repeat-x left bottom;*/ border-bottom:1px solid #e47979; }
+
+	/**  탭 공통 + 셀렉트,조회 **/
+	.tabbox .sel_box{position:absolute; right:0; top:-2px;}	
+	.tabbox .sel_box select{height:20px;}
+	.tabbox .sel_box .sel_img{vertical-align:bottom;}
+	
+
+/**  탭 공통 (한페이지구현) **/	
+#tabcontainer {position:relative; width:100%; /*background:url(../images/tab_bg.gif) 0 0 repeat-x;*/}
+#tabcontainer h4 {top:0;  /*background:url(../images/tab_bg.gif) 0 0 repeat-x;*/} /* 제목 */
+#tabcontainer img {vertical-align:top;}
+#tabcontainer ul {clear:both; overflow:hidden; width:100%; padding-top:36px;} /* 리스트 */
+#tabcontainer ul li {float:left; width:323px; padding:5px 0 3px 12px; font-family:Arial; border-bottom:1px solid #e0e0e0; background:url(../images/tab_bul.gif) 4px 10px no-repeat;}
+#tabcontainer ul li a {float:left;}
+#tabcontainer ul li span {float:right; color:#666;}
+
+
+/** 하단 검색 공통 **/
+.searchbox{position:relative; width:681px; height:38px; background:url('/images/common/searchbox.gif') left top no-repeat;}
+.searchbox .sch_sel{position:absolute; left:130px; top:9px;}
+.searchbox .sch_text{position:absolute; left:236px; top:9px; height:18px; border:1px solid #D7D7D7;}
+.searchbox .sch_btn{position:absolute; left:496px; top:8px;}
+
+
+/* 폼 유효설 검사 공통 */
+input.error, textarea.error{border:1px dashed red;}
+label.error{margin-left:10px; color:red;}
+input.error, textarea.error{border:1px solid red;}
+label.error{padding-left:5px; display:inline; color:red;}

@@ -1,0 +1,76 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/channel/index">채널 관리</a></li>
+    <li class="active">정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/channel/modify" method="post">
+        <input type="hidden" name="chNO" value="{chNO}">
+
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">채널이름</span></div>
+            <div class="col-lg-9"><span class="mlt20">{chName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">메인방송 타입</span></div>
+            <div class="col-lg-9"><span class="mlt20">{chMainBroad}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">언어권</span></div>
+            <div class="col-lg-9"><span class="mlt20">{chLanguage['cn']} {chLanguage['es']} {chLanguage['en']}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">Youtube</span></div>
+            <div class="col-lg-9"><span class="mlt20">{chYoutube}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">Ustream</span></div>
+            <div class="col-lg-9"><span class="mlt20">{=stripslashes(chUstream)}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">Tvpot</span></div>
+            <div class="col-lg-9"><span class="mlt20">{=stripslashes(chTvpot)}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">Wowza</span></div>
+            <div class="col-lg-9"><span class="mlt20">{=stripslashes(chWowza)}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">중국어</span></div>
+            <div class="col-lg-9"><span class="mlt20">{=stripslashes(chLangCN)}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">스페인어</span></div>
+            <div class="col-lg-9"><span class="mlt20">{=stripslashes(chLangES)}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">영어</span></div>
+            <div class="col-lg-9"><span class="mlt20">{=stripslashes(chLangEN)}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">최종 수정일</span></div>
+            <div class="col-lg-9"><span class="mlt20">{chModDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">등록일</span></div>
+            <div class="col-lg-9"><span class="mlt20">{chRegDate}</span></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/channel/index');" type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" action="/adm/channel/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="chNO" value="{chNO}">
+        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+</div>
+
+{ #layout_admin_footer }

@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+/************************************************************************
+* filename		: default.css
+* description	: default  CSS import
+* author		: Jeon young chang (ars9845@naver.com)
+* date			: 2011.10.19
++ version		: v2.0
+************************************************************************/
+
+
+/** default set **/
+* {margin:0; padding:0;}
+/*body {margin:0; padding:0; font-size:12px; font-family:Arial, Helvetica, sans-serif; color:#000000; border:none;}*/
+html {height: 100%;min-width:1002px;}
+body {margin:0; padding:0; font-size:12px; font-family:Arial; color:#505050; border:none;height:100%;}
+div, p, blockquote, pre, address, table, caption, th, td, form, fieldset, legend, hr, input, textarea{margin: 0; padding: 0;font-family:Arial; }
+ul, ol, li, dl, dt, dd {margin:0; padding:0; list-style:none;}
+
+input, select, button {font-size:12px;font-family:Arial;}
+* html input, select, button {font-size:12px;font-family:Arial;}
+
+form input, form select, form label, form img, form button {vertical-align:middle;}
+
+fieldset {border:none;}
+fieldset input, fieldset select, fieldset label, fieldset img, fieldset button {vertical-align:middle;}
+legend {width:0; height:0; line-height:0; font-size:0; visibility:hidden; display:none;}
+
+img {border:0; font-size:0;}
+hr {}
+
+
+/** a tag set **/
+A:link, A:visited, A:active {color:#666666; text-decoration: none;}
+A:hover {color:#999999; text-decoration:none;}
+
+
+/**  font set **/
+h1 {font-size:200%;}
+h2 {font-size:180%;}
+h3 {font-size:160%;}
+h4 {font-size:140%;}
+h5 {font-size:120%;}
+h6 {font-size:100%;}
+
+
+
+/** table set **/
+table {margin:0; padding:0; border-collapse:collapse; border-spacing:0;}
+caption {width:0; height:0; line-height:0; font-size:0; visibility:hidden; display:none;}
+
+
+/** position set **/
+.ftbox {position:relative; overflow:hidden;}
+.fl {float:left;}
+.fr {float:right;}
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+
+.cl{clear:both; font-size:0; line-height:0; height:0;}
+
+
+/** none set **/
+.bd_cl {border:0;}
+.bg_cl {background-image:none;}
+.bg_text {width:0; height:0; font-size:0px; visibility:hidden; display:none;}
+
+
+
+/** etc set **/
+.hand {cursor:pointer;}
+
+
+
+/** html5 **/
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }

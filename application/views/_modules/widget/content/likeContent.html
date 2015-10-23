@@ -1,0 +1,78 @@
+<p class="content-tit">Recommanded</p>
+<div class="roll-box" style="width:{config.snd.perPageWidth}px;height:{config.snd.perPageHeight + 110}px; overflow: hidden;">
+    <p class="likeArrow prev"><img src="/images/common/roll_prev.png" alt="이전" /></p>
+    <div class="roll-content likeList" style="width:{config.snd.totalWidth}px;height:{config.snd.height+70}px;">
+        <div class="fl mb10">
+            { @likeContent1 }
+            <dl class="livecont">
+                <a href="/content/view/ctNO/{likeContent1.ctNO}/ctName/{=strtolower(url_title(.ctName))}">
+                    <dt>{likeContent1.ctNameShort}</dt>
+                    <dd>{likeContent1.ctEventDate}</dd>
+                    <dd class="img">
+                        <img src="/uploads/content/thumbs/{likeContent1.ctThumbS}" width="{config.snd.width}" height="{config.snd.height}">
+                        <p class="thumbLeft"style="height:{config.snd.height}px;background:#eaeaea;"></p>
+                        <p class="thumbRight"style="height:{config.snd.height}px;background:#eaeaea;"></p>
+                    </dd>
+                </a>
+            </dl>
+            {/}
+        </div>
+        <div class="fl mb10">
+            { @likeContent2 }
+            <dl class="livecont">
+                <a href="/content/view/ctNO/{likeContent2.ctNO}/ctName/{=strtolower(url_title(.ctName))}">
+                    <dt>{likeContent2.ctNameShort}</dt>
+                    <dd>{likeContent2.ctEventDate}</dd>
+                    <dd class="img">
+                        <img src="/uploads/content/thumbs/{likeContent2.ctThumbS}" width="{config.snd.width}" height="{config.snd.height}">
+                        <p class="thumbLeft"style="height:{config.snd.height}px;background:#eaeaea;"></p>
+                        <p class="thumbRight"style="height:{config.snd.height}px;background:#eaeaea;"></p>
+                    </dd>
+                </a>
+            </dl>
+            {/}
+        </div>
+    </div>
+    <p class="likeArrow next"><img src="/images/common/roll_next.png" alt="다음" /></p>
+
+    <div class="btn_box likeBtn">
+        <span><img src="/images/common/btn_b_on.png" alt="" /></span>
+        {@config.snd.pageControlCount}
+        <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+        {/}
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var likeBulletIdx = 0;
+    $(".likeBtn span").click(function(){
+        var selectIdx = $(".likeBtn span").index(this);
+        if(selectIdx == likeBulletIdx) return false;
+        $(".likeBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".likeBtn span").children("img").eq(selectIdx).attr("src", "/images/common/btn_b_on.png");
+
+        if(selectIdx > likeBulletIdx){
+            for(i=likeBulletIdx; i<selectIdx; i++)
+                $(".likeList").animate({left:"-={config.snd.perPageWidth}px"});
+        } else {
+            for(i=likeBulletIdx; i>selectIdx; i--)
+                $(".likeList").animate({left:"+={config.snd.perPageWidth}px"});
+        }
+        likeBulletIdx = selectIdx;
+    });
+
+    $(".likeArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(likeBulletIdx == 0)    return false;
+            likeBulletIdx--;
+            $(".likeList").animate({left:"+={config.snd.perPageWidth}px"});
+        } else {
+            if(likeBulletIdx == {config.snd.slideCount})    return false;
+            likeBulletIdx++;
+            $(".likeList").animate({left:"-={config.snd.perPageWidth}px"});
+        }
+        $(".likeBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".likeBtn span").children("img").eq(likeBulletIdx).attr("src", "/images/common/btn_b_on.png");
+    });
+</script>

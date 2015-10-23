@@ -1,0 +1,28 @@
+<div class="mainbox10">
+    <p class="content-tit">Programmes</p>
+    <div class="roll-content mb20"style="width: 650px;">
+        { @programRow1}
+        <a href="/program/view/prCode/{programRow1.prCode}">
+            <dl>
+                <dt>{programRow1.prName} {?programRow1.prIsSub}<img src="/images/common/more.gif" alt="" />{/}</dt>
+                <dd class="img">
+                    <img src="/uploads/program/{programRow1.prThumb}" width="{config.fth.width}" height="{config.fth.height}" alt="" />
+                </dd>
+            </dl>
+        </a>
+        {/}
+    </div>
+
+    <div class="roll-content"style="width: 650px;">
+        { @programRow2}
+        <a href="/program/view/prCode/{programRow2.prCode}">
+            <dl>
+                <dt>{programRow2.prName} {?programRow2.prIsSub}<img src="/images/common/more.gif" alt="" />{/}</dt>
+                <dd class="img">
+                    <img src="/uploads/program/{programRow2.prThumb}" width="{config.fth.width}" height="{config.fth.height}" alt="" />
+                </dd>
+            </dl>
+        </a>
+        {/}
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a> >
+            <a href="/mypage_tag/index">My Tag</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                    {?tagList}
+                    <div class="mypageTag" >
+                        <h4 class="mb10">Tag</h4>
+                        {@ tagList}
+                        <form method="post" action="/mypage_tag/view" class="fl tagView{.index_}" style="cursor:pointer;" >
+                            <input type="hidden" name="tgTag" value="{.tgTag}">
+                            <span onclick="$('.tagView{.index_}').submit();">{.tgTag} ({.tgTagCnt})</span>
+                            <span>{? .size_ > .index_ + 1}|{/}</span>
+                        </form>
+                        {/}
+                    </div>
+                    {/}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{ #layout_footer }

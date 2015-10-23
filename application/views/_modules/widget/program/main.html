@@ -1,0 +1,37 @@
+<div class="programbox">
+    { ? !params.prCode }
+    { @ programSortList}
+    <p class="content-tit">{.prName}</p>
+    <div class="program-list inw660 mb30">
+        { @.prSub}
+        <dl class="livecont" style="margin-bottom:30px;">
+            <a href="/program/{ ?..prSub }index{:}view{/}/prCode/{..prCode}/prName/{=strtolower(url_title(..prName))}">
+                    <dt>{..prName} { ? ..prSub}+{/}</dt>
+                    <dd class="img">
+                        <img src="/uploads/program/{..prThumb}" width="{config.fst.width}" height="{config.fst.height}">
+                    </dd>
+            </a>
+        </dl>
+        {/}
+    </div>
+    <hr class="mb30">
+    {/}
+    { : }
+    { @ inProgram }
+    <p class="content-tit">{inProgram.prName}</p>
+    <div class="program-list inw660 mb30">
+        { @inProgram.prSub}
+        <dl class="livecont" style="margin-bottom:30px;">
+            <a href="/program/{ ?..prSub }index{:}view{/}/prCode/{..prCode}/prName/{=strtolower(url_title(..prName))}">
+                    <dt>{..prName} { ? ..prSub}+{/}</dt>
+                    <dd class="img">
+                        <img src="/uploads/program/{..prThumb}" width="{config.fst.width}" height="{config.fst.height}">
+                    </dd>
+                </a>
+        </dl>
+        {/}
+    </div>
+    <hr class="mb30">
+    {/}
+    {/}
+</div>

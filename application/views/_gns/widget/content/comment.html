@@ -1,0 +1,151 @@
+
+<div class="comment_text">
+    <p class="reply-sum">(0 / 250)</p>
+    <ul class="sns_login">
+        <li type="GBS" class="sns01{?mbAccountType == 'GBS'} snsCurrent01 currentLogin{/}">
+            <img src="/images/common/sns_icon_01.png">
+        </li>
+        <li type="FACEBOOK" class="sns02{?mbAccountType == 'FACEBOOK'} snsCurrent02 currentLogin{/}" loginUrl="{mbFBLoginUrl}">
+            <div id="fb-root"></div>
+            <img src="/images/common/sns_icon_02.png">
+            {?mbAccountType == 'FACEBOOK' || mbID}
+            <input type="checkbox" class="fbPostCheck chkbox">
+            {/}
+        </li>
+        <li type="TWITTER" class="sns03{?mbAccountType == 'TWITTER'} snsCurrent03 currentLogin{/}" loginUrl="{mbTWLoginUrl}">
+            <img src="/images/common/sns_icon_03.png">
+            {?mbAccountType == 'TWITTER' || mbID}
+            <input type="checkbox" class="twPostCheck chkbox">
+            {/}
+        </li>
+    </ul>
+
+    <form method="post" class="ctFrmCommentAdd">
+        <p>
+            <input type="hidden" name="mbAccountType" class="mbAccountType" value="{mbAccountType}">
+            <input type="hidden" name="mode" value="write"/>
+            <input type="hidden" name="ctNO" value="{ctNO}"/>
+            {? mbIsAdmin == "YES" }
+            Notice <input type="checkbox" name="cbcoIsNotice" value="YES">
+            {/}
+        <p class="replay-txt">
+            <img src="/images/common/none.jpg" style="float: left;padding:0 10px 10px 0;"/>
+            <textarea name="cbcoContent" class="ctCommentTxt" onkeyup="getsize(cbcoContent.value);" maxlength="250" style="width:490px"></textarea>
+            <span class="ctCommentSubmit" mode="add" >Submit</span>
+        </p>
+        </p>
+    </form>
+</div>
+
+
+<div class="CommentList">
+    {@ noticeData}
+    <div class="replay-txtbox">
+        {? .cbcoDepth}
+        <div style="margin:0 10px 10px 0; float: left;">
+            <img src="/images/common/blank.png" style="width:{.cbcoDepth - 1})*40px;height:15px;">
+            <img src="/images/godo_admin/board_re.gif"></div>
+        {/}
+
+        {? .mbLink} <a href="{.mbLink}" target="_blank">{/}
+
+        <p class="img">
+            {? mbAccountType == "FACEBOOK"}
+            <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+            {: mbAccountType == "TWITTER"}
+            <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+            {/}
+
+            {? mbAccountType == "FACEBOOK"}<img src="/uploads/member/thumb/facebook/{.mbThumb}" style="float: left;"/>
+            {: mbAccountType == "TWITTER"}<img src="/uploads/member/thumb/twitter/{.mbThumb}" style="float: left;"/>
+            {: .mbThumb}<img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+            {:} <img src="/images/common/none.jpg" style="float: left;"/>
+            {/}
+        </p>
+
+        {? .mbLink} </a> {/}
+
+        <div class="txtbox">
+            <div class="mb20">
+                {? .mbLink}<a href="{.mbLink}" target="_blank">{/}
+                <span class="nick">{.mbNick}</span>
+                {? .mbLink}</a>{/}
+                <span class="date">{.cbcoRegDate}</span>
+
+                {? mbIsAdmin == "YES" || mbID == .mbID}
+                <form method="post" class="frmCommentDel" style="float: right;">
+                    <input type="hidden" name="mode" value="delete">
+                    <input type="hidden" name="ctNO" value="{.ctNO}"/>
+                    <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                    <span class="ctCommentDel btn btn-mini">Delete</span>
+                </form>
+                {/}
+
+                {? mbIsAdmin =="YES" || mbID == .mbID}
+                <span class="ctCommentMod btn btn-mini" ctNO="{.ctNO}" cbcoNO="{.cbcoNO}">Modify</span>
+                {/}
+            </div>
+            <div class="txt" cbcoContent="{.cbcoContent}">{.cbcoContent}</div>
+            <div class="good-bad"></div>
+        </div>
+    </div>
+    {/}
+
+
+    {? noticeData}<hr>{/}
+
+    {@ data}
+    <div class="replay-txtbox">
+        {? .cbcoDepth}
+        <div style="margin:0 10px 10px 0; float: left;">
+            <img src="/images/common/blank.png" style="width:{.cbcoDepth - 1 * 40}px;height:15px;">
+            <img src="/images/godo_admin/board_re.gif"></div>
+        {/}
+
+        {? mbLink}  <a href="{.mbLink}" target="_blank">{/}
+
+        <p class="img">
+            {? mbAccountType == "FACEBOOK"}
+            <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+            {: mbAccountType == "TWITTER"}
+            <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+            {/}
+
+            {? mbAccountType == "FACEBOOK"}
+            <img src="/uploads/member/thumb/facebook/{.mbThumb}" style="float: left;"/>
+            {: mbAccountType == "TWITTER"}
+            <img src="/uploads/member/thumb/twitter/{.mbThumb}" style="float: left;"/>
+            {: .mbThumb}
+            <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+            {:}
+            <img src="/images/common/none.jpg" style="float: left;"/>
+            {/}
+        </p>
+
+        {? .mbLink} </a> {/}
+
+        <div class="txtbox">
+            <div class="mb20">
+                {? .mbLink} <a href="{.mbLink}" target="_blank"> {/}
+                <span class="nick">{.mbNick}</span>
+                {? .mbLink} </a> {/}
+                <span class="date">{.cbcoRegDate}</span>
+
+                {? mbIsAdmin == "YES" ||  mbID == .mbID}
+                <form method="post" class="frmCommentDel" style="float: right;">
+                    <input type="hidden" name="mode" value="delete">
+                    <input type="hidden" name="ctNO" value="{.ctNO}"/>
+                    <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                    <span class="ctCommentDel btn btn-mini">Delete</span>
+                </form>
+                {/}
+                {? mbIsAdmin == "YES" ||  mbID == .mbID}
+                <span class="ctCommentMod btn btn-mini" ctNO="{.ctNO}" cbcoNO="{.cbcoNO}">Modify</span>
+                {/}
+            </div>
+            <div class="txt" cbcoContent="{.cbcoContent}">{.cbcoContent}</div>
+            <div class="good-bad"></div>
+        </div>
+    </div>
+    {/}
+</div>

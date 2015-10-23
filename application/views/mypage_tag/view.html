@@ -1,0 +1,79 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a> >
+            <a href="/mypage_tag/index">My Tag</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                    <form  class="frmMyPageTag" method="post" action="/mypage_tag/delete">
+                        {?tagList}
+                        <div style="clear: both;" >
+                            <h4 class="mb10">"{tgTag}"</h4>
+                            <ul>
+                            {@ tagList} 
+                                <dl>
+                                    {? .prCode }
+                                    <a href="/{?.prType=='program'}program{:}sermon{/}/view/prCode/{.prCode}/ctNO/{.ctNO}/ctPage/{.ctPlayListPage}">
+                                    {:}
+                                    <a href="/content/view/ctNO/{.ctNO}">
+                                    {/}
+                                        <dt><p>{.ctName}</p></dt>
+                                        <dd>
+                                            <p>Hit : {.ctViewCount}</p>
+                                            <p>RegDate : {.tgRegDate}</p>
+                                        </dd>
+
+                                        <dd class="sel_ck">
+                                            <label>
+                                                <input type="checkbox" name="tgNO[]" value="{.tgNO}">
+                                                {.prDepth1.prName}
+                                                {?.prDepth2} > {.prDepth2.prName} {/}
+                                                {?.prDepth3} > {.prDepth3.prName} {/}
+                                                {?.prDepth4} > {.prDepth4.prName} {/}
+                                            </label>
+                                        </dd>
+                                        <dd class="img">
+                                            <img src="/uploads/content/thumbs/{.ctThumbS}" width="213" height="143">
+                                        </dd>
+                                    </a>
+                                </dl> 
+                            {/}
+                            </ul>
+                        </div>
+                        {/}
+                    </form>
+                </div>
+
+                {?tagList}
+                <div class="btnbox">
+                    <span class="all_ck check_all">Select all</span>
+                    <span class="all_del mpT_del">Delete Selected</span>
+                    <input type="hidden" class="mbLoginId" value="{member.mbID}">
+                </div>
+                {/}
+
+            </div>
+        </div>
+    </div>
+</article>
+
+{ #layout_footer }

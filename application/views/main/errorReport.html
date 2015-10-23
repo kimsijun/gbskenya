@@ -1,0 +1,33 @@
+{ #common_html_header }
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" ></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <div class="container mt30 mb50">
+
+            <form class="form-horizontal" role="form" id="form-validate" action="/main/process" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="mode" value="errorReport">
+                <input type="hidden" name="eNO" value="{eNO}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Feedback</div>
+                    <div class="panel-body">
+                        <div class="row bordered mt10">
+                            <label class="col-lg-4 control-label">An error has occurred.</label>
+                            <div class="col-lg-6">
+                                <div>Write down the error occurred in any situation if you can help a lot in improving the service. Thank you.</div>
+                                <textarea class="form-control mt5" name="eUserMemo" rows="10" cols="100" style=" height:350px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt20">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <a href="/main/index" class="btn btn-default">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+{ #common_html_footer }

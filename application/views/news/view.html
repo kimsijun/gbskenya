@@ -1,0 +1,113 @@
+{ #layout_header }
+
+<article class="content">
+    <div class="content-news">
+        <ul class="category">
+            <li><a href="/news_category/index">Main</a></li>
+            {@ newsCategory }
+            <li><a href="/news_category/view/ncCode/{.ncCode}" class="{?.ncCode == ncCodePrev }on{/}">{.ncName}</a></li>
+            {/}
+        </ul>
+
+        <div class="content_left">
+            <div class="news_view">
+
+                <div class="story-info">
+                    <span class="story-date">
+                        {@ date}
+                            {? date.index_ == '0'}
+                            <span class="date">{.value_}</span>
+                            <span class="time-text">Last updated at </span>
+                            {/}
+                            {? date.index_ == '1'}
+                            <span class="time">{.value_} GMT</span>
+                            {/}
+                        {/}
+                    </span>
+                    <span class="newsPrint"> &nbsp;Print</span>
+                    <div class="fr" >
+			            <span class="snsShare facebook" uri_string="{uri_string}" style="padding:0px;margin:0px;"><img src="/images/common/facebook.gif" alt=""width="24px" height="24px" /></span>
+			            <span class="snsShare twitter" uri_string="{uri_string}" style="padding:0px;margin:0px;"><img src="/images/common/twitter.gif" alt="" width="24px" height="24px"/></span>
+			        </div>
+                </div>
+
+                <h2 class="news_view_header mt10">
+                    {nwName}
+                    {? nwType != "NONE" }
+                    <!--img src="/uploads/news/thumbl/{nwThumbL}" alt="photo_name" width="600" height="400"-->
+
+                    <iframe width="600" height="400" src="{?nwType ==='YOUTUBE'}//www.youtube.com/embed/{:nwType ==='VIMEO'}//player.vimeo.com/video/{/}{nwSource}?wmode=opaque" frameborder="0" wmode="Opaque" allowfullscreen ></iframe>
+                    {/}
+                </h2>
+                <p style="word-wrap:break-word;word-break:break-all; ">{nwContent}</p>
+
+                {? is_Admlogin }
+                <div class="newsAdmin" style="">
+                    <form class="form-horizontal" id="form-validate" action="/adm/news/modify" method="post">
+                        <input type="hidden" name="nwNO" value="{nwNO}">
+                        <input type="submit" class="btn marginR10" value="Modify"/>
+                    </form>
+                </div>
+                {/}
+                
+                {? relationList }
+                <dl class="related_news mt50">
+                    <dt>Related News</dt>
+                    {@ relationList}
+                    <dd><a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">{.nwNameShort}</a><span>{.nwModDate}</span></dd>
+                    {/}
+                </dl>
+                {/}
+            </div>
+
+
+        </div>
+
+
+        <div class="content_right">
+            <div class="ad_area">
+            	<script type="text/javascript">
+    google_ad_client = "ca-pub-3124975769866983";
+    google_ad_slot = "8411971752";
+    google_ad_width = 279;
+    google_ad_height = 232;
+</script>
+<!-- news -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+                <!--a href="#"><img src="/images/common/ad_img.jpg" alt="ad"></a-->
+            </div>
+
+
+            <div class="topnews mt30 mlt20 mrt20">
+                <h2>Top News</h2>
+                <ul>
+                    {@ topNews}
+                    <li>
+                        <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">
+                            {? .index_ == '0'}
+                            <img src="/uploads/news/thumbs/{.nwThumbS}" alt="photo_name" class="fl mrt10" width="94" height="64">
+                            {/}
+                        {.nwName}
+                        </a>
+                    </li>
+                    {/}
+                </ul>
+            </div>
+
+            <div class="lank_section mt30 mlt20 mrt20">
+                <h2>Most Popular</h2>
+                <ol>
+                    {@ mostPopular}
+                    <li><a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}"><span>{.index_ + 1}</span>{.nwName} </a></li>
+                    {/}
+                </ol>
+            </div>
+        </div>
+
+
+    </div>
+</article>
+
+{ #layout_footer }

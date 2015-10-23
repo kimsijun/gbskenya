@@ -1,0 +1,71 @@
+{ #layout_admin_header }
+
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/program/index">채널 관리</a></li>
+    <li class="active">등록</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" role="form" action="/adm/program/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="write">
+        <input type="hidden" name="prCode" value="{prCode}">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">프로그램명</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="prName" placeholder="프로그램명"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">프로듀서</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="prProducer" placeholder=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Emcee</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="prEmcee" placeholder=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">소개영상 콘텐츠 카테고리</label>
+            <div class="col-lg-6">
+                <select class ="YOUTUBE_cate media_cate form-control">
+                    <option value="">선택</option>
+                    {@ youtube_cate}
+                    <option value="{youtube_cate->playlistId}">{youtube_cate->title}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">소개영상</label>
+            <div class="col-lg-6 ctSource"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">프로그램 설명</label>
+            <div class="col-lg-6">
+                <textarea name="prContent" style=" width:100%;height:350px;"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">대표이미지</label>
+            <div class="col-lg-6">
+                <input type="file" name="prThumb">
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">대표이미지(작은사이즈)</label>
+            <div class="col-lg-6">
+                <input type="file" name="prThumbS">
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <a href="/adm/program/index" class="btn btn-default">뒤로</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }
+

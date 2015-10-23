@@ -1,0 +1,254 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Mypage</a>  
+            <!--a href="/mypage/report/bodID/report">My Report list</a-->
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{member.mbFirstName}</strong>  <a href="/member/view">MyInfo</a></p>
+        </div>
+
+        <div class="infor-cont">
+            {# widget_mypage_mymenu}
+            <div class="mypagelist">
+                <div class="mypagelistbox">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="white">
+                <tbody>
+                <tr>
+                <td valign="top" width="100%" height="100%" bgcolor="#ffffff" background="" class="outline_side">
+                <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                <td style="padding-top:20px">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td height="2" bgcolor="#303030">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ECECEC" height="27" style="padding:0 10">
+                            <table width="100%">
+                                <tbody>
+                                <tr height="21">
+                                    <td>
+                                        <b>{boName}</b>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="1" bgcolor="#CAC9C9">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" class="eng" style="padding:5">
+                            Posted at {boRegDate} / IP {boRemoteIP}
+                            <div>
+                                {boEmail}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10" height="200" valign="top" id="contents">
+                            <table width="100%" style="table-layout:fixed">
+                                <tbody>
+                                <tr>
+                                    <td style="word-wrap:break-word;word-break:break-all" id="contents_19" valign="top">
+                                        {boContent}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="1" bgcolor="#E0DFDF">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="3" bgcolor="#F7F7F7">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table width="100%" style="table-layout:fixed" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        { @ bco_rs }
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    {? bco_rs.bcoDepth }<img src="/images/common/blank.png" style="width:{bco_rs.bcoDepth*20}px;height:15px;">{/}
+                                                </td>
+                                                <td width="100%">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody><tr>
+                                                            <td height="1" colspan="3" bgcolor="#dddddd"></td><td>
+                                                        </td></tr>
+                                                        <tr>
+                                                            <td height="1" colspan="3"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                                <div style="height: 28px; background-image: url(/images/godo_admin/co_title_bg.gif); clear: both; line-height: 28px; font-size: 12px; background-position: initial initial; background-repeat: initial initial;">
+                                                                    <div style="float: left; margin: 2px 0px 0px 2px; font-size: 12px;">
+                                                                        <strong><span class="member">{bco_rs.mbNick}</span></strong>
+                                                                        <span style="color:#888888; font-size:11px;">{bco_rs.bcoRegDate}</span>
+                                                                    </div>
+                                                                    <div style="float: right; margin-top: 5px; font-size: 12px;">
+                                                                        &nbsp;<span style="color:#B2B2B2; font-size:11px;">{bco_rs.bcoRemoteIP}</span>
+                                                                        <a href="javascript:replyComment({bco_rs.bcoNO})"><img src="/images/godo_admin/co_btn_reply.gif" border="0" align="absmiddle" alt="답변"></a>
+                                                                        <a href="javascript:modifyComment({bco_rs.bcoNO})"><img src="/images/godo_admin/co_btn_modify.gif" border="0" align="absmiddle" alt="수정"></a>
+                                                                        <form method="post" action="/adm/comment/process">
+                                                                            <input type="hidden" name="mode" value="delete">
+                                                                            <input type="hidden" name="bodID" value="{bodID}">
+                                                                            <input type="hidden" name="boNO" value="{boNO}">
+                                                                            <input type="hidden" name="bcoNO" value="{bco_rs.bcoNO}">
+                                                                            <input type="image" src="/images/godo_admin/co_btn_delete.gif" border="0" align="absmiddle" alt="삭제"></a> &nbsp;
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- 코멘트 출력 -->
+                                                                <div style="line-height: 20px; padding: 7px; word-break: break-all; overflow: hidden; clear: both; font-size: 12px;">
+                                                                    {bco_rs.bcoContent}
+                                                                </div>
+                                                                <span id="edit_8" style="display:none;"></span><!-- 수정 -->
+                                                                <span id="reply_8" style="display:none;"></span><!-- 답변 -->
+
+                                                                <input type="hidden" id="secret_comment_8" value="">
+                                                                <textarea id="save_comment_8" style="display:none;">1</textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="5" colspan="3"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        {/}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height:20px;"> &nbsp;</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="boardBtn" style="width:50px;" onclick="location.href='/mypage/report_modify/bodID/{bodID}/boNO/{boNO}';">Modify</span>
+                            <form method="post" action="/mypage/report_process" style="display:inline;" name="frmDel"><input type="hidden" name="mode" value="delete">
+                                <input type="hidden" name="boNO" value="{boNO}"><span class="boardBtn" style="width:50px;" onclick="javascript:submit('frmDel');">Delete</span>
+                            </form>
+                        </td>
+                        <td align="right">
+                            <span class="boardBtn" style="width:50px;"onclick="location.href='/mypage/report/bodID/{bodID}';">List</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table width="100%" align="center" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <form name="frmList" action="/shop/board/list.php?&amp;" onsubmit="return chkFormList(this)">
+                                <input type="hidden" name="id" value="notice">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td colspan="10" align="right" class="eng" height="20">
+                                                        Total {cnt} Articles, 1 of 1 Pages
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" background="/images/godo_admin/board_bg.gif">
+                                                        <span style="display:block;text-align:center;color:#e3e3e3;padding:5px;">NO</span>
+                                                    </td>
+                                                    <td align="center" background="/images/godo_admin/board_bg.gif">
+                                                        <span style="display:block;text-align:center;color:#e3e3e3;padding:5px;">Title</span>
+                                                    </td>
+                                                    <td align="center" background="/images/godo_admin/board_bg.gif">
+                                                        <span style="display:block;text-align:center;color:#e3e3e3;padding:5px;">Date</span>
+                                                    </td>
+                                                    <td align="center" background="/images/godo_admin/board_bg.gif">
+                                                        <span style="display:block;text-align:center;color:#e3e3e3;padding:5px;">Hit</span>
+                                                    </td>
+                                                </tr>
+                                                { @ list }
+                                                <tr height="27" onmouseover="this.style.backgroundColor=&quot;#FAFAFA&quot;" onmouseout="this.style.backgroundColor=&quot;&quot;" {? boNO == list.boNO } bgcolor="#F7F7F7" {/}>
+                                                <td width="50" nowrap="" align="center" class="eng">
+                                                    {list.boNO}
+                                                </td>
+                                                <td width="100%" style="padding-left:10px">
+                                                    {? list.boDepth }<img src="/images/common/blank.png" style="width:{=(list.boDepth-1)*20}px;height:15px;"><img src="/images/godo_admin/board_re.gif">{/}
+                                                    <a href="/mypage/report_view/bodID/{list.bodID}/boNO/{list.boNO}">{list.boName} [{list.bco_count}]</a>
+                                                </td>
+                                                <td width="100" nowrap="" align="center" class="eng">
+                                                    {=substr(list.boRegDate,0,10)}
+                                                </td>
+                                                <td width="30" nowrap="" align="center" class="eng">
+                                                    {list.boHit}
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="10" height="1" bgcolor="#E0DFDF">
+                                                    </td>
+                                                </tr>
+                                                { / }
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <div style="width:0;height:0;font-size:0"></div>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{ #layout_footer }

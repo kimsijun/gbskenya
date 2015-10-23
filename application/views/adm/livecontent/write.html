@@ -1,0 +1,68 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/livecontent/index">방송콘텐츠 관리</a></li>
+    <li class="active">등록</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate"  action="/adm/livecontent/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="write">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">프로그램명</label>
+            <div class="col-lg-6">
+                <select name="prCode" class="form-control prCode">
+                    <option value="">선택</option>
+                    {@ prList}
+                    <option {? .prCode === prCode} selected="selected" {/} value="{.prCode}">{.prName}</option>
+                    {/}
+                    <option value="{prPreCode}back">뒤로</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠 선택</label>
+            <div class="col-lg-6 ctNO"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠명</label>
+            <div class="col-lg-8"><input type="text" class="form-control" id="lcName" name="lcName" placeholder="콘텐츠명" value=""></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">재생시간</label>
+            <div class="col-lg-2">
+                <select name="lcDurationH" class="form-control">
+                    {@ lcDurationH }
+                    <option value="{lcDurationH.index_}">{lcDurationH.index_}</option>
+                    {/}
+                </select>
+            </div>
+            <div class="col-lg-1"><label class="control-label">시간</label></div>
+            <div class="col-lg-2">
+                <select name="lcDurationM" class="form-control">
+                    {@ lcDurationM }
+                    <option value="{lcDurationM.index_}">{lcDurationM.index_}</option>
+                    {/}
+                </select>
+            </div>
+            <div class="col-lg-1"><label class="control-label">분</label></div>
+            <div class="col-lg-2">
+                <select name="lcDurationS" class="form-control">
+                    {@ lcDurationS }
+                    <option value="{lcDurationS.index_}">{lcDurationS.index_}</option>
+                    {/}
+                </select>
+            </div>
+            <div class="col-lg-1"><label class="control-label">초</label></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <a href="/adm/livecontent/index" class="btn btn-default">뒤로</a>
+            </div>
+        </div>
+    </form>
+</div>
+{ #layout_admin_footer }

@@ -1,0 +1,46 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/viewLog/ctViewLog">조회수 통계</a></li>
+    <li class="active">콘텐츠 조회수 통계</li>
+</ol>
+
+<div class="content">
+    <div class="col-lg-4 mb20">
+        <select name="ctSectionChange" class="form-control">
+            <option value="" selected="selected">섹션 선택</option>
+            <option value="YEAR" {?params.vCSection == 'YEAR'}selected="selected"{/}>연별 조회</option>
+            <option value="MONTH" {?params.vCSection == 'MONTH'}selected="selected"{/}>월별 조회</option>
+        </select>
+    </div>
+
+    <table class="table table-bordered table-striped table-hover " >
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>섹션</th>
+            <th>프로그램명</th>
+            <th>콘텐츠명</th>
+            <th>날짜</th>
+            <th>조회</th>
+            <th>등록일</th>
+        </tr>
+        </thead>
+        <tbody class="contentTop10">
+        {@ list}
+        <tr>
+            <td>{listCnt - secParams.page - list.index_}</td>
+            <td>{.vCSection}</td>
+            <td>{.prName}</td>
+            <td><a href="/content/view/ctNO/{.ctNO}" target="_blank">{.ctName}</a></td>
+            <td>{.vCDate}</td>
+            <td>{.vCCount}</td>
+            <td>{.vCRegDate}</td>
+        </tr>
+        {/}
+        </tbody>
+    </table>
+    {pager}
+</div>
+
+{ #layout_admin_footer }

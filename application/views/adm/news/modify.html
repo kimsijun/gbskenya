@@ -1,0 +1,151 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/news/index">뉴스</a></li>
+    <li class="active">등록</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate" action="/adm/news/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="nwNO" value="{nwNO}">
+        <input type="hidden" name="isChangeContent" value="">
+        <input type="hidden" name="nwDuration">
+        <input type="hidden" name="nwThumbS">
+        <input type="hidden" name="nwThumbL">
+        <input type="hidden" name="nwViewCount">
+        <input type="hidden" name="nwLikeCount">
+        <input type="hidden" name="nwRegDate">
+        <input type="hidden" name="nwSource">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 영상 타입</label>
+            <div class="col-lg-4">
+                <select name="nwType" class="form-control">
+                    <option value="NONE" {? nwType === 'NONE'} selected='selected' {/}>없음</option>
+                    <option value="VIMEO" {? nwType === 'VIMEO'} selected='selected' {/}>비메오</option>
+                    <option value="YOUTUBE" {? nwType === 'YOUTUBE'} selected='selected' {/}>유투브</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 카테고리</label>
+            <div class="col-lg-6">
+                <select class ="YOUTUBE_cate media_cate form-control" style="display:none;">
+                    <option value="">선택</option>
+                    {@ youtube_cate}
+                    <option value="{youtube_cate->playlistId}">{youtube_cate->title}</option>
+                    {/}
+                </select>
+                <select class="VIMEO_cate media_cate form-control" style="display:none;">
+                    <option value="">선택</option>
+                    {@ vimeo_cate}
+                    <option value="{vimeo_cate->channelId}">{vimeo_cate->title}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 영상</label>
+            <div class="col-lg-6 nwSource"><input type="text" class="form-control" id="nwSource" name="nwSource" value="{nwSource}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 제목</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="nwName" value="{nwName}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 소제목</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="nwSmallName" value="{nwSmallName}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">헤드라인</label>
+            <div class="col-lg-6">
+                <input type="radio" name="nwIsHeadline" value="YES"{? nwIsHeadline === "YES"}checked="checked" {/}> YES
+                <input type="radio" name="nwIsHeadline" value="NO"{? nwIsHeadline === "NO"}checked="checked" {/}> NO
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">중요기사</label>
+            <div class="col-lg-6">
+                <input type="radio" name="nwIsSpecial" value="YES"{? nwIsSpecial === "YES"}checked="checked" {/}> YES
+                <input type="radio" name="nwIsSpecial" value="NO" {? nwIsSpecial === "NO"}checked="checked" {/}> NO
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">보도일</label>
+            <div class="col-lg-6"><input type="text" class="form-control popDtpicker" name="nwEventDate" value="{nwEventDate} 00:00"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">카테고리명</label>
+            <div class="col-lg-6">
+                <select name="ncCode" class="form-control">
+                    <option value="">선택</option>
+                    {@ newsCategory}
+                    <option {? .ncCode === ncCode} selected="selected" {/} value="{.ncCode}">{.ncName}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스내용</label>
+            <div class="col-lg-8">
+                <textarea class="col-lg-11" id="nwContent" name="nwContent" rows="10" cols="100" style=" height:412px; display:none;">{nwContent}</textarea>
+            </div>
+        </div>
+
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" onclick="submitContents(this);" class="btn marginR10 btn-success">저장</button>
+                <button onclick="location.href=('/adm/news/view/nwNO/{nwNO}');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<script>
+    $('.popDtpicker').appendDtpicker({
+        "inline": true,
+        "dateOnly": true,
+        "dateFormat": "YYYY-MM-DD"
+    });
+
+    var oEditors = [];
+
+    // 추가 글꼴 목록
+    //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "nwContent",
+        sSkinURI: "/assets/plugin/SEditer/SmartEditor2Skin.html",
+        htParams : {
+            bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+            fOnBeforeUnload : function(){
+                //alert("완료!");
+            }
+        }, //boolean
+        fOnAppLoad : function(){
+            //예제 코드
+            //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+        },
+        fCreator: "createSEditor2"
+    });
+    function submitContents(elClickedObj) {
+        oEditors.getById["nwContent"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+
+        // 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
+
+        try {
+            elClickedObj.form.submit();
+        } catch(e) {}
+    }
+
+</script>
+{ #layout_admin_footer }

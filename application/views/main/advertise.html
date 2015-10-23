@@ -1,0 +1,109 @@
+{ #layout_header }
+
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/main/advertise">Advertise with GBS</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="infor-cont">
+            <div class="searchmenu">
+                <ul>
+                    <li><a href="javascript:return;" class="on">Advertise</a></li>
+                </ul>
+            </div>
+            <div class="mypagelist">
+                <div id="content">
+                    <div class="cont_wrap">
+                        <div class="cont_area">
+                            <div class="box">
+                                <form name="f1" action="/main/process" method="post" class="frmAdvertise">
+                                    <input type="hidden" name="mode" value="advertise">
+                                    <h2>Advertise with GBS</h2>
+                                    <span>Enhance your brand visibility through GBS tv</span>
+                                    <fieldset>
+                                        <div class="tit_line">
+                                            <h5>basic information</h5>
+                                            <span class="txt_vital"><strong>(*)</strong>Required fields</span>
+                                        </div>
+
+                                        <table class="board_list" summary="">
+                                            <colgroup>
+                                                <col width="17%">
+                                                <col width="*">
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row"><span class="vital">*</span> Company</th>
+                                                <td><input type="text" class="input1 " name="adCompany" id="adCompany" value=""></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Homepage</th>
+                                                <td><input type="text" class="input2" value="http://" name="adHomepage" id="adHomepage"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><span class="vital">*</span> Name</th>
+                                                <td><input type="text" class="input1" name="adName" id="adName" value=""></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><span class="vital">*</span> Contact</th>
+                                                <td><input type="text" class="input1" name="adContact" id="adContact"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><span class="vital">*</span> Email</th>
+                                                <td><input type="text" class="input5" name="adEmail1" maxlength="20"> <em class="dash">@</em> <input type="text" class="input5" name="adEmail2" maxlength="30">
+                                                    <!--select name="email3">
+                                                        <option value="0">선택하세요</option>
+                                                        <option value="1">gmail.com</option>
+                                                        <option value="2">naver.com</option>
+                                                        <option value="3">hanmail.net</option>
+                                                        <option value="4">nate.com</option>
+                                                        <option value="5">yahoo.com</option>
+                                                        <option value="6">live.com</option>
+                                                        <option value="7">직접입력</option>
+                                                    </select-->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Type</th>
+                                                <td>
+                                                    <select class="input1" name="adType">
+                                                        <option value="0">Choose</option>
+                                                        <option value="1">Broadcast Advertising</option>
+                                                        <option value="2">Website banner</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <!--tr>
+                                                <th scope="row">광고예산</th>
+                                                <td>
+                                                    <select class="input1" name="admoney">
+                                                        <option value="0">선택하세요</option>
+                                                        <option value="1">500만원 이하</option>
+                                                        <option value="2">500 ~ 1000만원</option>
+                                                        <option value="3">1000만원 이상</option>
+                                                    </select>
+                                                </td>
+                                            </tr-->
+                                            <tr>
+                                                <th scope="row"><span class="vital">*</span> Contents</th>
+                                                <td><textarea cols="150" rows="7" name="adContents"></textarea></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <input type="submit" class="btn_register" alt="submit" value="submit">
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</article>
+
+{ #layout_footer }

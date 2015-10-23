@@ -1,0 +1,52 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li class="active">UEFA 관리</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate" action="/adm/content/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="uefa">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠 타입</label>
+            <div class="col-lg-4">
+                <select name="ctType" class="form-control">
+                    <option value="VIMEO" {? ctType === 'VIMEO'} selected='selected' {/} >비메오</option>
+                    <option value="YOUTUBE" {? ctType === 'YOUTUBE'} selected='selected' {/} >유투브</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠 카테고리</label>
+            <div class="col-lg-6">
+                <select class ="YOUTUBE_cate media_cate form-control" style="display:none;">
+                    <option value="">선택</option>
+                    {@ youtube_cate}
+                    <option value="{youtube_cate->playlistId}">{youtube_cate->title}</option>
+                    {/}
+                </select>
+                <select class="VIMEO_cate media_cate form-control" style="display:none;">
+                    <option value="">선택</option>
+                    {@ vimeo_cate}
+                    <option value="{vimeo_cate->channelId}">{vimeo_cate->title}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠</label>
+            <div class="col-lg-6 ctSource"><input type="text" class="form-control" name="ctSource" value="{ctSource}"></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/content/index');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

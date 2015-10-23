@@ -1,0 +1,111 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/member/index">회원관리</a></li>
+    <li class="active">회원정보수정</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" action="/adm/member/process" method="post">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="mbID" value="{memberID}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">아이디</span></div>
+            <div class="col-lg-10"><span class="mlt20">{memberID}</span></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">이름</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="mbFirstName" placeholder="이름" name="mbFirstName" value="{mbFirstName}">
+            </div>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="mbLastName" placeholder="이름" name="mbLastName" value="{mbLastName}">
+            </div>
+        </div>
+        <div class="row bordered">
+            <label for="mbNickName" class="col-lg-2 control-label">닉네임</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="mbNickName" placeholder="닉네임" name="mbNick" value="{mbNick}">
+            </div>
+        </div>
+        <div class="row bordered">
+            <label for="mbPassword" class="col-lg-2 control-label">비밀번호</label>
+            <div class="col-lg-4">
+                <input type="password" class="form-control" id="mbPassword" name="mbPW[]" placeholder="***********" >
+            </div>
+        </div>
+        <div class="row bordered">
+            <label for="mbPasswordChk" class="col-lg-2 control-label">비밀번호확인</label>
+            <div class="col-lg-4">
+                <input type="password" class="form-control" id="mbPasswordChk" name="mbPW[]" placeholder="***********" >
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">성별</label>
+            <div class="col-lg-10">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default{?mbSex==="M"} active{/}">
+                    <input type="radio" name="inputWalls" value="남자" value="M">
+                    남자 </label>
+                    <label class="btn btn-default{?mbSex==="F"} active{/}">
+                    <input type="radio" name="inputWalls" value="여자" value="F">
+                    여자 </label>
+                </div>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label for="mbBirth" class="col-lg-2 control-label">생년월일</label>
+            <div class="col-lg-4">
+                <input type="date" class="form-control" id="mbBirth" name="mbBirth" placeholder="" value="{mbBirth}">
+            </div>
+        </div>
+        <div class="row bordered">
+            <label for="mbCellphone" class="col-lg-2 control-label">전화번호</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="mbCellphone" name="mbCellPhone" placeholder="전화번호" value="{mbCellPhone}">
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">관리자여부</label>
+            <div class="col-lg-10">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default{?mbIsAdmin==="YES"} active{/}">
+                    <input type="radio" name="mbIsAdmin" value="YES"> YES
+                    </label>
+                    <label class="btn btn-default{?mbIsAdmin==="NO"} active{/}">
+                    <input type="radio" name="mbIsAdmin" value="NO"> NO
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">탈퇴여부</label>
+            <div class="col-lg-10">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default{?mbIsWithdraw==="YES"} active{/}">
+                    <input type="radio" name="mbIsWithdraw" value="YES"> YES
+                    </label>
+                    <label class="btn btn-default{?mbIsWithdraw==="NO"} active{/}">
+                    <input type="radio" name="mbIsWithdraw" value="NO"> NO
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">최종로그인</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbLastLoginDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">방문수</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbVisitCount}</span></div>
+        </div>
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <a href="/adm/member/view/mbID/{memberID}" class="btn btn-default">취소</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

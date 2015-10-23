@@ -1,0 +1,179 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/content/index">콘텐츠 관리</a></li>
+    <li class="active">정보수정</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate" action="/adm/content/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="ctNO" value="{ctNO}">
+        <input type="hidden" name="isChangeContent" value="">
+        <input type="hidden" name="ctDuration">
+        <input type="hidden" name="ctThumbS">
+        <input type="hidden" name="ctThumbL">
+        <input type="hidden" name="ctViewCount">
+        <input type="hidden" name="ctLikeCount">
+        <input type="hidden" name="ctRegDate">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠 타입</label>
+            <div class="col-lg-6">
+                <select name="ctType" class="form-control">
+                    <option value="VIMEO" {? ctType === 'VIMEO'} selected='selected' {/}>비메오</option>
+                    <option value="YOUTUBE" {? ctType === 'YOUTUBE'} selected='selected' {/}>유투브</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠 카테고리</label>
+            <div class="col-lg-6">
+                <select class ="YOUTUBE_cate media_cate form-control" style="display:{? ctType === 'YOUTUBE'} block{:}none{/};">
+                    <option value="">선택</option>
+                    {@ youtube_cate}
+                    <option value="{youtube_cate->playlistId}">{youtube_cate->title}</option>
+                    {/}
+                </select>
+                <select class="VIMEO_cate media_cate form-control" style="display:{? ctType === 'VIMEO'} block{:}none{/};">
+                    <option value="">선택</option>
+                    {@ vimeo_cate}
+                    <option value="{vimeo_cate->channelId}">{vimeo_cate->title}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠</label>
+            <div class="col-lg-6 ctSource"><input type="text" class="form-control" name="ctSource" value="{ctSource}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠이름</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="ctName" value="{ctName}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">강사/연주자</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="ctSpeaker" value="{ctSpeaker}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">성경구절</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="ctPhrase" value="{ctPhrase}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">행사일</label>
+            <div class="col-lg-6"><input type="text" class="form-control popDtpicker" name="ctEventDate" value="{ctEventDate} 00:00"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">프로그램명</label>
+            <div class="col-lg-6">
+                <select name="prCode" class="form-control">
+                    {@ prlist}
+                    <option {? .prCode === prCode} selected="selected" {/} value="{.prCode}">{.prName}</option>
+                    {/}
+                    <option value="{prPreCode}back">뒤로</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">콘텐츠내용</label>
+            <div class="col-lg-6">
+                <textarea style="height:300px;width:100%" id="ctContent" name="ctContent">{ctContent}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">영상 수동 등록</label>
+            <div class="col-lg-6">
+                <input type="radio" name="videoCheck" value="YES"> YES
+                <input type="radio" name="videoCheck" value="NO" checked="checked" > NO
+            </div>
+        </div>
+        <div class="row bordered videoContainer" style="display:none">
+            <label class="col-lg-2 control-label">일반화질 영상파일이름</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="ctVideoNormal" value="{ctVideoNormal}"></div>
+        </div>
+        <div class="row bordered videoContainer" style="display:none">
+            <label class="col-lg-2 control-label">저화질 영상파일이름</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="ctVideoLow" value="{ctVideoLow}"></div>
+        </div>
+        <!--div class="row bordered">
+            <label class="col-lg-2 control-label">관련동영상 모드</label>
+            <div class="col-lg-6">
+                <input id="AUTO" type="radio" {? ctRelativeMode === "AUTO"}checked="checked" {/} name="ctRelativeMode" value="AUTO"> AUTO
+                <input id="MANUAL" type="radio" {? ctRelativeMode === "MANUAL"}checked="checked" {/} name="ctRelativeMode" value="MANUAL"> MANUAL
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">관련 동영상 리스트</label>
+            <div class="col-lg-10">
+                <select id="prCode_ctRelative"  class="form-control">
+                    <option value="">선택</option>
+                    {@ program}
+                    <option value="{.prCode}">{.prName}</option>
+                    {/}
+                </select>
+                {@ program}
+                <div class="col-lg-10" style="display:none;">
+                    <select id="ctRelative" class ="{program.prCode}_ctRelative ctList form-control">
+                        <option value="">선택</option>
+                        {@ inContents}
+                        <option value="{inContents.ctNO}">{inContents.ctName}</option>
+                        {/}
+                    </select>
+                </div>
+                <div class="col-lg-2" style="display: none;">
+                    <button class="{program.prCode}_ctRelative ctList btn" type="button" onclick="add_ctRelative('{program.prCode}_ctRelative');">등록</button>
+                </div>
+                {/}
+                <div class="col-lg-12">
+                    <table id = "ctRelative_list" width="100%">
+                        {@ ctRelative_ctNO}
+                        <tr>
+                            <td id = "{ctRelative_ctNO.index_}">
+                                <div class="col-lg-10">
+                                    <input type="hidden" name = "ctRelative_ctNO[]" value="{ctRelative_ctNO.ctNO}"/>
+                                    <input class="uniform-input text form-control" style="float:left;"  type="text" id="ctRelative[{ctRelative_ctNO.index_}]" size ="80" value="{ctRelative_ctNO.ctName}">
+                                </div>
+                                <div class="col-lg-2"><button class="btn btn-mini marginL10"id="del_tag"onclick="del_ctRelative({ctRelative_ctNO.index_});"> 삭제 </button></div>
+                            </td>
+                        </tr>
+                        {/}
+                    </table>
+                </div>
+            </div>
+        </div-->
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/content/view/prCode/{prCode}');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }
+
+
+<script>
+    $('.popDtpicker').appendDtpicker({
+        "inline": true,
+        "dateOnly": true,
+        "dateFormat": "YYYY-MM-DD"
+    });
+
+    $('#MANUAL').bind("click",function(){
+        if( $(this).is(':checked') ){
+            $('#ctRelativeContents').css("display","");
+        }
+    });
+    $('#AUTO').click(function(){
+        if( $(this).is(':checked') ){
+            $('#ctRelativeContents').css("display","none");
+        }
+    });
+    $("input[name=videoCheck]").change(function(){
+        if($(this).val() == "YES") $(".videoContainer").fadeIn();
+        else $(".videoContainer").fadeOut();
+    });
+</script>

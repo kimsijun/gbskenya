@@ -1,0 +1,44 @@
+<div class="ch-content-banner">
+    <div class="roll-box">
+        <p class="programArrow prev"><img src="/images/common/roll_prev.png" alt="이전" /></p>
+        <div style="width:415px;height:50px; margin: 0 40px; position: relative; overflow: hidden;">
+            <div class="roll-main programList" style="width:840px;height:50px;margin:2px 10px 0 0 ">
+                <input type="hidden" class="weekIdx" value="{weekIdx}">
+                {@ arrWeek}
+                    {? weekIdx == .index_ }
+                        <dl style="width:140px;">
+                            <dd style="font-size:18px;font-weight:900">{.strDate}</dd>
+                        </dl>
+                    {:}
+                        <dl style="width:100px;">
+                            <dd><a href="/liveschedule/index/{?chNO}chNO/{chNO}/{/}lsDate/{.lsDate}">{.strDate}</a></dd>
+                        </dl>
+                    {/}
+                {/}
+            </div>
+        </div>
+        <p class="programArrow next"><img src="/images/common/roll_next.png" alt="다음" /></p>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var programBulletIdx = 0;
+
+    $(".programArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(programBulletIdx == 0)    return false;
+            programBulletIdx--;
+            $(".programList").animate({left:"0"});
+        } else {
+            if(programBulletIdx == 1)    return false;
+            programBulletIdx++;
+            $(".programList").animate({left:"-315px"});
+        }
+    });
+    if($(".weekIdx").val() > 2){
+        programBulletIdx++;
+        $(".programList").css({left:"-315px"});
+    }
+</script>

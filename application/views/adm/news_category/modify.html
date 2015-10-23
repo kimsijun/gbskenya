@@ -1,0 +1,32 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/news_category/index">뉴스 카테고리</a></li>
+    <li class="active">정보수정</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" action="/adm/news_category/process" method="post">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="ncCode" value="{ncCode}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">뉴스 카테고리 코드</span></div>
+            <div class="col-lg-10"><span class="mlt20">{ncCode}</span></div>
+        </div>
+        <div class="row bordered">
+            <label for="ncName" class="col-lg-2 control-label">뉴스카테고리 명</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="ncName" placeholder="이름" name="ncName" value="{ncName}">
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-success">저장</button>
+                <a href="/adm/news_category/view/ncCode/{ncCode}" class="btn btn-default">취소</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

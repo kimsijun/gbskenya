@@ -1,0 +1,78 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">Content</a> >
+            <a href="/member/view">Vimeo / Youtube Update</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="infor-cont">
+            <div class="memberlist">
+                <div class="mypagelistbox">
+                    <div class="member">
+                    
+                    	<p class="member-info pb10"><span class="">VIMEO</span></p>
+						<form method="post" action="/media_link/videoCateUpdate_vimeo" class="frmMemberMod">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>Vimeo 채널 업데이트</td>
+                                <td><input type="submit" value="Vimeo 채널 업데이트"></td>
+                            </tr>
+                        </table></form>
+                        
+                        <form method="post" action="/media_link/videoContentUpdate_vimeo" class="frmMemberMod">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>Vimeo 컨텐츠 업데이트</td>
+                                <td>
+                                    <select class="VIMEO_cate media_cate" name="ctChannelId">
+                                        <option value="">선택</option>
+                                        {@ vimeo_cate}
+                                        <option value="{vimeo_cate->channelId}">{vimeo_cate->title}</option>
+                                        {/}
+                                    </select>
+                                	<input type="submit" value="Vimeo 컨텐츠 업데이트">
+                                </td>
+                            </tr>
+                        </table></form><br><br><br><br>
+                        
+                        
+                        <p class="member-info pb10"><span class="">YOUTUBE</span></p>
+                        <form method="post" action="/media_link/videoCateUpdate_youtube" class="frmMemberMod">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>Youtube 채널 업데이트</td>
+                                <td><input type="submit" value="Youtube 채널 업데이트"></td>
+                            </tr>
+                        </table></form>
+                        
+                        <form method="post" action="/media_link/videoContentUpdate_youtube" class="frmMemberMod">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>Youtube 컨텐츠 업데이트</td>
+                                <td>
+                                	<select class ="YOUTUBE_cate media_cate" name="ctChannelId">
+                                        <option value="">선택</option>
+                                        {@ youtube_cate}
+                                        <option value="{youtube_cate->playlistId}">{youtube_cate->title}</option>
+                                        {/}
+                                    </select>
+                                	<input type="submit" value="Youtube 컨텐츠 업데이트">
+                                </td>
+                            </tr>
+                        </table></form>
+                        
+                        
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</article>
+{ #layout_footer }
+
+
+
+

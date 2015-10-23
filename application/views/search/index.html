@@ -1,0 +1,114 @@
+{ #layout_header }
+
+<article class="content">
+	<div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/search/index">Search</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <span class="customer_tit"><strong>Site Search</strong></span>
+        </div>
+        <div class="infor-cont">
+            <input type="hidden" class="searchUrl" value="{searchUrl}">
+            <div class="searchmenu">
+                <ul>
+                    {@programList}
+                    <li><a href="javascript:return;" class="searchReProgram{?prCode == .prCode} on{/}" prCode="{.prCode}">{.prName}</a></li>
+                    {/}
+                </ul>
+            </div>
+            <div class="mypagelist">
+                <div class="research">
+                    <form method="post" action="/search/index" onsubmit="return chkMainSearch();">
+                        <table class="research-box">
+                            <colgroup>
+                                <col width="50" align="center">
+                                <col width="150" align="center">
+                            </colgroup>
+                            <tr><td colspan="2">Search</td></tr>
+                            <tr>
+                                <td class="research-filter">
+                                    Keywords
+                                </td>
+                                <td>
+                                    <select name="secKey">
+                                        <option {? secParams.secKey === "all"} selected="selected" {/} value="all"> All </option>
+                                        <option {? secParams.secKey === "ctName"} selected="selected" {/} value="ctName"> Title </option>
+                                        <option {? secParams.secKey === "ctContent"} selected="selected" {/} value="ctContent"> content </option>
+                                        <option {? secParams.secKey === "ctSpeaker"} selected="selected" {/} value="ctSpeaker"> lecturer / musician </option>
+                                    </select>
+                                    <input type="text" name="secTxt" class="mainSecTxt" value="{@ secParams.secTxt}{.value_}{?.index_<(.size_-1)} {/}{/}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="research-filter">Event Date</td>
+                                <td>
+                                    <input type="text" name="ctEventDate[]" value="{secParams.ctEventDate_0}"> ~
+                                    <input type="text" name="ctEventDate[]" value="{secParams.ctEventDate_1}">
+                                    <div class="span5 mt10">
+                                        <button onclick="setDate('ctEventDate[]','{today}','{today}');"type="button" class="btn btn-mini marginL10">Today</button>
+                                        <button onclick="setDate('ctEventDate[]','{today7day}','{today}');" type="button" class="btn btn-mini">7Days</button>
+                                        <button onclick="setDate('ctEventDate[]','{today15day}','{today}');" type="button" class="btn btn-mini">15Days</button>
+                                        <button onclick="setDate('ctEventDate[]','{today1month}','{today}');" type="button" class="btn btn-mini">1Month</button>
+                                        <button onclick="setDate('ctEventDate[]','{today2month}','{today}');" type="button" class="btn btn-mini">2Months</button>
+                                        <button onclick="setDate('ctEventDate[]');" type="button" class="btn btn-mini">All</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <p class="research-btn"><input class="btn" type="submit" value="Search"></p>
+                    </form>
+                </div>
+                <p class="search-tit">Keyword '<span class="secTxt">{@ secParams.secTxt}{.value_}{?.index_<(.size_-1)} {/}{/}</span>' Results</p>
+                {? !prCode }
+                <p class="search-result">Result in programmes. <span>{?programRecent}{programRecent.size_} </span>{:}No results were found for your search.{/}</p>
+                <div class="prSearchList">
+                    { @ programRecent}
+                    <div class="programRecent{.index_}">
+                        <a onclick="return searchResultSetLog($(this));" href="/{?.prType=='PROGRAM'}program{:}sermon{/}/{?.prIsSub=='YES'}index{:}view{/}/prCode/{.prCode}" scType="program" scName="{.prName}" scSource="{.prCode}" target="_blank">
+                            <li>- {.prName} { ? .prIsSub == 'YES'}+{/}</li>
+                        </a>
+                    </div>
+                    {/}
+                </div>
+                {/}
+
+                <p class="search-result">Result in contents. <span>{?listCnt}{listCnt} </span> {:}No results were found for your search.{/}</p>
+                {?contentView}
+                {/}
+
+                <div class="ctSearchList">
+                    <div class="tabContainer">
+                        { @ contentRecent}
+                        <div class="ctRecentResult{.index_}">
+                            <li class="search-list">
+                                {? .prCode }
+                                <a onclick="return searchResultSetLog($(this));" href="/program/view/prCode/{.prCode}/ctNO/{.ctNO}/ctPage/{.ctPlayListPage}" scType="program" scName="{.ctName}" scSource="{.prCode}" target="_blank">
+                                    {:}
+                                    <a onclick="return searchResultSetLog($(this));" href="/content/view/ctNO/{.ctNO}" scType="content" scName="{.ctName}" scSource="{.ctNO}" target="_blank">
+                                        {/}
+                                        <span><img src="/uploads/content/thumbs/{.ctThumbS}" width="120" height="80" style="float: left;"></span>
+                                        <div class="search-con">
+                                            <p>{.prDepth1}{?.prDepth2} > {.prDepth2} {/} {?.prDepth3} > {.prDepth3} {/}{?.prDepth4} > {.prDepth4} {/}</p>
+                                            <p class="sec-tit">{.ctName}</p>
+                                            <p>{.ctSpeaker}</p>
+                                            <p>{?.ctContentSec && !.ctNameSec}{.ctContent}{/}</p>
+                                            <p><span>His {.ctViewCount} </span>&nbsp;<span> Like {.ctLikeCount}</span>&nbsp;<span> Update {.ctModDate}</span></p>
+                                        </div>
+                                    </a>
+                            </li>
+                        </div>
+                        {/}
+                        <div class="pager">{pager}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+{ #layout_footer }

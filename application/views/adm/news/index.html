@@ -1,0 +1,61 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/news/index">뉴스</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/news/process">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="bodID" value="{bodID}">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button type="submit" class="btn btn-default">선택삭제</button>
+            <button class="btn btn-primary" onclick="location.href=('/adm/news/write');" type="button" >등록</button> 
+            <button class="btn" type="button"onClick="window.open('/media_link/index');" >Vimeo / Youtube 컨텐츠 업데이트</button> 
+        </div>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>번호</th>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>헤드라인</th>
+                <th>중요뉴스</th>
+                <th>조회수</th>
+                <th>관련뉴스모드</th>
+                <th>생성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--{@ list}-->
+            <tr>
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{list.nwNO}" class="styled" /></td>
+                <td>{list.nwNO}</td>
+                <td>{list.ncName}</td>
+                <td><a href="/adm/news/view/nwNO/{list.nwNO}">{list.nwName}</a></td>
+                <td>{list.nwIsHeadline}</td>
+                <td>{list.nwIsSpecial}</td>
+                <td>{list.nwViewCount}</td>
+                <td>{list.nwRelativeMode}</td>
+                <td>{list.nwRegDate}</td>
+            </tr>
+            <!--{:}-->
+            <tr>
+                <td colspan="12">등록된 데이터가 없습니다.</td>
+            </tr>
+            <!--{/}-->
+            </tbody>
+        </table>
+
+
+    </form>
+    { pager }
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/board/modify" method="post">
+        <input type="hidden" name="boNO" value="">
+    </form>
+</div>
+
+{ #layout_admin_footer }

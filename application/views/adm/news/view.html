@@ -1,0 +1,83 @@
+{ #layout_admin_header }
+
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/news/index">뉴스</a></li>
+    <li class="active">정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/news/modify" method="post">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="nwNO" value="{nwNO}">
+
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">뉴스번호</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwNO}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">뉴스제목</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">뉴스 소제목</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwSmallName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">뉴스카테고리</span></div>
+            <div class="col-lg-9"><span class="mlt20">{ncName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">조회수</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwViewCount}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">보도일</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwEventDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">수정일</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwModDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">뉴스영상타입</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwType}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">헤드라인</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwIsHeadline}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">중요기사</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwIsSpecial}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20"></span></div>
+            <div class="col-lg-9"><span class="mlt20">
+                {? nwType === 'VIMEO'}
+                    <iframe src="http://player.vimeo.com/video/{nwSource}" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                {: nwType === 'YOUTUBE'}
+                    <iframe src="//www.youtube.com/embed/{nwSource}" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                {/}
+            </span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-3 text-right"><span class="mrt20">뉴스내용</span></div>
+            <div class="col-lg-9"><span class="mlt20">{nwContent}</span></div>
+        </div>
+        <div class="mt20">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <a href="/adm/news/index"><button type="button" class="btn">취소</button></a>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" action="/adm/news/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="nwNO" value="{nwNO}">
+        <button type="submit" class="btn btn-danger pull-right">삭제</button>
+    </form>
+</div>
+
+{ #layout_admin_footer }

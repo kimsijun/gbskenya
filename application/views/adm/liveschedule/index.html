@@ -1,0 +1,194 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/liveschedule/index">편성표 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                편성표 가져오기
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal mt20 mb20" role="form" action="/adm/liveschedule/process" method="post">
+                <input type="hidden" name="mode" value="importLsData">
+                <input type="hidden" name="chNO" value="{secParams.chNO}">
+                <input type="hidden" name="importLsDate" value="{secParams.lsDate}">
+                <div class="form-group row">
+                    <label class="col-lg-4 control-label">채널</label>
+                    <div class="col-lg-4">
+                        <select class="form-control" name="chNO">
+                            { @ channel }
+                            <option value="{channel.chNO}" {?channel.chNO == secParams.chNO} selected="selected" {/}>{channel.chName}</option>
+                            {/}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 control-label">날짜</label>
+                    <div class="col-lg-4"><input type="date" class="form-control" name="secLsDate" placeholder="" value="{=date('Y-m-d')}"></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-offset-4 col-lg-8">
+                        <button type="submit" class="btn btn-info btnImport">가져오기</button>
+                        <button class="btn btn-default ">취소</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                편성표 등록
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal mt20 lsFrm" role="form" action="/adm/liveschedule/index" method="post">
+                <div class="form-group row">
+                    <label class="col-lg-4 control-label">채널</label>
+                    <div class="col-lg-4">
+                        <select class="form-control" name="chNO">
+                            { @ channel }
+                            <option value="{channel.chNO}" {?channel.chNO == secParams.chNO} selected="selected" {/}>{channel.chName}</option>
+                            {/}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 control-label">날짜</label>
+                    <div class="col-lg-4"><input type="date" class="form-control lsDate" name="lsDate" placeholder="" value="{secParams.lsDate}"></div>
+                </div>
+            </form>
+            <div class="row">
+                <form class="form-horizontal frmRegContent" role="form" action="/adm/liveschedule/process" method="post">
+                    <input type="hidden" name="lsDate" value="{secParams.lsDate}">
+                    <input type="hidden" name="chNO" value="{secParams.chNO}">
+                    <input type="hidden" name="lsSTime" value="{cfgSTime}">
+                    <div class="form-group row">
+                        <label class="col-lg-4 control-label">프로그램에 속한 여부</label>
+                        <div class="col-lg-3">
+                            <label class="radio-inline"><input type="radio" name="lsIsProgram" checked="checked" value="YES">YES</label>
+                            <label class="radio-inline"><input type="radio" name="lsIsProgram" value="NO"> NO</label>
+                        </div>
+                    </div>
+                    <div class="inProgram">
+                        <div class="form-group row">
+                            <label class="col-lg-4 control-label">프로그램</label>
+                            <div class="col-lg-4">
+                                <select class="form-control prCode" name="prCode">
+                                    <option value="">선택</option>
+                                    {@ prList}
+                                    <option {? .prCode === prCode} selected="selected" {/} value="{.prCode}">{.prName}</option>
+                                    {/}
+                                    <option value="{prPreCode}back">뒤로</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-4 control-label">콘텐츠</label>
+                            <div class="col-lg-4 contents_container"> </div>
+                        </div>
+                    </div>
+                    <div class="outProgram hide">
+                        <div class="form-group row">
+                            <label class="col-lg-4 control-label">콘텐츠</label>
+                            <div class="col-lg-4">
+                                <select class="form-control slc_content" name="out_lcNO">
+                                    <option value="">선택</option>
+                                    {@ outProgram}
+                                    <option value="{.lcNO}">{.lcName}</option>
+                                    {/}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 control-label">노출여부</label>
+                        <div class="col-lg-4">
+                            <label class="radio-inline"><input type="radio" name="lsIsView" value="YES">YES</label>
+                            <label class="radio-inline"><input type="radio" name="lsIsView" checked="checked"  value="NO"> NO</label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt20">
+                        <div class="col-lg-offset-4 col-lg-8">
+                            <span class="btn btn-success btn_content_submit">등록</span>
+                            <button class="btn btn-default">취소</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row container admLivescheduleContainer">
+        <table class="table table-bordered table-striped table-hover adm_liveschedule_list" >
+            <thead>
+            <tr>
+                <th>시작시간</th>
+                <th>컨텐츠길이</th>
+                <th>컨텐츠명</th>
+                <th>주요Live</th>
+                <th>노출여부</th>
+                <th></th>
+            </tr>
+            </thead>
+            {? list}
+                { @list }
+                <tr>
+                    <td>{list.lsSTime}</td>
+                    <td>{list.lcDuration}</td>
+                    <td>{list.lcName}</td>
+                    <td class="text-center">
+                        <input type="checkbox" lsNO="{list.lsNO}" class="lsChangeIsSpecial" {? list.lsIsSpecial === "YES"} checked="checked" value="YES" {/} >
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" lsNO="{list.lsNO}" class="lsChangeIsView" {? list.lsIsView === "YES"} checked="checked" value="YES" {/} >
+                    </td>
+                    <td class="text-center">
+                        <span style="margin:0 10px;cursor:pointer" class="icon12 icomoon-icon-pencil-3 btnModify" lsNO="{list.lsNO}"></span>
+                        <span style="margin:0 10px;cursor:pointer" class="icon12 icomoon-icon-close btnDelete" lsNO="{list.lsNO}"></span>
+                    </td>
+                </tr>
+                { / }
+            {:}
+            <tr><td colspan="6" class="text-center">등록된 편성표가 없습니다.</td></tr>
+            {/}
+        </table>
+
+        <form class="frmAddBetween" method="post" action="/adm/liveschedule/addBetween">
+            <input type="hidden" name="lsNO" class="lsNO">
+        </form>
+        <form class="frmModify" method="post" action="/adm/liveschedule/modify">
+            <input type="hidden" name="lsNO" class="lsNO">
+        </form>
+
+        <div class="row container mt30">
+            { ?liveList }
+            <h4>{secParams.lsDate} 생중계 정보</h4>
+            <table class="table table-bordered table-striped table-hover" >
+                <thead>
+                <tr>
+                    <th>시작시간</th>
+                    <th>종료시간</th>
+                    <th>컨텐츠명</th>
+                </tr>
+                </thead>
+                { @liveList }
+                <tr>
+                    <td>{.dtSTime}</td>
+                    <td>{.dtETime}</td>
+                    <td>
+                        {.dtName}
+                    </td>
+                </tr>
+                { / }
+            </table>
+            {/}
+        </div>
+    </div>
+</div>
+
+{ #layout_admin_footer }

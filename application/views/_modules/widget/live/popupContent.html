@@ -1,0 +1,23 @@
+<div class="live-titbox">
+    <div style="color:white;font-weight:900">콘텐츠 리스트</div>
+</div>
+<ul class="tabMenu mt5">
+    <li class="live_tab live_tab_hover">최신</li>
+    <li class="live_tab">추천</li>
+    <li class="live_tab">인기</li>
+</ul>
+<div class="live-list tabContainer listPopupRecent">{ #widget_live_popupRecentContent }</div>
+<div class="live-list tabContainer listPopupLike">{ #widget_live_popupLikeContent }</div>
+<div class="live-list tabContainer listPopupView">{ #widget_live_popupViewContent }</div>
+
+
+
+<script type="text/javascript">
+    $(".tabMenu > li").click(function(){
+        var tabIndex = $(".tabMenu > li").index(this);
+        $(".tabContainer").css("display", "none");
+        $(".tabContainer").eq(tabIndex).css("display", "block");
+        $(".live_tab").removeClass("live_tab_hover");
+        $(this).addClass("live_tab_hover");
+    });
+</script>

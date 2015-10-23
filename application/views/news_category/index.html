@@ -1,0 +1,149 @@
+{ #layout_header }
+
+<article class="content">
+    <!--div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="">News</a> >
+            <a href="/news_category/index">Main</a>
+        </div>
+    </div-->
+    <div class="content-news">
+        <ul class="category">
+            <li><a href="/news_category/index"  class="on">Main</a></li>
+            {@ newsCategory }
+            <li><a href="/news_category/view/ncCode/{.ncCode}/ncName/{=strtolower(url_title(.ncName))}">{.ncName}</a></li>
+            {/}
+        </ul>
+
+        <div class="content_left">
+            <div class="top_story">
+                <h2 class="top_story_header" >
+                    <p style="font-size:24px;">Top News (Headline)</p>
+                    <a href="/news/view/nwNO/{headLine.nwNO}/nwName/{=strtolower(url_title(headLine.nwName))}">
+                        <img src="/uploads/news/thumbl/{headLine.nwThumbL}" alt="photo_name" width="300" height="200">
+                        <p class="thumbLeft" style="height:200px;top:50px;background:#fff;"></p>
+                        <p class="thumbRight" style="height:200px;top:50px;right:355px;background:#fff;"></p>
+                        <p style="font-size:20px;">{headLine.nwName}</p>
+                    </a>
+                    <p style="font-size:16px; color:#4c7098;padding:0px;">{headLine.ncName}</p>
+                </h2>
+                <p><a href="/news/view/nwNO/{headLine.nwNO}/nwName/{=strtolower(url_title(headLine.nwName))}">{headLine.nwContent}</a></p>
+            </div>
+            {@ specialNews }
+            <div class="second_top_story">
+                <h2 class="top_story_header">
+                    <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">
+                        <img src="/uploads/news/thumbs/{.nwThumbS}" alt="photo_name" width="150" height="100">{.nwName}
+                        <p class="thumbLeft"style="height:100px;background:#fff;"></p>
+                        <p class="thumbRight"style="height:100px;background:#fff;right:500px;"></p>
+                    </a>
+                </h2>
+                <p><span style="color:#4c7098;padding:0px;">{.ncName}</span><br/>{.nwContent}</p>
+            </div>
+            {/}
+
+
+            <div class="category_story">
+                { @ newsCategory }
+                { ? .ncCode != '005'}
+                <dl class="category_section mrt10">
+                    <dt><a href="#">{.ncName}</a></dt>
+                    { @ .newsList }
+                    <dd>
+                        <a href="/news/view/nwNO/{..nwNO}/nwName/{=strtolower(url_title(..nwName))}">
+                            {? ..index_ == '0' }
+                            <img src="/uploads/news/thumbs/{..nwThumbS}" alt="photo_name" width="150" height="100">
+                            <p class="thumbLeft"style="height:100px;background:#fff;width:5px;"></p>
+                            <p class="thumbRight"style="height:100px;background:#fff;width:5px; "></p>
+                            {/}
+                            - { .. nwName }
+                        </a>
+                    </dd>
+                    {/}
+                </dl>
+                {/}
+                {/}
+            </div>
+
+
+            <!--div class="category_story_title" style="border-bottom:0;padding-bottom:0;margin-bottom:0">
+                <p class="cate_title mb40"><a href="#">International</a></p>
+                { @ international }
+                {? .index_ < 4}
+                <dl class="category_section  mrt10" style="margin-bottom:30px;">
+                    <dt><a href="#">{.ncName}</a></dt>
+                    <dd>
+                        <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">
+                            <img src="/uploads/news/thumbs/{.nwThumbS}" alt="photo_name" width="150" height="100">
+                            <p class="thumbLeft"style="height:100px;background:#fff;width:5px;"></p>
+                            <p class="thumbRight"style="height:100px;background:#fff;width:5px; "></p>
+                            - { . nwName }
+                        </a>
+                    </dd>
+                </dl>
+                {/}
+                {/}
+            </div>
+            <div class="category_story_title">    
+                { @ international }
+                {? .index_ > 3}
+                <dl class="category_section  mrt10" style="margin-bottom:30px;">
+                    <dt><a href="#">{.ncName}</a></dt>
+                    <dd>
+                        <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">
+                            <img src="/uploads/news/thumbs/{.nwThumbS}" alt="photo_name" width="150" height="100">
+                            <p class="thumbLeft"style="height:100px;background:#fff;width:5px;"></p>
+                            <p class="thumbRight"style="height:100px;background:#fff;width:5px; "></p>
+                            - { . nwName }
+                        </a>
+                    </dd>
+                </dl>
+                {/}
+                {/}
+            </div-->
+
+            <div>
+                <h2>News Programmes</h2>
+                {@ newsPr}
+                <dl class="newsPr">
+                <a href="/program/view/prCode/{.prCode}/prName/{=strtolower(url_title(.prName))}">
+                    <dd>
+                        <img src="/uploads/program/{.prThumb}" alt="photo_name" width="200" height="150">
+                    </dd>
+                    <dt>{.prName}</dt>
+                </a>
+                </dl>
+                {/}
+            </div>
+
+        </div>
+
+
+        <div class="content_right">
+            <div class="ad_area">
+				<p style="margin-bottom:20px;"></p>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- 1 -->
+				<ins class="adsbygoogle" style="display:inline-block;width:279px;height:232px" data-ad-client="ca-pub-1189571227282613" data-ad-slot="3825957081"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+
+            </div>
+
+            <div class="lank_section mt30 mlt20 mrt20">
+                <h2>Most Popular</h2>
+                <ol>
+                    {@ mostPopular}
+                    <li><a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}"><span>{.index_ + 1}</span>{.nwName} </a></li>
+                    {/}
+                </ol>
+            </div>
+        </div>
+
+
+    </div>
+</article>
+
+{ #layout_footer }

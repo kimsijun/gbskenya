@@ -1,0 +1,70 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/member/index">회원관리</a></li>
+    <li class="active">회원정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/member/modify" method="post">
+        <input type="hidden" name="mbID" value="{memberID}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">아이디</span></div>
+            <div class="col-lg-10"><span class="mlt20">{memberID}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">이름</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbFirstName} {mbLastName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">닉네임</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbNick}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">성별</span></div>
+            <div class="col-lg-10"><span class="mlt20">{?mbSex==="M"}남{:}여{/}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">생년월일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbBirth}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">전화번호</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbCellPhone}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">관리자여부</span></div>
+            <div class="col-lg-10"><span class="mlt20">{?mbIsAdmin==="YES"}YES{:}NO{/}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">탈퇴여부</span></div>
+            <div class="col-lg-10"><span class="mlt20">{?mbIsWithdraw==="YES"}YES{:}NO{/}</span></div>
+        </div>
+        {?mbIsWithdraw==="YES"}
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">탈퇴 사유</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbWdReason}{? mbWdReason == '기타'} ( {mbWdReasonTxt} ) {/}</span></div>
+        </div>
+        {/}
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">가입일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbRegDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">최종로그인</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbLastLoginDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">방문수</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mbVisitCount}</span></div>
+        </div>
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10 pt20">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/member/index');" type="button" class="btn btn-default">목록</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

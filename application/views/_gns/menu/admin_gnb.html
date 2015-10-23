@@ -1,0 +1,157 @@
+<div class="sidebar">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'member'}active{/}">
+                <h4 class="panel-title" >
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#menu1"><span class="icon16 icomoon-icon-user"></span>회원관리</a>
+                </h4>
+            </div>
+            <div id="menu1" class="panel-collapse collapse {? controller == 'member'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/member/index" class="{?controller ==='member'&&(method ==='index' ||method ==='view' || method ==='modify')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>회원 리스트</a></li>
+                        <li><a href="/adm/member/withdraw" class="{?controller ==='member'&& method ==='withdraw'}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>탈퇴회원 리스트</a></li>
+                        <li><a href="/adm/member/error_index" class="{?controller ==='member'&&(method ==='error_index' ||method ==='error_view' || method ==='error_modify')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>로그인에러 리스트</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'cfg_board'||controller == 'board'||controller == 'comment'}active{/}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion2" href="#menu2"><span class="icon16 icomoon-icon-folder"></span><span class="icon16 icomoon-icon-arrow-down-2 pull-right "></span>게시판</a>
+                </h4>
+            </div>
+            <div id="menu2" class="panel-collapse collapse {? controller == 'cfg_board'||controller == 'board'||controller == 'comment'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/cfg_board/index" class="{?controller ==='cfg_board' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-stack"></span>게시판관리</a></li>
+
+                        <div class="panel" style="border: 0;">
+                            <li><a class="accordion-toggle" data-toggle="collapse" data-parent="#menu2" href="#submenu"><span class="icon16 icomoon-icon-file-6"></span>게시글관리<span class="icon16 icomoon-icon-arrow-down-2 pull-right "></span></a></li>
+                            <div id="submenu" class="panel-collapse collapse {? controller == 'board'&& (method ==='index' || method ==='view' || method ==='modify' || method ==='write' || method ==='reply')}in{/}">
+                                <div class="subsubMenu">
+                                    <div class="panel">
+                                        { @ board_cfg}
+                                        <li>
+                                            <a href="/adm/board/index/bodID/{board_cfg.bodID}" class="{? controller ==='board' && bodID ==='{board_cfg.bodID}' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write' || method ==='reply')}active  ">
+                                                <span class="icon16 icomoon-icon-arrow-right-3"></span>
+                                                {? board_cfg.bodIsDelete == 'YES'}<i style="text-decoration:line-through">{board_cfg.bodName}</i>
+                                                {:}{board_cfg.bodName}{/}
+                                            </a>
+                                        </li>
+                                        {/}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <li><a href="/adm/comment/index" class="{?controller ==='comment' && (method ==='index')}active{/}" ><span class="icon16 icomoon-icon-bubble-dots"></span>게시판 댓글 관리</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'mainFocus' || controller == 'supportAd'}active{/}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion3" href="#menu3"><span class="icon16 icomoon-icon-cogs "></span><span class="icon16 icomoon-icon-arrow-down-2 pull-right "></span>메인화면</a>
+                </h4>
+            </div>
+            <div id="menu3" class="panel-collapse collapse {? controller == 'mainFocus' || controller == 'supportAd'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/mainFocus/index" class="{?controller ==='mainFocus' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>메인포커스 관리</a></li>
+                        <li><a href="/adm/supportAd/index" class="{?controller ==='supportAd' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>협찬광고 관리</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'channel' || controller == 'livecontent' || controller == 'liveschedule'}active{/}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion4" href="#menu4"><span class="icon16 icomoon-icon-camera-5"></span><span class="icon16 icomoon-icon-arrow-down-2 pull-right "></span>라이브</a>
+                </h4>
+            </div>
+            <div id="menu4" class="panel-collapse collapse {? controller == 'channel' || controller == 'livecontent' || controller == 'liveschedule'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/channel/index" class="{?controller ==='channel' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>채널 리스트</a></li>
+                        <li><a href="/adm/livecontent/index" class="{?controller ==='livecontent' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>방송콘텐츠 관리</a></li>
+                        <li><a href="/adm/liveschedule/index" class="{?controller ==='liveschedule' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>편성표</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'news' || controller == 'news_category'}active{/}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion5" href="#menu5"><span class="icon16 icomoon-icon-mic-2 "></span><span class="icon16 icomoon-icon-arrow-down-2 pull-right "></span>뉴스</a>
+                </h4>
+            </div>
+            <div id="menu5" class="panel-collapse collapse {? controller == 'news' || controller == 'news_category'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/news_category/index" class="{?controller ==='news_category' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>뉴스 카테고리</a></li>
+                        <li><a href="/adm/news/index" class="{?controller ==='news' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>뉴스</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'program' || controller == 'podcast' || controller == 'program_comment' || controller == 'adcontent'}active{/}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion6" href="#menu6"><span class="icon16 icomoon-icon-tv "></span>프로그램</a>
+                </h4>
+            </div>
+            <div id="menu6" class="panel-collapse collapse {? controller == 'program' || controller == 'podcast' || controller == 'program_comment' || controller == 'adcontent'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/program/index" class="{?controller ==='program' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>프로그램 리스트</a></li>
+                        <li><a href="/adm/program/sort" class="{?controller ==='program' && method ==='sort'}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>프로그램 리스트 정렬</a></li>
+                        <li><a href="/adm/program_comment/index" class="{?controller ==='program_comment' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>프로그램 응원 리스트</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'content' || controller == 'contentTag' || controller == 'content_comment'}active{/}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion7" href="#menu7"><span class="icon16 icomoon-icon-film-3 "></span>콘텐츠</a>
+                </h4>
+            </div>
+            <div id="menu7" class="panel-collapse collapse {? controller == 'content' || controller == 'contentTag' || controller == 'content_comment'}in{/}">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/adm/content/media_source" class="{?controller ==='content' && method ==='media_source'}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>Youtube ID 관리</a></li>
+                        <li><a href="/adm/content/homeshopping" class="{?controller ==='content' && method ==='homeshopping'}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>홈쇼핑 관리</a></li>
+                        <li><a href="/adm/content/uefa" class="{?controller ==='content' && method ==='uefa'}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>UEFA CUP 관리</a></li>
+                        <li><a href="/adm/content/index" class="{?controller ==='content' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>콘텐츠 리스트</a></li>
+                        <li><a href="/adm/contentTag/index" class="{?controller ==='contentTag' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>콘텐츠 태그 리스트</a></li>
+                        <li><a href="/adm/content_comment/index" class="{?controller ==='content_comment' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-arrow-right-3"></span>콘텐츠 코멘트 리스트</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading  {? controller == 'popupschedule'}active{/}">
+                <h4 class="panel-title">
+                    <a href="/adm/popupschedule/index" class="{?controller ==='popupschedule' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16  brocco-icon-camera-2"></span>방송창스케쥴 관리</a>
+                </h4>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'advertise'}active{/}">
+                <h4 class="panel-title">
+                    <a href="/adm/advertise/index" class="{?controller ==='advertise' && (method ==='index' || method ==='view' || method ==='modify' || method ==='write')}active{/}"><span class="icon16 icomoon-icon-eye-4"></span>광고/제휴 문의</a>
+                </h4>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading {? controller == 'search'}active{/}">
+                <h4 class="panel-title">
+                    <a href="/adm/search/index"><span class="icon16 icomoon-icon-cog-4"></span>사용자 검색 관리</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+

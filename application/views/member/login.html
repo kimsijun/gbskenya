@@ -1,0 +1,21 @@
+{ #layout_header }
+<article class="content">
+    <div class="content-mypage">
+        <h1 class="login-tit"> Sign in for GBS </h1>
+        <div class="login pt50">
+            <img class="profile-img" alt="" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            <form name="frmlogin" method="post" action="/member/process" class="frmlogin">
+                <input type="hidden" name="mode" value="login">
+                <input type="hidden" name="returnUrl" value="{returnUrl}">
+                <p style="margin-bottom: 5px;">User Account <strong>(Use Email address.)</strong></p>
+                <input type="text" name="mbID" class="login-id placeholderTxt" placeholder="User Account" >
+                <p style="margin:10px 0  5px;">Password</p>
+                <input type="password" name="mbPW" class="login-pw placeholderTxt" placeholder="*************" >
+                <input id="signIn" class="sign-in" type="submit" value="Sign in">
+                <a href="/member/recovery"><span class="sec-id">Need help?</span></a>
+            </form>
+        </div>
+        <a href="/member/join"><span class="sign-up">Create an account</span></a>
+    </div>
+</article>
+{ #layout_footer }

@@ -1,0 +1,188 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">MyPage</a> >
+            <a href="/member/view">My profile</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{mbFirstName}</strong> <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+            <div class="memberlist">
+                <div class="mypagelistbox">
+                    <div class="member">
+                        <p class="member-info pb10"><span class="">You can modify your information.</span></p>
+                        <form method="post" action="/member/process" class="frmMemberMod" enctype="multipart/form-data">
+                        <input type="hidden" name="mode" value="modify">
+                        <input type="hidden" name="mbID" value="{mbID}">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>User Account</td>
+                                <td>{mbID}</td>
+                            </tr>
+                            <tr>
+                                <td>New Password</td>
+                                <td>
+                                    <input type="password" name="mbPW" class="mbPW"> <span class="f_col">Please enter your password to change.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Confirm Password</td>
+                                <td><input type="password" name="mbPWChk"></td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td>
+                                    <input type="text" name="mbFirstName" value="{mbFirstName}">
+                                    <input type="text" name="mbLastName" value="{mbLastName}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nick Name</td>
+                                <td><input type="text" name="mbNick" value="{mbNick}"></td>
+                            </tr> 
+                            <tr>
+                                <td>Mobile phone</td>
+                                <td>
+                                    <input type="text" name="mbCellPhone" value="{mbCellPhone}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Birthday</td>
+                                <td><input type="text" name="mbBirth" value="{mbBirth}" id="mb_birth" class="datepicker"></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>
+                                    <select name = "mbSex">
+                                        <option>I am...</option>
+                                        <option value="M" { ? mbSex == "M" } selected='selected' {/}>Male</option>
+                                        <option value="F" { ? mbSex == "F" } selected='selected' {/}>Female</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td>
+                                    <select id="mbNation" name="mbNation"  >
+                                        <option>Choose</option>
+                                        <option value="KE" { ? mbNation == "KE" } selected='selected' {/}>Kenya</option>
+                                        <option value="KR" { ? mbNation == "KR" } selected='selected' {/}>Republic of Korea</option>
+                                        <option value="CN" { ? mbNation == "CN" } selected='selected' {/}>China</option>
+                                        <option value="JP" { ? mbNation == "JP" } selected='selected' {/}>Japan</option>
+                                        <option value="AR" { ? mbNation == "AR" } selected='selected' {/}>Argentina</option>
+                                        <option value="AT" { ? mbNation == "AT" } selected='selected' {/}>Austria</option>
+                                        <option value="AU" { ? mbNation == "AU" } selected='selected' {/}>Australia</option>
+                                        <option value="BF" { ? mbNation == "BF" } selected='selected' {/}>Burkina Faso</option>
+                                        <option value="BG" { ? mbNation == "BG" } selected='selected' {/}>Bulgaria</option>
+                                        <option value="BI" { ? mbNation == "BI" } selected='selected' {/}>Burundi</option>
+                                        <option value="BJ" { ? mbNation == "BJ" } selected='selected' {/}>Bénin</option>
+                                        <option value="BO" { ? mbNation == "BO" } selected='selected' {/}>Bolivia</option>
+                                        <option value="BR" { ? mbNation == "BR" } selected='selected' {/}>Brazil</option>
+                                        <option value="BW" { ? mbNation == "BW" } selected='selected' {/}>Botswana</option>
+                                        <option value="CA" { ? mbNation == "CA" } selected='selected' {/}>Canada</option>
+                                        <option value="CD" { ? mbNation == "CD" } selected='selected' {/}>Republic of Congo</option>
+                                        <option value="CF" { ? mbNation == "CF" } selected='selected' {/}>Central African Republic</option>
+                                        <option value="CG" { ? mbNation == "CG" } selected='selected' {/}>Congo</option>
+                                        <option value="CH" { ? mbNation == "CH" } selected='selected' {/}>Swizterland</option>
+                                        <option value="CI" { ? mbNation == "CI" } selected='selected' {/}>Côte d’Ivoire</option>
+                                        <option value="CL" { ? mbNation == "CL" } selected='selected' {/}>Chile</option>
+                                        <option value="CM" { ? mbNation == "CM" } selected='selected' {/}>Cameroon</option>
+                                        <option value="CO" { ? mbNation == "CO" } selected='selected' {/}>Colombia</option>
+                                        <option value="CR" { ? mbNation == "CR" } selected='selected' {/}>Costa Rica</option>
+                                        <option value="CZ" { ? mbNation == "CZ" } selected='selected' {/}>Czech</option>
+                                        <option value="DE" { ? mbNation == "DE" } selected='selected' {/}>Germany</option>
+                                        <option value="DO" { ? mbNation == "DO" } selected='selected' {/}>Domincan Republic</option>
+                                        <option value="EC" { ? mbNation == "EC" } selected='selected' {/}>Ecuador</option>
+                                        <option value="ET" { ? mbNation == "ET" } selected='selected' {/}>Ethiopia</option>
+                                        <option value="FI" { ? mbNation == "FI" } selected='selected' {/}>Finland</option>
+                                        <option value="FJ" { ? mbNation == "FJ" } selected='selected' {/}>Fiji</option>
+                                        <option value="FR" { ? mbNation == "FR" } selected='selected' {/}>France</option>
+                                        <option value="GA" { ? mbNation == "GA" } selected='selected' {/}>Gabon</option>
+                                        <option value="GH" { ? mbNation == "GH" } selected='selected' {/}>Ghana</option>
+                                        <option value="GM" { ? mbNation == "GM" } selected='selected' {/}>Gambia</option>
+                                        <option value="GN" { ? mbNation == "GN" } selected='selected' {/}>Guinea</option>
+                                        <option value="HK" { ? mbNation == "HK" } selected='selected' {/}>Hong Kong</option>
+                                        <option value="HU" { ? mbNation == "HU" } selected='selected' {/}>Hungary</option>
+                                        <option value="HT" { ? mbNation == "HT" } selected='selected' {/}>Haïti</option>
+                                        <option value="IN" { ? mbNation == "IN" } selected='selected' {/}>India</option>
+                                        <option value="IT" { ? mbNation == "IT" } selected='selected' {/}>Italy</option>
+                                        <option value="JM" { ? mbNation == "JM" } selected='selected' {/}>Jamaica</option>
+                                        <option value="KG" { ? mbNation == "KG" } selected='selected' {/}>Kyrgyzstan</option>
+                                        <option value="KH" { ? mbNation == "KH" } selected='selected' {/}>Cambodia</option>
+                                        <option value="KZ" { ? mbNation == "KZ" } selected='selected' {/}>Kazakhstan</option>
+                                        <option value="LA" { ? mbNation == "LA" } selected='selected' {/}>Laos</option>
+                                        <option value="LR" { ? mbNation == "LR" } selected='selected' {/}>Liberia</option>
+                                        <option value="ML" { ? mbNation == "ML" } selected='selected' {/}>Mali</option>
+                                        <option value="MM" { ? mbNation == "MM" } selected='selected' {/}>Myanmar</option>
+                                        <option value="MN" { ? mbNation == "MN" } selected='selected' {/}>Mongolia</option>
+                                        <option value="MW" { ? mbNation == "MW" } selected='selected' {/}>Malawi</option>
+                                        <option value="MX" { ? mbNation == "MX" } selected='selected' {/}>Mexico</option>
+                                        <option value="MY" { ? mbNation == "MY" } selected='selected' {/}>Malaysia</option>
+                                        <option value="MZ" { ? mbNation == "MZ" } selected='selected' {/}>Mozambique</option>
+                                        <option value="NA" { ? mbNation == "NA" } selected='selected' {/}>Namibia</option>
+                                        <option value="NG" { ? mbNation == "NG" } selected='selected' {/}>Nigeria</option>
+                                        <option value="NP" { ? mbNation == "NP" } selected='selected' {/}>Nepal</option>
+                                        <option value="NZ" { ? mbNation == "NZ" } selected='selected' {/}>New Zealand</option>
+                                        <option value="PE" { ? mbNation == "PE" } selected='selected' {/}>Peru</option>
+                                        <option value="PH" { ? mbNation == "PH" } selected='selected' {/}>The Philippines</option>
+                                        <option value="PL" { ? mbNation == "PL" } selected='selected' {/}>Poland</option>
+                                        <option value="PT" { ? mbNation == "PT" } selected='selected' {/}>Portugal</option>
+                                        <option value="PY" { ? mbNation == "PY" } selected='selected' {/}>Paraguay</option>
+                                        <option value="RO" { ? mbNation == "RO" } selected='selected' {/}>Romania</option>
+                                        <option value="RU" { ? mbNation == "RU" } selected='selected' {/}>Russia</option>
+                                        <option value="RW" { ? mbNation == "RW" } selected='selected' {/}>Rwanda</option>
+                                        <option value="SG" { ? mbNation == "SG" } selected='selected' {/}>Singapore</option>
+                                        <option value="SL" { ? mbNation == "SL" } selected='selected' {/}>Sierra Leone</option>
+                                        <option value="SN" { ? mbNation == "SN" } selected='selected' {/}>Senegal</option>
+                                        <option value="SO" { ? mbNation == "SO" } selected='selected' {/}>Somalia</option>
+                                        <option value="SY" { ? mbNation == "SY" } selected='selected' {/}>Syria</option>
+                                        <option value="TG" { ? mbNation == "TG" } selected='selected' {/}>Togo</option>
+                                        <option value="TH" { ? mbNation == "TH" } selected='selected' {/}>Thailand</option>
+                                        <option value="TR" { ? mbNation == "TR" } selected='selected' {/}>Turkey</option>
+                                        <option value="TW" { ? mbNation == "TW" } selected='selected' {/}>Taiwan</option>
+                                        <option value="TZ" { ? mbNation == "TZ" } selected='selected' {/}>Tanzania</option>
+                                        <option value="UA" { ? mbNation == "UA" } selected='selected' {/}>Ukraine</option>
+                                        <option value="UG" { ? mbNation == "UG" } selected='selected' {/}>Uganda</option>
+                                        <option value="UK" { ? mbNation == "UK" } selected='selected' {/}>UK</option>
+                                        <option value="US" { ? mbNation == "US" } selected='selected' {/}>United States of America</option>
+                                        <option value="UY" { ? mbNation == "UY" } selected='selected' {/}>Uruguay</option>
+                                        <option value="UZ" { ? mbNation == "UZ" } selected='selected' {/}>Uzbekistan</option>
+                                        <option value="VN" { ? mbNation == "VN" } selected='selected' {/}>Vietnam</option>
+                                        <option value="ZA" { ? mbNation == "ZA" } selected='selected' {/}>Republic of South Africa</option>
+                                        <option value="ZM" { ? mbNation == "ZM" } selected='selected' {/}>Zambia</option>
+                                        <option value="ZW" { ? mbNation == "ZW" } selected='selected' {/}>Zimbabwe</option>
+                                        <option value="ETC" { ? mbNation == "ETC" } selected='selected' {/}>Other (country not listed)</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Member Image</td>
+                                <td><img src="/uploads/member/thumb/{mbThumb}" width="48" height="48">
+                                    <input type="file" name="mbThumb">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    </div>
+                    <div class="modSubmit">
+                        <span class="join-btn mrt5 modsubmit">Save</span>
+                        <span class="join-btn" onclick="javascript:history.back()">Cancel</span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</article>
+{ #layout_footer }

@@ -1,0 +1,88 @@
+{ #common_html_header }
+<article id="wrap">
+    <div class="programNavi_bg"></div>
+    <header>
+        <hgroup>
+            <h1><a href="/"><img src="/images/common/logo.gif" alt="logo" /></a></h1>
+
+            <div class="top-link">
+                {? is_login }
+                <span class="name"><a href="/member/view">{member.mbNick}</a></span> <span><a href="/member/logout">&nbsp; Sign-out</a></span><span class="gubun">|</span>
+                {? is_Admlogin }
+                <span><a href="/adm/main/index" target="_blank">Admin</a></span><span class="gubun">|</span>
+                {/}
+                <span><a href="/mypage_view/index">Mypage</a></span><span class="gubun">|</span>
+                {:}
+                <span>
+                    <form method="post" action="/member/login" class="commonLogin" style="float:left;">
+                        <input type="hidden" name="returnUrl" value="{=base_url()}{uri_string}">
+                        <input type="submit" value="Sign-in" style="border:none;background:none;color: #ddd;padding: 6px 15px;cursor:pointer;letter-spacing:0px;">
+                    </form>
+                </span>
+                <span><a href="/member/join">Sign-up</a></span><span class="gubun">|</span>
+                {/}
+                <span><a href="/live/index">Live</a></span><span class="gubun">|</span>
+                <span><a href="/board/index/bodID/notice">Support</a></span><span class="gubun"></span>
+                <span><img src="/images/common/btn_all_menu.gif" alt="프로그램 전체보기" class="programAllbtn" /></span>
+            </div>
+            <div class="programNavi top_menubox" >
+                <h1 class="logo"><img src="/images/common/logo_tv.gif" alt="" /> &nbsp; Programmes</h1>
+                <img src="/images/common/btn_menu_close.gif" alt="" class="close prcloseBtn"/>
+                <div class="programlist">
+                    { @ programList}
+                    {? .index_ != '3' }
+                    <dl class="menu{ .index_ +1 }" >
+                        <dt>{programList.prName}</dt>
+                        { @programList.prSub}
+                        <dd>
+                            <a href="/program/{ ? ..prSub}index{:}view{/}/prCode/{..prCode}">
+                                {..prName} { ? ..prSub}+{/}
+                            </a>
+                        </dd>
+                        {/}
+                    </dl>
+                    {/}
+                    {/}
+                    { @ programList}
+                    {? .index_ == '3' }
+                    <dl class="menu{ .index_ +1 }"style="width:108px;" >
+                        <dt>{programList.prName}</dt>
+                        { @programList.prSub}
+                        <dd>
+                            <a href="/program/{ ? ..prSub}index{:}view{/}/prCode/{..prCode}">
+                                {..prName} { ? ..prSub}+{/}
+                            </a>
+                        </dd>
+                        {/}
+                    </dl>
+                    {/}
+                    {/}
+                </div>
+            </div>
+
+            <form method="post" class="frmTopSearch" action="/search/index" onsubmit="return chkTopSearch();">
+                <p class="top-search">
+                    <input type="hidden" name="secKey" value="all" />
+                    <input type="text" class="secTxt" name="secTxt" value="{secParam.secTxt}" />
+                    <input type="image" src="/images/common/btn_top_search.gif" alt="검색" />
+                </p>
+            </form>
+            <div class="top-menu">
+                <span>
+                    <a href="/news_category/index" class="menu1 {?controller === 'news_category' || controller === 'news'}menu_on{/}">News</a>
+                </span>
+                <span>
+                    <a href="/program/index" class="menu2 {?controller === 'program'}menu_on{/}">Programmes</a>
+                </span>
+                <span>
+                    <a href="/homeshopping/index" class="menu3 {?controller === 'homeshopping'}menu_on{/}">Home Shopping</a>
+                </span>
+                <span>
+                    <a href="/uefacup/index" class="menu4 {?controller === 'uefacup'}menu_on{/}">UEFA CUP</a>
+                </span>
+            </div>
+        </hgroup>
+    </header>
+
+    <div class="content_wrap">
+

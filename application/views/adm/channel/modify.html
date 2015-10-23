@@ -1,0 +1,87 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/channel/index">채널 관리</a></li>
+    <li class="active">정보수정</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate" action="/adm/channel/process" method="post">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="chNO" value="{chNO}">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">채널이름</label>
+            <div class="col-lg-6"><input type="text" class="form-control" id="chName" name="chName" placeholder="채널이름" value="{chName}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">메인방송 타입</label>
+            <div class="col-lg-6">
+                <label class="radio-inline"><input type="radio" name="chMainBroad" {? chMainBroad === "USTREAM"}checked="checked"{/} value="USTREAM">USTREAM</label>
+                <label class="radio-inline"><input type="radio" name="chMainBroad" {? chMainBroad === "YOUTUBE"}checked="checked"{/} value="YOUTUBE">YOUTUBE</label>
+                <label class="radio-inline"><input type="radio" name="chMainBroad" {? chMainBroad === "TVPOT"}checked="checked"{/} value="TVPOT">TVPOT</label>
+                <label class="radio-inline"><input type="radio" name="chMainBroad" {? chMainBroad === "WOWZA"}checked="checked"{/} value="WOWZA">WOWZA</label>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">언어권</label>
+            <div class="col-lg-6">
+                <label class="checkbox-inline"><input type="checkbox" name="chLanguage[cn]" {? chLanguage['cn'] === "cn"}checked="checked"{/} value="cn">중국어</label>
+                <label class="checkbox-inline"><input type="checkbox" name="chLanguage[es]" {? chLanguage['es'] === "es"}checked="checked"{/} value="es">스페인어</label>
+                <label class="checkbox-inline"><input type="checkbox" name="chLanguage[en]" {? chLanguage['en'] === "en"}checked="checked"{/} value="en">영어</label>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Youtube</label>
+            <div class="col-lg-8">
+                <textarea name="chYoutube" class="form-control"  rows="20">{=stripslashes(chYoutube)}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Ustream</label>
+            <div class="col-lg-8">
+                <textarea name="chUstream" class="form-control"  rows="20">{=stripslashes(chUstream)}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Tvpot</label>
+            <div class="col-lg-8">
+                <textarea name="chTvpot" class="form-control"  rows="20">{=stripslashes(chTvpot)}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Wowza</label>
+            <div class="col-lg-8">
+                <textarea name="chWowza" class="form-control"  rows="20">{=stripslashes(chWowza)}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">중국어</label>
+            <div class="col-lg-8">
+                <textarea name="chLangCN" class="form-control"  rows="20">{=stripslashes(chLangCN)}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">스페인어</label>
+            <div class="col-lg-8">
+                <textarea name="chLangES" class="form-control"  rows="20">{=stripslashes(chLangES)}</textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">영어</label>
+            <div class="col-lg-8">
+                <textarea name="chLangEN" class="form-control"  rows="20">{=stripslashes(chLangEN)}</textarea>
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/channel/view/chNO/{chNO}');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

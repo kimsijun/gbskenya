@@ -1,0 +1,58 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/cfg_board/index">게시판관리</a></li>
+    <li><a href="/adm/board/index/bodID/{bodID}">{bodName}</a></li>
+    <li class="active">게시글 리스트</li>
+</ol>
+    <div class="content">
+        <form method="post" name="boList" action="/adm/board/process">
+            <input type="hidden" name="mode" value="delete">
+            <input type="hidden" name="bodID" value="{bodID}">
+            <div class="mb10">
+                <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+                <button type="submit" class="btn btn-default">선택삭제</button>
+                <button class="btn btn-primary" onclick="location.href=('/adm/board/write/bodID/{bodID}');" type="button" >등록</button>
+            </div>
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th id="masterCh" class="ch"><input type="checkbox" name="checkbox" value="" class="styled uncheck_all" /></th>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>삭제여부</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                    <th>수정</th>
+                </tr>
+                </thead>
+                <tbody>
+                {@ list}
+                <tr height="35" align="center">
+                    <td class="chChildren"><input type="checkbox" name="chk[]" value="{list.boNO}" class="styled" /></td>
+                    <td>{listCnt - secParams.page - list.index_}</td>
+                    <td style="padding-left:30px; text-align:left;">
+                        {? list.boParent }<img src="/images/common/blank.png" style="width:{(list.boDepth-1)*20}px;height:15px;"><img src="/images/common/board_re.gif">{/}
+                        <a href="/adm/board/view/bodID/{list.bodID}/boNO/{list.boNO}">{list.boName}</a>
+                    </td>
+                    <td>{list.boIsDelete}</td>
+                    <td><b><a href="/adm/board/view/bodID/{bodID}/boNO/{list.boNO}">{list.mbID}</a></b></td>
+                    <td>{list.boRegDate}</td>
+                    <td>{list.boHit}</td>
+                    <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="boNO" boNO="{.boNO}"></span></td>
+                </tr>
+                { / }
+                </tbody>
+            </table>
+
+
+        </form>
+        { pager }
+        <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/board/modify" method="post">
+            <input type="hidden" name="boNO" value="">
+        </form>
+    </div>
+
+{ #layout_admin_footer }

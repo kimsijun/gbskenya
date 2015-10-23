@@ -1,0 +1,87 @@
+
+#godo_context_menu {
+    background: none repeat scroll 0 0 #F0F0F0;
+    border: 1px solid #A0A0A0;
+    display: none;
+    left: 0;
+    padding: 1px;
+    position: absolute;
+    top: 0;
+    width: 200px;
+    z-index: 9999999;
+}
+#godo_context_menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#godo_context_menu ul li {
+    background: none repeat scroll 0 0 #F0F0F0;
+    cursor: pointer;
+    height: 23px;
+    line-height: 23px;
+    padding-left: 25px;
+}
+#godo_context_menu ul li.seprator {
+    height: 5px;
+    line-height: 5px;
+    margin: 0;
+    padding: 2px;
+}
+#godo_context_menu ul li.seprator:hover {
+    background: none repeat scroll 0 0 #F0F0F0;
+}
+#godo_context_menu ul li.seprator hr {
+    font-size: 1px;
+    margin: 3px 0;
+    padding: 0;
+}
+#godo_context_menu ul li:hover {
+    background: none repeat scroll 0 0 #3399FF;
+    color: #FFFFFF;
+}
+#godo_context_menu ul li:hover a {
+    color: #FFFFFF;
+}
+#godo_context_menu ul li a {
+    color: #000000;
+    text-decoration: none;
+}
+#godo_context_menu ul li a:hover {
+    color: #FFFFFF;
+}
+table.context_menu_form {
+    table-layout: fixed;
+}
+table.context_menu_form th, table.context_menu_form td {
+    font-size: 12px;
+    text-align: left;
+}
+table.context_menu_form th {
+    background: none repeat scroll 0 0 #F6F6F6;
+    font-weight: bold;
+    padding-left: 3px;
+    width: 80px;
+}
+table.context_menu_form td {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 3px;
+}
+table.context_menu_form input {
+    border: 1px solid #CCCCCC;
+}
+div.context_menu_form_button-wrap {
+    margin: 5px;
+    text-align: center;
+}
+div.context_menu_form_button-wrap img {
+    cursor: pointer;
+    margin: 5px;
+}
+#sub_left_menu {
+    width:19px;
+    background:url('/images/godo_admin/icon_menuon_bg.gif') repeat-y;
+}
+.button_top{
+    padding: 20px 0 30px 0;
+}

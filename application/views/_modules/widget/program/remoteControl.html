@@ -1,0 +1,57 @@
+<!--div style="position:absolute;z-index: 1; background-color: #fff;">
+    <div style="float: left;">
+    <ul class="tabMenu" style="width:100px;">
+    { @ programList}
+        <li>{.prName}</li>
+    {/}
+    </ul>
+    </div>
+    { @programList}
+    <div class="tabContainer" style="display: none;float: left;">
+        <ul class="tabMenu2" style="width:100px;">
+            {@programList.prSub}
+            <li>{..prName} { ? ..prSub}+{/}</li>
+            {/}
+            {@programList.contents}
+            <a href="/content/view/ctNO/{..ctNO}"><li>{..ctName}</li></a>
+            {/}
+        </ul>
+    </div>
+    {/}
+    { @programList}
+    <div class="tabContainer2" style="display: none;float: left;">
+        {@programList.prSub}
+        <ul class="tabMenu3" >
+            {@..prSub}
+            <li>{...prName} { ? ...prSub}+{/}</li>
+            {/}
+            {@..contents}
+            <a href="/content/view/ctNO/{...ctNO}"><li>{...ctName}</li></a>
+            {/}
+        </ul>
+        {/}
+    </div>
+    {/}
+</div-->
+
+<script type="text/javascript">
+    $(".tabMenu > li").click(function(){
+        var tabIndex = $(".tabMenu > li").index(this);
+        $(".tabContainer3").css("display", "none");
+        $(".tabContainer2").css("display", "none");
+        $(".tabContainer").eq(tabIndex).css("display", "block");
+
+        $(".tabMenu2 > li").click(function(){
+            var tabIndex2 = $(".tabMenu2 > li").index(this);
+            $(".tabContainer2").css("display", "none");
+            $(".tabContainer3").css("display", "none");
+            $(".tabContainer2").eq(tabIndex2).css("display", "block");
+
+            $(".tabMenu3 > li").click(function(){
+                var tabIndex3 = $(".tabMenu3 > li").index(this);
+                $(".tabContainer3").css("display", "none");
+                $(".tabContainer3").eq(tabIndex3).css("display", "block");
+            });
+        });
+    });
+</script>

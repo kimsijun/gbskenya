@@ -1,0 +1,53 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/supportAd/index">협찬광고 관리</a></li>
+    <li class="active">정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/supportAd/modify" method="post">
+        <input type="hidden" name="sANO" value="{sANO}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">번호</span></div>
+            <div class="col-lg-10"><span class="mlt20">{sANO}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">제목</span></div>
+            <div class="col-lg-10"><span class="mlt20">{sAName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">순서</span></div>
+            <div class="col-lg-10"><span class="mlt20">{sAOrder}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">기간</span></div>
+            <div class="col-lg-10"><span class="mlt20">{sASDate} ~ {sAEDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">링크</span></div>
+            <div class="col-lg-10"><span class="mlt20">{sALink}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">이미지</span></div>
+            <div class="col-lg-10"><span class="mlt20"><img src="/uploads/supportAd/{sAThumb}" ></span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">등록일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{sARegDate}</span></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/supportAd/index');" type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/adm/supportAd/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="sANO" value="{sANO}">
+        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+</div>
+{ #layout_admin_footer }

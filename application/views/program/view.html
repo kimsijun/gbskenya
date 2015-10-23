@@ -1,0 +1,598 @@
+{ #layout_header }
+<article class="content">
+<div class="channelbox">
+    <p class="channel_tit"> Remocon</p>
+    <p class="channel_close callrc"><img src="/images/common/remocon_off.png"/></p>
+    <ul class="channellist">
+        {@programSortList}
+        <li prCode="{.prCode}">{.prName}</li>
+        {/}
+    </ul>
+
+    <ul class="chansublist"></ul>
+    <ul class="chansub2list"></ul>
+    <ul class="chansub3list"></ul>
+    <ul class="chansub4list"></ul>
+</div>
+
+<script type="text/javascript">
+    var slideStatus = false;
+    $(".chansub2upper").mouseenter(function(){  slideStatus = true; chanlistSlideDown("chansub2list");  });
+    $(".chansub2upper").mouseleave(function(){  slideStatus = false;                                    });
+    $(".chansub2lower").mouseenter(function(){  slideStatus = true; chanlistSlideUp("chansub2list");    });
+    $(".chansub2lower").mouseleave(function(){  slideStatus = false;                                    });
+    $(".chansub3upper").mouseenter(function(){  slideStatus = true; chanlistSlideDown("chansub3list");  });
+    $(".chansub3upper").mouseleave(function(){  slideStatus = false;                                    });
+    $(".chansub3lower").mouseenter(function(){  slideStatus = true; chanlistSlideUp("chansub3list");    });
+    $(".chansub3lower").mouseleave(function(){  slideStatus = false;                                    });
+
+    function chanlistSlideDown(strChan) {
+        if(slideStatus == true){
+            $("." + strChan).each(function(){
+                if($(this).is(":visible")) {
+                    $(this).scrollTop($(this).scrollTop() + 10);
+                    setTimeout("chanlistSlideDown('" + strChan + "')", 80);
+                    return false;
+                }
+            })
+        }
+    }
+
+    function chanlistSlideUp(strChan) {
+        if(slideStatus == true){
+            $("." + strChan).each(function(){
+                if($(this).is(":visible")) {
+                    $(this).scrollTop($(this).scrollTop() - 10);
+                    setTimeout("chanlistSlideUp('" + strChan + "')", 80);
+                    return false;
+                }
+            })
+        }
+    }
+</script>
+
+<div id="navi" class="navigation">
+    <div class="navi_wrap">
+        <div class="callrc" style="position:absolute;top:3px;">
+            <img src="/images/common/callrc.png" style="width:30px;height:30px;">
+        </div>
+        <a href="" class="home">Home</a> >
+        <a href="/program/index">Programmes</a>
+        {? prDepth1 } > <a href="/program/index/prCode/{prDepth1.prCode}">{prDepth1.prName}</a> {/}
+        {? prDepth2 } > <a href="/program/{? prDepth3}index{:}view{/}/prCode/{prDepth2.prCode}">{prDepth2.prName}</a> {/}
+        {? prDepth3 } > <a href="/program/view/prCode/{prDepth3.prCode}">{prDepth3.prName}</a> {/}
+
+    </div>
+</div>
+<div class="content-main">
+<div class="live-box-view">
+    <div class="live-box">
+        <input type="hidden" class="ctType" value="{content.ctType}">
+        <input type="hidden" class="ctSource" value="{content.ctSource}">
+        <input type="hidden" class="ctVideoNormal" value="{content.ctVideoNormal}">
+        <input type="hidden" class="vodServer" value="{content.vodServer}">
+        <input type="hidden" class="prName" value="{prName}">
+        <input type="hidden" class="nextCtNO" value="{nextCtNO}">
+        <input type="hidden" class="nextCtPage" value="{nextCtPage}">
+        <div id="movie" class="movie">
+            {? !content}
+            {? !ctSource}
+            {? prThumb}
+            <img src="/uploads/program/{prThumb}" width="720" height="480">
+            {:}
+            <p style="text-align: center; padding-top:200px;">There are no registered content.</p>
+            {/}
+            {/}
+
+            {: content.ctSource && content.ctType == "YOUTUBE"}
+            <div class="orgContent" ctType = "YOUTUBE">
+                <iframe width="720" height="480" src="//www.youtube.com/embed/{content.ctSource}?autoplay=1&wmode=opaque" frameborder="0" wmode="Opaque" allowfullscreen ></iframe>
+            </div>
+            {:}
+            <p style="text-align: center; padding-top:200px;">There are no registered content.</p>
+            {/}
+        </div>
+
+        <div class="content-listbox">
+            <div class="content-titbox">
+                <div style="color:white;font-weight:900">Program PlayList</div>
+            </div>
+            <div class="content-list" >
+                <div class="contentPlayList">
+                    {? environment == "mac" || environment == "pc" }
+                    <ul>
+                        {? ctPage == 1}
+                        <li class="programView{? !ctNO } selected{/}" prCode="{prCode}" prName="{=str_replace(' ', '-', prName)}" style="height:44px;padding:0 12px 0 12px;">
+	                            	<span class="mrt10 mt15">
+                                        {? !ctNO }
+                                            >
+                                        {:}
+                                            -
+                                        {/}
+                                    </span>
+                            <span class="mt5"><img src="/uploads/program/{prThumb}" width="47" height="35"></span>
+                            <span class="txt mlt10"><br>Program Intro.</span>
+                        </li>
+                        {/}
+                        {@inProgram}
+                        <li class="programView{? ctNO == inProgram.ctNO || content.ctNO == inProgram.ctNO } selected{/}" ctNO="{inProgram.ctNO}"prCode="{prCode}" prName="{=str_replace(' ', '-', prName)}">
+                                    <span class="mrt10 mt15">
+                                        {? ctNO == inProgram.ctNO }
+                                            >
+                                        {:}
+                                            {inProgram.index_ + ajaxPage.size_ + 1 + ((ctPage-1) * 5)}
+                                        {/}
+                                    </span>
+                            <span class="mt5"><img src="/uploads/content/thumbs/{inProgram.ctThumbS}" width="47" height="35"></span>
+                            <span class="txt mlt10">{prName}<br/>{inProgram.ctName}</span>
+                        </li>
+                        {/}
+                    </ul>
+                    <div class="contentPage" style="width:{ajaxPageCnt}px">
+                        {? pagePrev }
+                        <span class="pageMove pagePrev" style="float:left;">이전</span>
+                        {/}
+
+                        {@ajaxPage}
+                        <form class="frmplaylistPage" method="post">
+                            <input type="hidden" name="total" value="{pageCnt}">
+                            <input type="hidden" name="page"value="{.value_}">
+                            <input type="hidden" name="ctPage" class="ctPage" value="{ctPage}">
+                            <input type="hidden" name="prCode" value="{prCode}">
+                            <input type="hidden" name="ctNO" value="{ctNO}">
+                            <span class="playlistPage {?ctPage == .value_} ctPage {/}">{.value_}</span>
+                        </form>
+                        {/}
+
+                        {? pageNext }
+                        <span class="pageMove pageNext">NEXT</span>
+                        {/}
+                    </div>
+                    { : }
+                    <input type="hidden" name="ctPage" class="ctPage" value="{ctPage}">
+                    <input type="hidden" class="mobilePage" value="0">
+                    <input type="hidden" class="ctPageCnt" value="{pageCnt}">
+                    <div class="roll-content mb30 swiper-container-plpr">
+                        <div class="roll-box swiper-wrapper" style="position:relative;width:280px;height:410px; overflow: hidden;">
+                            {@inProgramSlide}
+                            <ul class="swiper-slide">
+                                {? ctPage == 1 && .index_ == 0}
+                                <li class="programView{? !ctNO } selected{/}" prCode="{prCode}" prName="{=str_replace(' ', '-', prName)}" style="height:43px;padding:0 12px 0 12px;">
+                                            <span class="mrt10 mt15">
+                                                {? !ctNO }
+                                                    >
+                                                {:}
+                                                    -
+                                                {/}
+                                            </span>
+                                    <span class="mt5"><img src="/uploads/program/{prThumb}" width="47" height="35"></span>
+                                    <span class="txt mlt10"><br>Program Intro.</span>
+                                </li>
+                                {/}
+                                { @ .row01 }
+                                {? ..ctName }
+                                <li class="programView{? ctNO == ..ctNO || content.ctNO == ..ctNO } selected{/}" ctNO="{..ctNO}"prCode="{prCode}" prName="{=str_replace(' ', '-', prName)}">
+                                                <span class="mrt10 mt15">
+                                                    {? ctNO == ..ctNO }
+                                                        >
+                                                    {:}
+                                                        {..prIdx}
+                                                    {/}
+                                                </span>
+                                    <span class="mt5"><img src="/uploads/content/thumbs/{..ctThumbS}" width="47" height="35"></span>
+                                    <span class="txt mlt10">{prName}<br/>{..ctName}</span>
+                                </li>
+                                {:}
+                                <li></li>
+                                {/}
+                                {/}
+                            </ul>
+                            {/}
+                        </div>
+                    </div>
+                    <div class="pageContainer">
+                        <span class="pageMoveMobile" style="float:left;">{?ctPage && ctPage > 8}{=sprintf("%d",ctPage/8+1)}{:}1{/}</span>
+                        <div class="contentPage plprPagination" style="text-align:center; width:240px; "></div>
+                        <!--span class="pageMoveMobile pageNextMobile" style="color:white;{? !pageNext }display:none{/}">다음</span-->
+                    </div>
+                    { / }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width:999px; border-right:1px solid #ddd; background-color:#fff; overflow:hidden; ">
+<div class="mainbox5 movie-view" style=" width:720px; padding: 0 0 30px 0; overflow:hidden; border-right:1px solid #ddd; ">
+<input type="hidden" class="mbLoginId" value="{mbLoginID}">
+<input type="hidden" class="mbTWSession" value="{mbTWSession}">
+<input type="hidden" class="mbFBSession" value="{mbFBSession}">
+<input type="hidden" class="uri_string" value="{uri_string}">
+<input type="hidden" class="baseUrl" value="{=base_url()}">
+<!--input type="hidden" class="baseUrl" value="http://pr.gnn.or.kr/"-->
+<input type="hidden" class="prName" value="{prName}">
+<input type="hidden" class="prCode" value="{prCode}">
+<input type="hidden" class="ctName" value="{content.ctName}">
+<input type="hidden" class="prContent" value="{prContent}">
+<input type="hidden" class="appId" value="{appId}">
+<input type="hidden" class="prThumb" value="{prThumb}">
+<input type="hidden" class="ctThumb" value="{content.ctThumbL}">
+<div class="infoTop mt30">
+    <p class="movietit plt30">{prName}
+        {?ctNO}
+        <span class="" style="font-size:16px;color:#3d3f40;">{content.ctName}</span>
+        {/}
+    </p>
+    <div class="good-bad plt30">
+        <form class="frmlike">
+            {?ctNO}
+            <input type="hidden" name="mpType" value="CONTENT"/>
+            <input type="hidden" name="ctNO" value="{ctNO}"/>
+            {:}
+            <input type="hidden" name="mpType" value="PROGRAM"/>
+            <input type="hidden" name="prCode" value="{prCode}"/>
+            {/}
+        </form>
+            <span class="Like"  style="float: left;"><img src="/images/common/good.gif" alt="" />
+                <div class="likeCount">
+                    {?ctNO}
+                    {?content.ctLikeCount!=0}{content.ctLikeCount}{/}{:}{?prLikeCount!=0}{prLikeCount}{/}
+                    {/}
+                </div>
+                Like
+            </span>
+        <form class="frmfavor">
+            {?ctNO}
+            <input type="hidden" name="mpType" value="CONTENT"/>
+            <input type="hidden" name="ctNO" value="{ctNO}"/>
+            {:}
+            <input type="hidden" name="mpType" value="PROGRAM"/>
+            <input type="hidden" name="prCode" value="{prCode}"/>
+            {/}
+        </form>
+        <span class="Favor"  style="float: left;"><img src="/images/common/favorite.png" alt="" width="15px" height="15px"/> Favorites</span>
+        <ul class="viewTab">
+            <li class="on">About</li>
+            <li>Discuss</li>
+            <li>Share</li>
+            {? ctNO && (content.ctVideoNormal || content.ctVideoLow || content.ctMP3)}
+            <li>Download</li>
+            {/}
+        </ul>
+    </div>
+</div>
+
+<div class="viewContainer mt20 mrt30 plt30" {? prTab }style="display: none;"{/}>
+<div class="program_info">
+    <p class="fr">
+        {?prThumbS}
+        <img src="/uploads/program/{prThumbS}">
+        {:}
+        <img src="/uploads/program/{prThumb}" width="216" height="144">
+        {/}
+    </p>
+    {?prProducer }
+    <p class="pr_pd fl">Producer : {prProducer}</p>
+    {/}
+    {? prEmcee}
+    <p class="pr_mc fl">Emcee : {prEmcee}</p>
+    {/}
+    {? prContent}
+    <p class="pr_sum fl">{prContent}</p>
+    {/}
+</div>
+
+{? ctNO }
+<div class="pt20 pb20" style="border-top:1px solid #E6E6E6; ">
+    <p class="movietit">Tag</p>
+    <p class="mb10">What is arising word when you see this contents? Please put the appropriate tags.(1 or more up to 3)<br/>
+        When you register tag Press <strong>Enter</strong> key.
+        Registered tag is <strong>"Mypage> My Tag"</strong> can be found.
+    </p>
+    <div class="mb10 tagArea">
+        <form method="post" class="frmTag" onsubmit="return false;">
+            <input type="hidden" name="mode" value="addTag">
+            <input type="hidden" name="ctNO" value="{ctNO}"/>
+            {@tag}
+            <div class="tagList">
+                <span class="tagTxt" tgTag="{.tgTag}">{.tgTag}</span>
+                <span class="tagDel" tgNO="{.tgNO}"></span>
+            </div>
+            {/}
+            <input class="tagAdd" type="text" name="tagTxt">
+        </form>
+    </div>
+</div>
+
+<div class="replybox pt20" style="border-top:1px solid #E6E6E6; ">
+    <p class="movietit">Comment</p>
+    <div class="ctCommentList">
+        <div class="comment_text">
+            <p class="reply-sum">(0 / 250)</p>
+            <ul class="sns_login">
+                <li type="GBS" class="sns01{? mbAccountType == "GBS"} snsCurrent01 currentLogin{/}">
+                <img src="/images/common/sns_icon_01.png">
+                </li>
+                <li type="FACEBOOK" class="sns02{? mbAccountType == "FACEBOOK"} snsCurrent02 currentLogin{/}" loginUrl="{mbFBLoginUrl}">
+                <div id="fb-root"></div>
+                <img src="/images/common/sns_icon_02.png">
+                {? mbAccountType == "FACEBOOK" || mbLoginID }
+                <input type="checkbox" class="fbPostCheck chkbox">
+                {/}
+                </li>
+                <li type="TWITTER" class="sns03{? mbAccountType == "TWITTER"} snsCurrent03 currentLogin{/}" loginUrl="{mbTWLoginUrl}">
+                <img src="/images/common/sns_icon_03.png">
+                {? mbAccountType == "TWITTER" || mbLoginID }
+                <input type="checkbox" class="twPostCheck chkbox">
+                {/}
+                </li>
+            </ul>
+
+            <form method="post" class="ctFrmCommentAdd">
+                <p>
+                    <input type="hidden" name="mbAccountType" class="mbAccountType" value="{mbAccountType}">
+                    <input type="hidden" name="mode" value="write"/>
+                    <input type="hidden" name="ctNO" value="{ctNO}"/>
+                    {? is_Admlogin}
+                    Notice <input type="checkbox" name="cbcoIsNotice" value="YES">
+                    {/}
+                <p class="replay-txt">
+                    <img src="/images/common/none.jpg" style="float: left;padding:0 10px 10px 0;"/>
+                    <textarea name="cbcoContent" class="ctCommentTxt" onkeyup="getsize(cbcoContent.value);" maxlength="250" style="width:490px"></textarea>
+                    <span class="ctCommentSubmit" mode="add" >Submit</span>
+                </p>
+            </form>
+        </div>
+        <div class="CommentList">
+            {@noticeComment}
+
+            <div class="replay-txtbox">
+                {? .cbcoDepth }
+                <div style="margin:0 10px 10px 0; float: left;">
+                    <img src="/images/common/blank.png" style="width:{=(.cbcoDepth-1)*40}px;height:15px;">
+                    <img src="/images/godo_admin/board_re.gif">
+                </div>
+                {/}
+                {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                <p class="img">
+                    {? .mbAccountType == "FACEBOOK" }
+                    <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+                    {: .mbAccountType == "TWITTER"}
+                    <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+                    {/}
+
+                    {? .mbAccountType == "FACEBOOK" }
+                    <img src="/uploads/member/thumb/facebook/{.mbThumb}" style="float: left;"/>
+                    {: .mbAccountType == "TWITTER" }
+                    <img src="/uploads/member/thumb/twitter/{.mbThumb}" style="float: left;"/>
+                    {: .mbThumb }
+                    <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+                    {:} <img src="/images/common/none.jpg" style="float: left;"/> {/}
+                </p>
+                {? .mbLink } </a> {/}
+                <div class="txtbox">
+                    <div class="mb10">
+                        {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                        <span class="nick">{.mbNick}</span>
+                        {? .mbLink } </a> {/}
+                        <span class="date">{.cbcoRegDate}</span>
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <form method="post" class="frmCommentDel" style="float: right;">
+                            <input type="hidden" name="mode" value="delete">
+                            <input type="hidden" name="ctNO" value="{ctNO}"/>
+                            <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                            <span class="ctCommentDel btn btn-mini">Delete</span>
+                        </form>
+                        {/}
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <span class="ctCommentMod btn btn-mini" ctNO="{ctNO}" cbcoNO="{.cbcoNO}">Modify</span>
+                        {/}
+                    </div>
+                    <div class="txt" cbcoContent="{.cbcoContent}" >{.cbcoContent}</div>
+                    <div class="good-bad"></div>
+                </div>
+            </div>
+            {/}
+            {? noticeComment}<hr> {/}
+            {@ctComment}
+            <div class="replay-txtbox">
+                {? .cbcoDepth }
+                <div style="margin:0 10px 10px 0; float: left;">
+                    <img src="/images/common/blank.png" style="width:{=(.cbcoDepth-1)*40}px;height:15px;">
+                    <img src="/images/godo_admin/board_re.gif">
+                </div>
+                {/}
+                {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                <p class="img">
+                    {? .mbAccountType == "FACEBOOK" }
+                    <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+                    {: .mbAccountType == "TWITTER"}
+                    <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+                    {/}
+
+                    {? .mbAccountType == "FACEBOOK" }
+                    <img src="/uploads/member/thumb/facebook/{.mbThumb}" style="float: left;"/>
+                    {: .mbAccountType == "TWITTER" }
+                    <img src="/uploads/member/thumb/twitter/{.mbThumb}" style="float: left;"/>
+                    {: .mbThumb }
+                    <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+                    {:} <img src="/images/common/none.jpg" style="float: left;"/> {/}
+                </p>
+                {? .mbLink } </a> {/}
+
+                <div class="txtbox">
+                    <div class="mb10">
+                        {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                        <span class="nick">{.mbNick}</span>
+                        {? .mbLink } </a> {/}
+                        <span class="date">{.cbcoRegDate}</span>
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <form method="post" class="frmCommentDel" style="float: right;">
+                            <input type="hidden" name="mode" value="delete">
+                            <input type="hidden" name="ctNO" value="{ctNO}"/>
+                            <input type="hidden" name="cbcoNO" value="{.cbcoNO}">
+                            <span class="ctCommentDel btn btn-mini">Delete</span>
+                        </form>
+                        {/}
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <span class="ctCommentMod btn btn-mini" ctNO="{ctNO}" cbcoNO="{.cbcoNO}">Modify</span>
+                        {/}
+                    </div>
+                    <div class="txt" cbcoContent="{.cbcoContent}" >{.cbcoContent}</div>
+                    <div class="good-bad"></div>
+                </div>
+            </div>
+            {/}
+        </div>
+    </div>
+</div>
+{/}
+
+
+</div>
+
+<div class = "viewContainer mt20 plt30 mrt40" {? prTab != "com"}style="display: none;"{/}>
+<div class="replybox ">
+    <p class="mb10">Support for the development of the program, and please leave a word of encouragement.</p>
+    <div class="prCommentList">
+        <div class="comment_text">
+            <form method="post" class="frmCommentAdd">
+                <p>
+                    <input type="hidden" name="mode" value="write"/>
+                    <input type="hidden" name="prCode" value="{prCode}"/>
+                <p class="replay-txt">
+                    <img src="/images/common/none.jpg" style="float: left;padding:0 10px 10px 0;height:40px"/>
+                    <textarea name="pbcoContent" class="prCommentTxt" onkeyup="getsize(pbcoContent.value);" maxlength="250" style="width:490px;height:30px"></textarea>
+                    <span class="prCommentSubmit" mode="add" style="height:16px;padding:12px 10px;">Submit</span>
+                </p>
+            </form>
+        </div>
+        <div class="CommentList">
+            {@comment}
+            <div class="replay-txtbox">
+                <p class="img">
+                    {? .mbThumb }
+                    <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+                    {:} <img src="/images/common/none.jpg" style="float: left;"/> {/}
+                </p>
+
+                <div class="txtbox">
+                    <div class="mb10">
+                        <span class="nick">{.mbNick}</span>
+                        <span class="date">{.pbcoRegDate}</span>
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <form method="post" class="frmCommentDel" style="float: right;">
+                            <input type="hidden" name="mode" value="delete">
+                            <input type="hidden" name="prCode" value="{prCode}"/>
+                            <input type="hidden" name="pbcoNO" value="{.pbcoNO}">
+                            <span class="prCommentDel btn btn-mini">Delete</span>
+                        </form>
+                        {/}
+                        { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                        <span class="prCommentMod btn btn-mini" prCode="{prCode}" pbcoNO="{.pbcoNO}">Modify</span>
+                        {/}
+                    </div>
+                    <div class="txt" pbcoContent="{.pbcoContent}" >{.pbcoContent}</div>
+                </div>
+            </div>
+            {/}
+        </div>
+    </div>
+</div>
+</div>
+<div class = "viewContainer mt20 plt30"  style="display: none;">
+    <div class="share" >
+        <p>Share on My SNS</p>
+        <span class="snsShare facebook" url_string="{uri_string}" style="display:inline-block;padding:0px;margin:5px 5px 5px 0; "><img src="/images/common/facebook.gif" alt="facebook-share" /></span>
+        <span class="snsShare twitter" url_string="{uri_string}" style="display:inline-block;padding:0px;margin:5px;"><img src="/images/common/twitter.gif" alt="twitter-share"/></span>
+    </div>
+    <div class="sAddress mb10">
+        <input type="text" name="sAddress" style="padding:5px;height: 20px;width: 280px;font-size:16px;font-weight:bold;" value="{shortUrl}"/>
+        <span class="copySAdd"><img src="/images/common/copy.png" width="32"height="32"/></span>
+    </div>
+</div>
+
+
+<!-- 다운로드 영역 -->
+<div class = "viewContainer mt20 plt30"  style="display: none;">
+    <div class="download" >
+        <ul class="fr">
+            {? content.ctVideoNormal}<li><a href="{content.vodServerUrl}{content.prDir}\&fname={content.ctVideoNormal}">Video High</a></li>{/}
+            {? content.ctVideoLow}<li><a href="{content.vodServerUrl}{content.prDir}\&fname={content.ctVideoLow}">Video Low</a></li>{/}
+            {? content.ctMP3}<li><a href="{content.ctMP3}">Audio</a></li>{/}
+        </ul>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</article>
+
+<script type="text/javascript">
+    var playSource = "";
+    var playType = "";
+    {? !content}
+    {? ctSource}
+    playSource = "{ctSource}";
+    {/}
+    {: content.ctSource && content.ctType =='VIMEO'}
+    playSource = "{content.ctSource}";
+    playType = "VIMEO";
+    {: content.ctSource && content.ctType =='YOUTUBE'}
+    playSource = "{content.ctSource}";
+    playType = "YOUTUBE";
+    {/}
+    if(playType == "YOUTUBE"){
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('moive', {
+                width: '720',
+                height: '480',
+                videoId: playSource,
+                wmode:"opaque",
+                playerVars: { 'wmode':'opaque' },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        function onPlayerReady(event) {
+            {? environment == "mac" || environment == "pc"}
+            event.target.playVideo();
+            {/}
+        }
+
+        var done = false;
+        function onPlayerStateChange(event) {
+            if(event.data == YT.PlayerState.ENDED){
+                location.href='/program/view/prCode/{prCode}/prName/{=str_replace(" ", "-", prName)}/ctNO/{nextCtNO}/ctPage/{nextCtPage}';
+            }
+        }
+
+    } else if(playType == "VIMEO"){
+        $(document).ready(function() {
+
+            // Enable the API on each Vimeo video
+            $('.movie iframe').each(function(){
+                Froogaloop(this).addEvent('ready', ready);
+            });
+
+            function ready(playerID){
+                Froogaloop(playerID).addEvent('finish', finish);
+            }
+            function finish() {
+                location.href='/program/view/prCode/{prCode}/prName/{=str_replace(" ", "-", prName)}/ctNO/{nextCtNO}/ctPage/{nextCtPage}';
+            }
+        });
+    }
+
+</script>
+
+
+{ #layout_footer }

@@ -1,0 +1,51 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/advertise/index">광고/제휴 문의</a></li>
+    <li class="active">리스트</li>
+</ol>
+
+<div class="content">
+    <form method="post" name="boList" action="/adm/advertise/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="checkbox"/></th>
+                <th>번호</th>
+                <th>회사명</th>
+                <th>작성자</th>
+                <th>광고타입</th>
+                <th>진행상황</th>
+                <th>수정일</th>
+                <th>수정</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr>
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{list.adNO}" /></td>
+                <td>{list.adNO}</td>
+                <td><a href="/adm/advertise/view/adNO/{list.adNO}">{list.adCompany}</a></td>
+                <td><a href="/adm/advertise/view/adNO/{list.adNO}">{list.adName}</a></td>
+                <td>{list.adType}</td>
+                <td>{list.adStatus}</td>
+                <td>{list.adModDate}</td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="adNO" adNO="{.adNO}"></span></td>
+            </tr>
+            {/}
+            </tbody>
+        </table>
+    </form>
+    {pager}
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/advertise/modify" method="post">
+        <input type="hidden" name="adNO" value="">
+    </form>
+</div>
+
+{ #layout_admin_footer }

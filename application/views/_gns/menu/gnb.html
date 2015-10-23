@@ -1,0 +1,12 @@
+<nav class="navbar" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/"><img src="/images/logo.png"></a>
+    </div>
+    <div class="pull-right">
+        <ul class="mainMenu nav navbar-nav">
+            {@ menu.depth1}
+            <li class="{?controller == .mCode}active{/}"><a href="{.mLink}">{.mName}</a></li>
+            {/}
+        </ul>
+    </div>
+</nav>

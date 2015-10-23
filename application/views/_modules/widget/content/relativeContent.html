@@ -1,0 +1,29 @@
+<div class="mainbox6 mt20">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js <http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js>"></script>
+				<!-- 뉴스 뷰 광고 -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:279px;height:232px;border:1px solid black;"
+				     data-ad-client="ca-pub-1189571227282613"
+				     data-ad-slot="7525038689"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+    <p class="event-tit">Relative videos</p>
+    {@relationContent}
+    {@ .value_ }
+    <dl class="event-imglist relationContent{relationContent.index_}" style="display: none;">
+        <a href="/content/view/ctNO/{..ctNO}/ctName/{=strtolower(url_title(..ctName))}">
+            <dt><p>{..ctNameShort}</p></dt>
+            <dd>
+                <p>hit : {..ctViewCount}</p>
+            </dd>
+            <dd class="img"><img src="/uploads/content/thumbs/{..ctThumbS}" width="{config.fst.width}" height="{config.fst.height}"></dd>
+        </a>
+    </dl>
+
+    {/}
+    {?.size_>5}
+    <span class="relativeMore{relationContent.index_} relative" style="display: none;">more</span>
+    {/}
+    {/}
+</div>

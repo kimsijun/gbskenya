@@ -1,0 +1,52 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/cfg_board/index">게시판관리</a></li>
+    <li><a href="/adm/board/index/bodID/{bodID}">{bodName}</a></li>
+    <li class="active">게시글 정보보기</li>
+</ol>
+    <div class="content container">
+        <form class="form-horizontal" role="form" id="form-validate" action="/adm/board/modify" method="post">
+            <input type="hidden" name="boNO" value="{boNO}">
+            <div class="row bordered">
+                <div class="col-lg-2 text-right"><span class="mrt20">작성자</span></div>
+                <div class="col-lg-10"><span class="mlt20">{mbID}</span></div>
+            </div>
+            <div class="row bordered">
+                <div class="col-lg-2 text-right"><span class="mrt20">작성일</span></div>
+                <div class="col-lg-10"><span class="mlt20">{boRegDate}</span></div>
+            </div>
+            <div class="row bordered">
+                <div class="col-lg-2 text-right"><span class="mrt20">조회수</span></div>
+                <div class="col-lg-10"><span class="mlt20">{boHit}</span></div>
+            </div>
+            <div class="row bordered">
+                <div class="col-lg-2 text-right"><span class="mrt20">제목</span></div>
+                <div class="col-lg-10"><span class="mlt20">{boName}</span></div>
+            </div>
+            <div class="row bordered">
+                <div class="col-lg-2 text-right"><span class="mrt20">내용</span></div>
+                <div class="col-lg-10"><pre>{boContent}</pre></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 pt20 text-right">
+                    {? bodID == 'qna' || bodID == 'freeboard'}
+                    <a href="/adm/board/reply/bodID/{bodID}/boNO/{boNO}" class="btn btn-success">답변</a>
+                    {/}
+                </div>
+                <div class="col-lg-10 pt20">
+                    <button type="submit" class="btn marginR10 btn-success">수정</button>
+                    <a href="/adm/board/index/bodID/{bodID}" class="btn btn-default">목록</a>
+                </div>
+            </div>
+        </form>
+
+        <form method="post" action="/adm/board/process" onsubmit="return confirm('삭제하시겠습니까?');">
+            <input type="hidden" name="mode" value="delete">
+            <input type="hidden" name="bodID" value="{bodID}">
+            <input type="hidden" name="boNO" value="{boNO}">
+            <button type="submit" class="btn btn-danger pull-right">삭제</button>
+        </form>
+    </div>
+
+{ #layout_admin_footer }

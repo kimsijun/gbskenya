@@ -1,0 +1,119 @@
+{ #layout_header }
+<article class="content">
+	<div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/mypage_view/index">MyPage</a> >
+            <a href="/member/view">My profile</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p><strong>{mbNick}</strong> <a href="/member/view"><span class="profileTit">My profile</span></a></p>
+        </div>
+
+        <div class="infor-cont">
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/mypage_view/index" {? controller === 'mypage_view'}class = 'on'{/}>Watched<br/> News / Videos</a></li>
+                    <li><a href="/mypage_favor/index"{? controller === 'mypage_favor'}class = 'on'{/}>Favorite<br/>Videos / Programmes</a></li>
+                    <li><a href="/mypage_tag/index"{? controller === 'mypage_tag'}class = 'on'{/}>My Tag</a></li>
+                </ul>
+            </div>
+            <div class="memberlist">
+                <div class="mypagelistbox">
+                    <div class="member">
+
+                        <p class="member-info pb10">
+                            <span>&nbsp;</span>
+                        </p>
+                        <form method="post" action="/member/ajax_process" name="frmmod" class="frmmod">
+                        	<input type="hidden" name="mode" value="mbMod">
+                        	<input type="hidden" name="mbID" value="{mbID}">
+                            <input type="hidden" class="mbFBLogoutUrl" value="{mbFBLogoutUrl}">
+                            <table border="0" cellpadding="0" cellspacing="0" class="member_view">
+                                <tr>
+                                    <td>User Account</td>
+                                    <td colspan="2">{mbID}</td>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td colspan="2">{mbFirstName} {mbLastName}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nick Name</td>
+                                    <td colspan="2">{mbNick}</td>
+                                </tr> 
+                                <tr>
+                                    <td>Mobile Phone</td>
+                                    <td colspan="2">{mbCellPhone}</td>
+                                </tr>
+                                <tr>
+                                    <td>Birthday</td>
+                                    <td colspan="2">{mbBirth}</td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td colspan="2">
+                                        { ? mbSex == "M" } Male {:} Female {/}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Facebook</td>
+                                    <td>
+                                        {? mbFBSeq}
+                                        <a href="{mbFBLink}" target="_blank"><img src="/uploads/member/thumb/facebook/{mbFBThumb}" alt=""></a>
+                                        {mbFBID} /
+                                        {mbFBName}
+                                        <span class="removeFBInfoBtn btn btn-mini">Deauthorize</span>
+                                        {:}
+                                        <a href="{mbFBLoginUrl}"><span class="btn btn-mini">authorize</span></a>
+                                        {/}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Twitter</td>
+                                    <td>
+                                        {? mbTWSeq}
+                                        <a href="{mbTWLink}" target="_blank"><img src="/uploads/member/thumb/twitter/{mbTWThumb}" alt=""></a>
+                                        {mbTWID} /
+                                        {mbTWName}
+                                        <span class="removeTWInfoBtn btn btn-mini">Deauthorize</span>
+                                        {:}
+                                        <a href="{mbTWLoginUrl}"><span class="btn btn-mini">authorize</span></a>
+                                        {/}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sign-up Date</td>
+                                    <td colspan="2">{mbRegDate}</td>
+                                </tr>
+                                <tr>
+                                    <td>Member Image</td>
+                                    <td colspan="2">
+                                        {? mbThumb}
+                                        <img src="/uploads/member/thumb/{mbThumb}" width="48" height="48">
+                                        {:}
+                                        <img src="/images/common/none.jpg" width="48" height="48">
+                                        {/}
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modSubmit">
+                        <span class="join-btn mrt5 mbMod"  >Modify</span>
+                        <span class="join-btn" onclick="javascript:history.back()">Back</span>
+                    </div>
+                    <form method="post" action="/member/ajax_process" name="frmwithdraw" class="frmwithdraw">
+                        <input type="hidden" name="mode" value="mbWithdraw">
+                        <input type="hidden" name="mbID" value="{mbID}">
+                        <span class="mbWithdraw btn fl" style="display:block;cursor:pointer;position:relative;left:655px;bottom:50px; border: 1px solid #dedede; padding: 8px; width: 50px; background-color: #eaeaea;">Withdraw</span>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</article>
+{ #layout_footer }

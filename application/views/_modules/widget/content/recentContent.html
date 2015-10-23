@@ -1,0 +1,73 @@
+<div class="roll-box" style="width:{config.snd.perPageWidth}px;height:{config.snd.perPageHeight + 110}px; overflow: hidden;">
+    <p class="recentArrow prev"><img src="/images/common/roll_prev.png" alt="이전" /></p>
+    <div class="roll-content recentList" style="width:{config.snd.totalWidth}px;height:{config.snd.height+70}px;">
+        <div class="fl mb10">
+            { @recentContent1 }
+            <dl class="livecont">
+                <a href="/content/view/ctNO/{recentContent1.ctNO}/ctName/{=strtolower(url_title(.ctName))}">
+                    <dt>{recentContent1.ctNameShort}</dt>
+                    <dd>{recentContent1.ctEventDate}</dd>
+                    <dd class="img">
+                        <img src="/uploads/content/thumbs/{recentContent1.ctThumbS}" width="{config.snd.width}" height="{config.snd.height}">
+                    </dd>
+                </a>
+            </dl>
+            {/}
+        </div>
+        <div class="fl mb10">
+            { @recentContent2 }
+            <dl class="livecont">
+                <a href="/content/view/ctNO/{recentContent2.ctNO}/ctName/{=strtolower(url_title(.ctName))}">
+                    <dt>{recentContent2.ctNameShort}</dt>
+                    <dd>{recentContent2.ctEventDate}</dd>
+                    <dd class="img">
+                        <img src="/uploads/content/thumbs/{recentContent2.ctThumbS}" width="{config.snd.width}" height="{config.snd.height}">
+                    </dd>
+                </a>
+            </dl>
+            {/}
+        </div>
+    </div>
+    <p class="recentArrow next"><img src="/images/common/roll_next.png" alt="다음" /></p>
+
+    <div class="btn_box recentProgramBtn">
+        <span><img src="/images/common/btn_b_on.png" alt="" /></span>
+        {@config.snd.pageControlCount}
+        <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+        {/}
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var recentBulletIdx = 0;
+    $(".recentProgramBtn span").click(function(){
+        var selectIdx = $(".recentProgramBtn span").index(this);
+        if(selectIdx == recentBulletIdx) return false;
+        $(".recentProgramBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".recentProgramBtn span").children("img").eq(selectIdx).attr("src", "/images/common/btn_b_on.png");
+
+        if(selectIdx > recentBulletIdx){
+            for(i=recentBulletIdx; i<selectIdx; i++)
+                $(".recentList").animate({left:"-={config.snd.perPageWidth}px"});
+        } else {
+            for(i=recentBulletIdx; i>selectIdx; i--)
+                $(".recentList").animate({left:"+={config.snd.perPageWidth}px"});
+        }
+        recentBulletIdx = selectIdx;
+    });
+
+    $(".recentArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(recentBulletIdx == 0)    return false;
+            recentBulletIdx--;
+            $(".recentList").animate({left:"+={config.snd.perPageWidth}px"});
+        } else {
+            if(recentBulletIdx == {config.snd.slideCount})    return false;
+            recentBulletIdx++;
+            $(".recentList").animate({left:"-={config.snd.perPageWidth}px"});
+        }
+        $(".recentProgramBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".recentProgramBtn span").children("img").eq(recentBulletIdx).attr("src", "/images/common/btn_b_on.png");
+    });
+</script>

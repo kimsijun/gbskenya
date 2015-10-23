@@ -1,0 +1,23 @@
+<thead>
+<tr>
+    <th>시작시간</th>
+    <th>컨텐츠길이</th>
+    <th>컨텐츠명</th>
+    <th>주요Live</th>
+    <th>노출여부</th>
+    <th></th>
+</tr>
+</thead>
+{@ data}
+<tr>
+    <td>{.lsSTime}</td>
+    <td>{.lcDuration}</td>
+    <td>{.lcName}</td>
+    <td class="text-center"><input type="checkbox" lsNO="{.lsNO}" class="lsChangeIsSpecial" {? .lsIsSpecial=='YES'}checked=checked{/} ></td>
+    <td class="text-center"><input type="checkbox" lsNO="{.lsNO}" class="lsChangeIsView" {? .lsIsView=='YES'}checked=checked{/} ></td>
+    <td class="text-center">
+        <span style="margin:0 10px;cursor:pointer" class="icon12 icomoon-icon-pencil-3 btnModify" lsNO={.lsNO}></span>
+        <span style="margin:0 10px;cursor:pointer" class="icon12 icomoon-icon-close btnDelete" lsNO={.lsNO}></span>
+    </td>
+</tr>
+{/}

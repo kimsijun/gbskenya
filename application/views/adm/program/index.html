@@ -1,0 +1,55 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/program/index">프로그램 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/program/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+            <a href="/adm/program/write"><button class="btn btn-primary" type="button" >등록</button></a>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th id="masterCh" class="ch"><input type="checkbox" name="checkbox" value="all" class="styled" /></th>
+                <th>번호</th>
+                <th>프로그램명</th>
+                <th>추가</th>
+                <th>수정</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr height="35" align="center">
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{list.prCode}" class="styled" /></td>
+                <td><font color="#616161" class="ver81">{list.index_ + secParams.adm.page + 1}</font></td>
+                <td style="text-align:left;padding-left:100px; ">
+                    {? list.prDepth }<img src="/images/common/blank.png" style="width:{=(list.prDepth-1)*20}px;height:15px;">ㄴ{/}
+                    <a href="/adm/program/view/prCode/{list.prCode}">{list.prName}</a>
+                </td>
+                <td><a href="/adm/program/write/prCode/{list.prCode}"><span class="icon12  icomoon-icon-plus "></span></a></td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="prCode" prCode="{.prCode}"></span></td>
+                <td>{list.prRegDate}</td>
+            </tr>
+            <!--{:}-->
+            <tr>
+                <td colspan="12">등록된 데이터가 없습니다.</td>
+            </tr>
+            <!--{/}-->
+
+            </tbody>
+        </table>
+    </form>
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/program/modify" method="post">
+        <input type="hidden" name="prCode" value="">
+    </form>
+</div>
+
+
+{ #layout_admin_footer }

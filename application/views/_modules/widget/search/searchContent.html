@@ -1,0 +1,24 @@
+    <p class="mb30"></p>
+    <p class="content-tit">{?listCnt}{listCnt} Result in content.{:}No results were found for your search.{/}</p>
+    {?contentView}
+    <!--div>
+        <ul class="tabMenu">
+            <li>최신</li>
+            <li>추천</li>
+            <li>인기</li>
+        </ul>
+    </div-->
+    {/}
+
+    <div class="ctSearchList">
+        <div class="tabContainer">
+            { #widget_search_recentContent }
+            {pager}
+        </div>
+        <!--div class="tabContainer" >
+            { #widget_search_likeContent }
+        </div>
+        <div class="tabContainer" >
+            { #widget_search_viewContent }
+        </div-->
+    </div>

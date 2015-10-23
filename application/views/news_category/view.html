@@ -1,0 +1,90 @@
+{ #layout_header }
+
+<article class="content">
+    <div class="content-news">
+        <ul class="category">
+            <li><a href="/news_category/index">Main</a></li>
+            {@ newsCategory }
+            <li><a href="/news_category/view/ncCode/{.ncCode}/ncName/{=strtolower(url_title(.ncName))}" class="{?.ncCode == ncCodePrev}on{/}">{.ncName}</a></li>
+            {/}
+        </ul>
+
+        <div class="content_left">
+            {@ specialNews }
+            <div class="second_top_story">
+                <h2 class="top_story_header">
+                    <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">
+                        {?.nwType != "NONE"}
+                        <img src="/uploads/news/thumbs/{.nwThumbS}" alt="photo_name" width="150" height="100">
+                        {:}
+                        {.photo}
+                        {/}
+                        <p class="thumbLeft"style="height:100px;background:#fff;width:5px;"></p>
+                        <p class="thumbRight"style="height:100px;background:#fff;right:505px;width:5px; "></p>
+                        {.nwName}
+                    </a>
+                </h2>
+                <p>{.nwContent}</p>
+            </div>
+            {/}
+
+
+            <div class="line_story_area">
+                {@ newsList }
+                <div class="line_story">
+                    <h2 class="line_story_header">
+                        <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">{.nwName}</a>
+                    </h2>
+                    <p>{.nwContent}</p>
+                </div>
+                {/}
+            </div>
+            <div class="video_story_area">
+                <p class="title">Video in News </p>
+                {@videoNews}
+                <div class="video_story">
+                    <h2 class="video_story_header">
+                        <a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}">
+                            <img src="/images/common/thumb_video.jpg" alt="photo_name">{.nwName}</a>
+                        <!--a href="/news/view/nwNO/{.nwNO}">
+                            <img src="/uploads/news/thumbl/{.nwThumb}" alt="photo_name" width="150" height="100">{.nwName}</a-->
+                    </h2>
+                </div>
+                {/}
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="content_right">
+            <div class="ad_area">
+            	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ´º½º -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:279px;height:232px"
+     data-ad-client="ca-pub-5944371075774101"
+     data-ad-slot="5225700873"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                <!--a href="#"><img src="/images/common/ad_img.jpg" alt="ad"></a-->
+            </div>
+
+            <div class="lank_section mt30 mlt20 mrt20">
+                <h2>Most Popular</h2>
+                <ol>
+                    {@ mostPopular}
+                    <li><a href="/news/view/nwNO/{.nwNO}/nwName/{=strtolower(url_title(.nwName))}"><span>{.index_ + 1}</span>{.nwName} </a></li>
+                    {/}
+                </ol>
+            </div>
+        </div>
+
+
+    </div>
+</article>
+
+{ #layout_footer }

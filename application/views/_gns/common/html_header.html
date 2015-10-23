@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title> {title} </title>
+    <meta name="description" content="{metaDescription}">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link href="/assets/style/icons.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/common.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/layout.css?1218463077" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/default.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/idangerous.swiper.css" />
+
+    {? controller === "live"}
+    <meta property="og:description" content="{metaDescription}"/>
+    <meta property="og:title" content="{title} "/>
+    <meta property="og:image" content="{logo}"/>
+
+    {: controller === "program" || controller ==="sermon"}
+    <meta property="og:description" content="{prContent}"/>
+    <meta property="og:title" content="{?content}{content.ctName}{:}{prName}{/}"/>
+    <meta property="og:image" content="{=base_url()}uploads/{?content}content/thumbl/{content.ctThumbL}{:}program/{prThumb}{/}"/>
+
+    {: controller === "content"}
+    <meta property="og:description" content="{program.prContent}"/>
+    <meta property="og:title" content="{ctName}"/>
+    <meta property="og:image" content="{=base_url()}uploads/content/thumbl/{ctThumbL}"/>
+    {/}
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- jquery 가동 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/assets/script/idangerous.swiper.min.js"></script>
+    <script src="/assets/script/jquery.validate.min.js"></script>
+    <script src="/assets/script/jquery.validate.msg_ko.js"></script>
+    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+    <script src="/assets/script/common.js"></script>
+
+    {?controller === "member"}
+    <script src="/assets/script/member.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    {:controller === "main"}
+    <script src="/assets/script/main.js"></script>
+    {:controller === "news"}
+    <script src="/assets/script/news.js"></script>
+    {:controller === "board"}
+    <script src="/assets/script/board.js"></script>
+    {:controller === "content"}
+    <script src="/assets/script/content.js"></script>
+    {:controller === "program"}
+    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+    <script src="/assets/script/program.js"></script>
+    {:controller === "mypage" || controller === "mypage_like" || controller === "mypage_favor" || controller === "mypage_view" || controller === "mypage_tag"}
+    <script src="/assets/script/mypage.js"></script>
+    {:controller === "search"}
+    <script src="/assets/script/search.js"></script>
+    {/} 
+    <!-- 구글 웹로그 분석 추적 코드 -->
+	<?php include("./assets/include/analyticstracking.php")?>
+</head>
+<body>

@@ -1,0 +1,130 @@
+{ #layout_header }
+
+<article class="content">
+    <div class="content-mypage">
+        <div class="contact">
+            <h1><span class="tit">Contact GBS</span></h1>
+            <div>
+                <h3><img style="float: right; margin: 10px;" src="http://abc.org.uk/Global/Content%20Images/HelpSupport.gif" alt="Help and support" width="277" height="211">By phone:</h3>
+                <ul>
+                    <li>Interested in joining GBS or have a question about the rules<br><strong>Client Services : 0717-670757</strong></li>
+                    <li>Need some data or have a question about this site<br><strong>Operations : 0717-670757</strong></li>
+                    <li>If you have a complaint about the use of GBS data or the GBS logo<br><strong>Compliance : 0717-670757</strong></li>
+                    <li>Need to speak to brand coordinator, news editor or any other department<br><strong>Switchboard : 0717-670757</strong><br><br></li>
+                </ul>
+                <h3>By email:</h3>
+                <ul>
+                    <li>Please use the form at the bottom of this page <br>or <strong>email <a href="mailto:Info@gbskenya.com">Info@gbskenya.com</a></strong><br><br></li>
+                </ul>
+                <!--h3>By other means:</h3>
+                <ul>
+                    <li><a href="http://twitter.com/abc_uk" target="_blank">Twitter</a></li>
+                    <li><a href="http://www.facebook.com/UKABC" target="_blank">Facebook</a></li>
+                    <li><a href="http://www.linkedin.com/company/abc-uk" target="_blank">Linkedin</a></li>
+                </ul-->
+            </div>
+            <div>
+                <div style="float: right;">
+                    <!--a href="https://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=Good+News+Broadcasting+System+Africa,+Roysambu,+57329,+Nairobi+City,+Kenya&hl=ko&geocode=CZ7udQBgSX1AFUpb7f8d6rcyAilRYaFx-hUvGDERt6ZUz06mdg&sll=-1.222051,36.87873&sspn=0.002172,0.003484&vpsrc=6&doflg=ptk&mra=mift&ie=UTF8&t=m&z=19&iwloc=lyrftr:m,8549607594994874129,-1.221815,36.878314" target="_map"><br>
+                        <img style="float: right; margin: 10px 10px 60px 10px; border: 2px solid grey;" title="Click for directions" src="http://maps.google.com/maps/api/staticmap?center=-1.221946,36.878311&amp;zoom=9&amp;size=375x250&amp;markers=color:red%7Clabel:A%7C-1.221946,36.878311&amp;sensor=false" alt="Our location" width="300" height="225">
+                    </a-->
+                </div>
+                <h3><br>Write to us or visit us:</h3>
+                <p>GBS&nbsp;<br>Behind safari park hotel, 57329<br/>Nairobi City, Kenya<br><br>Switchboard: 0717-670757	<br>Fax: 020-2473669<br>Office hours are 9am - 5.30pm Monday to Friday</p>
+                <p>&nbsp;</p>
+                <!--h3><strong>Contact form</strong></h3-->
+            </div>
+            <!--div>
+                <form method="post" action="/main/process">
+                    <input type="hidden" name="mode" value="contact">
+                    <table class="frmContact">
+                        <tbody>
+                        <tr>
+                            <td valign="top"><span>Your email address</span></td>
+                            <td valign="top">
+                                <input type="text" id="email" name="email" size="30" title="please enter your email address" value="">
+                            </td>
+                        </tr>
+                        <tr class="odd" style="background-color: rgb(210, 225, 232);">
+                            <td valign="top" style=""><span>Name</span></td>
+                            <td valign="top" style="">
+                                <input type="text" id="name" name="name" size="30" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style=""><span>Position</span></td>
+                            <td valign="top" style="">
+                                <input type="text" id="position" name="position" size="30" value="">
+                            </td>
+                        </tr>
+                        <tr class="odd" style="background-color: rgb(210, 225, 232);">
+                            <td valign="top" style=""><span>Contact number</span></td>
+                            <td valign="top" style="">
+                                <input type="text" id="contactNumber" name="contactNumber" size="20" title="if you wish us to call you" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top"><span>Subject</span></td>
+                            <td valign="top">
+                                <select name="reason" title="Please advise the nature of your enquiry">
+                                    <option value="General Enquiry" selected="selected">General Enquiry</option>
+                                    <option value="Membership/Registration">Membership/Registration Enquiry</option>
+                                    <option value="Website Data/Certificates">Website Data/Certificates</option>
+                                    <option value="Marketing Collateral">Marketing Collateral</option>
+                                    <option value="Student/Educational">Student/Educational Enquiry</option>
+                                    <option value="Rules">Rule Enquiry</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="odd" style="background-color: rgb(210, 225, 232);">
+                            <td valign="top"><span>Message</span></td>
+                            <td valign="top" style="">
+                                <textarea id="message" name="message" rows="4" cols="40"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">&nbsp;</td>
+                            <td valign="top">
+                                <input type="submit" value="Submit" >
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div-->
+                <div id="map_canvas" style="width:100%; height:400px"></div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false&language=en" type="text/javascript"></script>
+        <script>
+            (function() {
+                // map options
+                var options = {
+                    zoom: 15,
+                    center: new google.maps.LatLng(-1.222051,36.87873), // centered US
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl: false,
+                    minZoom:2
+                };
+
+                // init map
+                map = new google.maps.Map(document.getElementById("map_canvas"), options);
+                geocoder = new google.maps.Geocoder();
+                var markers = [];
+
+                    // init markers
+                    var marker = new google.maps.Marker({
+                        position:new google.maps.LatLng(-1.222051,36.87873),
+                        map: map
+                    });
+
+                markers.push(marker);
+
+
+            var markerCluster = new MarkerClusterer(map, markers);
+            })();
+        </script>
+        </div>
+
+</article>
+
+{ #layout_footer }

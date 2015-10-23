@@ -1,0 +1,20 @@
+<ul>
+    { @recentContent }
+    <li class="popupContentLoad" ctNO={recentContent.ctNO}>
+        <span class="time">
+            <img src="/uploads/content/thumbs/{recentContent.ctThumbS}" width="47" height="35" alt="" />
+        </span>
+        <span class="txt mlt10">{recentContent.ctName}1{recentContent.ajaxPage}</span>
+    </li>
+    {/}
+</ul>
+<div class="contentPage" style="width:{recentContent.ajaxPage.size_ * 25}px">
+    {@recentContent.ajaxPage}
+    <form class="frmplayPopuplistPage" method="post">
+        <input type="hidden" name="total" value="{.size_}">
+        <input type="hidden" name="page" value="{.value_}">
+        <input type="hidden" name="listPopup" value="Recent">
+        <span class="playPopuplistPage">{.value_}</span>
+    </form>
+    {/}
+</div>

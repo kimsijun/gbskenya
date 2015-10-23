@@ -1,0 +1,89 @@
+<p class="content-tit">Tag lists of yours</p>
+<div class="roll-content inw660 mb30">
+    <div class="roll-box" style="width:{config.trd.perPageWidth}px;height:{config.trd.perPageHeight + 160}px; overflow: hidden;">
+        <p class="tagArrow prev"><img src="/images/common/roll_prev.png" alt="이전" /></p>
+        <div class="roll-content tagList" style="width:{config.trd.totalWidth}px;height:{config.trd.height}px;">
+            <div class="fl mb20">
+                { @contentTag1 }
+                <dl class="livecont">
+                    <a href="/content/view/ctNO/{contentTag1.data.ctNO}/ctName/{=strtolower(url_title(contentTag2.data.ctName))}">
+                        <dt>
+                            <span>{contentTag1.tgTag} ({contentTag1.tgTagCnt})</span><br/>
+                            { @ contents }
+                            <span>{..ctNameShort}</span><br/>
+                            <span>{..ctEventDate}</span><br/>
+                            {/}
+                        </dt>
+                        <dd class="img">
+                            <img src="/uploads/content/thumbs/{contentTag1.data.ctThumbS}" width="{config.trd.width}" height="{config.trd.height}">
+                            <p class="thumbLeft"style="height:{config.trd.height}px;background:#eaeaea;"></p>
+                            <p class="thumbRight"style="height:{config.trd.height}px;background:#eaeaea;"></p>
+                        </dd>
+                    </a>
+                </dl>
+                {/}
+            </div>
+            <div class="fl">
+                { @contentTag2 }
+                <dl class="livecont">
+                    <a href="/content/view/ctNO/{contentTag2.data.ctNO}/ctName/{=strtolower(url_title(contentTag2.data.ctName))}">
+                        <dt>
+                            <span>{contentTag2.tgTag} ({contentTag2.tgTagCnt})</span><br/>
+                            { @ contents }
+                            <span>{contents.ctNameShort}</span><br/>
+                            <span>{contents.ctEventDate}</span><br/>
+                            {/}
+                        </dt>
+                        <dd class="img">
+                            <img src="/uploads/content/thumbs/{contentTag2.data.ctThumbS}" width="{config.trd.width}" height="{config.trd.height}">
+                            <p class="thumbLeft"style="height:{config.trd.height}px;background:#eaeaea;"></p>
+                            <p class="thumbRight"style="height:{config.trd.height}px;background:#eaeaea;"></p>
+                        </dd>
+                    </a>
+                </dl>
+                {/}
+            </div>
+        </div>
+        <p class="tagArrow next"><img src="/images/common/roll_next.png" alt="다음" /></p>
+
+        <div class="btn_box tagBtn">
+            <span><img src="/images/common/btn_b_on.png" alt="" /></span>
+            {@config.trd.pageControlCount}
+            <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+            {/}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var tagBulletIdx = 0;
+    $(".tagBtn span").click(function(){
+        var selectIdx = $(".tagBtn span").index(this);
+        if(selectIdx == tagBulletIdx) return false;
+        $(".tagBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".tagBtn span").children("img").eq(selectIdx).attr("src", "/images/common/btn_b_on.png");
+
+        if(selectIdx > tagBulletIdx){
+            for(i=tagBulletIdx; i<selectIdx; i++)
+                $(".tagList").animate({left:"-={config.trd.perPageWidth}px"});
+        } else {
+            for(i=tagBulletIdx; i>selectIdx; i--)
+                $(".tagList").animate({left:"+={config.trd.perPageWidth}px"});
+        }
+        tagBulletIdx = selectIdx;
+    });
+
+    $(".tagArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(tagBulletIdx == 0)    return false;
+            tagBulletIdx--;
+            $(".tagList").animate({left:"+={config.trd.perPageWidth}px"});
+        } else {
+            if(tagBulletIdx == {config.trd.slideCount})    return false;
+            tagBulletIdx++;
+            $(".tagList").animate({left:"-={config.trd.perPageWidth}px"});
+        }
+        $(".tagBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".tagBtn span").children("img").eq(tagBulletIdx).attr("src", "/images/common/btn_b_on.png");
+    });
+</script>

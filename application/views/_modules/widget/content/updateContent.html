@@ -1,0 +1,18 @@
+<div class="mainbox6 mt20">
+    <p class="event-tit">Latest update</p>
+    {@updateContent}
+    <dl class="event-imglist" >
+        <dt><a href="/content/view/ctNO/{.ctNO}/ctName/{=strtolower(url_title(.ctName))}"> <p>{.ctNameShort}</p></a></dt>
+        <dd>
+            <p>hit : {.ctViewCount}</p>
+        </dd>
+        <dd class="img">
+        	<a href="/content/view/ctNO/{.ctNO}/ctName/{=strtolower(url_title(.ctName))}"> 
+        		<img src="/uploads/content/thumbs/{.ctThumbS}" width="86" height="44">
+        		<p class="thumbLeft"style="height:44px;background:#eaeaea;"></p>
+                <p class="thumbRight"style="height:44px;background:#eaeaea;"></p>
+            </a>
+        </dd>
+    </dl>
+    {/}
+</div>

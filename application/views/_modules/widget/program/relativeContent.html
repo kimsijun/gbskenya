@@ -1,0 +1,20 @@
+<div class="mainbox6 " style="padding: 20px 0 0 30px;min-height:500px; background-color:#cccccc;">
+    <p class="event-tit">Relative videos</p>
+    {@relationContent}
+    {@ .value_ }
+    <dl class="event-imglist relationContent{relationContent.index_}" style="display: none;">
+        <a href="/content/view/ctNO/{..ctNO}/ctName/{=strtolower(url_title(..ctName))}">
+            <dt><p>{..ctNameShort}</p></dt>
+            <dd>
+                <p>hit : {..ctViewCount}</p>
+            </dd>
+            <dd class="img"><img src="/uploads/content/thumbs/{..ctThumbS}" width="{config.fst.width}" height="{config.fst.height}"></dd>
+        </a>
+    </dl>
+
+    {/}
+    {?size_>5}
+    <span class="relativeMore{relationContent.index_} relative" style="display: none;">more</span>
+    {/}
+    {/}
+</div>

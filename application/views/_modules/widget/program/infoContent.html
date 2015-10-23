@@ -1,0 +1,243 @@
+<div class="mainbox5 movie-view" style=" width:720px; padding: 0 0 30px 0;">
+<input type="hidden" class="mbLoginId" value="{mbLoginID}">
+<input type="hidden" class="mbTWSession" value="{mbTWSession}">
+<input type="hidden" class="mbFBSession" value="{mbFBSession}">
+<input type="hidden" class="uri_string" value="{uri_string}">
+
+<div class="infoTop mt30">
+    <p class="movietit plt30">{prName}</p>
+    <div class="good-bad plt30">
+        <form class="frmlike">
+            <input type="hidden" name="mpLType" value="prCode"/>
+            <input type="hidden" name="mpLKey" value="{prCode}"/>
+        </form>
+        <span class="Like"  style="float: left;"><img src="/images/common/good.gif" alt="" /> Like</span>
+        <form class="frmfavor">
+            <input type="hidden" name="mpFType" value="prCode"/>
+            <input type="hidden" name="mpFKey" value="{prCode}"/>
+        </form>
+        <span class="Favor"  style="float: left;"><img src="/images/common/favorite.png" alt="" width="15px" height="15px"/> Favorites</span>
+        <ul class="viewTab">
+            <li class="on">About</li>
+            <li>Discuss</li>
+        </ul>
+    </div>
+    <div class="share" >
+        <span class="snsShare facebook" url_string="{uri_string}" style="padding:0px;margin:0px;"><img src="/images/common/facebook.gif" alt=""width="24px" height="24px" /></span>
+        <span class="snsShare twitter" url_string="{uri_string}" style="padding:0px;margin:0px;"><img src="/images/common/twitter.gif" alt="" width="24px" height="24px"/></span>
+    </div>
+</div>
+
+<div class="viewContainer mt20 mrt30 plt30" style="display: block;">
+    <div class="program_info">
+        <p class="fr"><img src="/uploads/program/{prThumb}" width="230" height="180"></p>
+        {?prProducer }
+        <p class="pr_pd fl">Producer : {prProducer}</p>
+        {/}
+        {? prEmcee}
+        <p class="pr_mc fl">Emcee : {prEmcee}</p>
+        {/}
+        {? prContent}
+        <p class="pr_sum fl">{prContent}</p>
+        {/}
+    </div>
+</div>
+<div class = "viewContainer mt20 plt30" style="display: none;">
+    <div class="replybox ">
+        <div class="prCommentList">
+			<div class="comment_text">
+				<p class="reply-sum">(0 / 250)</p>
+                <ul class="sns_login">
+                    <li type="GBS" class="sns01{? mbAccountType == "GBS" || !mbAccountType} snsCurrent01 {/}"></li>
+                    <li type="FACEBOOK" class="sns02{? mbAccountType == "FACEBOOK"} snsCurrent02 {/}"><div id="fb-root"></div></li>
+                    <li type="TWITTER" class="sns03{? mbAccountType == "TWITTER"} snsCurrent03 {/}" loginUrl="{mbTWLoginUrl}"></li>
+                </ul>
+				<form method="post" class="frmCommentAdd">
+                    <p>
+                    <input type="hidden" name="mbAccountType" class="mbAccountType" value="{mbAccountType}">
+					<input type="hidden" name="mode" value="write"/>
+					<input type="hidden" name="prCode" value="{prCode}"/>
+					{? is_Admlogin}
+					Notice <input type="checkbox" name="pbcoIsNotice" value="YES">
+					{/}
+                    <p class="replay-txt"><textarea name="pbcoContent" class="prCommentTxt" onkeyup="getsize(pbcoContent.value);" maxlength="250" style="width:550px"></textarea>
+                    <span class="prCommentSubmit">Submit</span>
+                    </p>
+				</form>
+			</div>
+            <div class="CommentList">
+                {@noticeComment}
+                {?.pbcoIsDelete=="YES"}
+                <div class="replay-txtbox">
+                    {? .pbcoDepth }
+                    <div style="margin:0 10px 10px 0; float: left;">
+                        <img src="/images/common/blank.png" style="width:{=(.pbcoDepth-1)*40}px;height:15px;">
+                        <img src="/images/godo_admin/board_re.gif">
+                    </div>
+                    {/}
+                    <div class="txtbox">
+                        <div class="txt">Deleted posts.
+                            <span class="date">{.pbcoModDate}</span>
+                        </div>
+                    </div>
+                </div>
+                {:}
+                <div class="replay-txtbox">
+                    {? .pbcoDepth }
+                    <div style="margin:0 10px 10px 0; float: left;">
+                        <img src="/images/common/blank.png" style="width:{=(.pbcoDepth-1)*40}px;height:15px;">
+                        <img src="/images/godo_admin/board_re.gif">
+                    </div>
+                    {/}
+                    {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                    <p class="img">
+                        {? .mbAccountType == "FACEBOOK" }
+                        <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+                        {: .mbAccountType == "TWITTER"}
+                        <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+                        {/}
+
+                        {? .mbAccountType == "FACEBOOK" }
+                            <img src="/uploads/member/thumb/facebook/{.mbThumb}" style="float: left;"/>
+                        {: .mbAccountType == "TWITTER" }
+                            <img src="/uploads/member/thumb/twitter/{.mbThumb}" style="float: left;"/>
+                        {: .mbThumb }
+                            <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+                        {:} <img src="/images/common/none.jpg" style="float: left;"/> {/}
+                    </p>
+                    {? .mbLink } </a> {/}
+                    <div class="txtbox">
+                        <div class="mb10">
+                            {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                            <span class="nick">{.mbNick}</span>
+                            {? .mbLink } </a> {/}
+                            <span class="date">{.pbcoRegDate}</span>
+                            { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                            <form method="post" class="frmCommentDel" style="float: right;">
+                                <input type="hidden" name="mode" value="delete">
+                                <input type="hidden" name="prCode" value="{prCode}"/>
+                                <input type="hidden" name="pbcoNO" value="{.pbcoNO}">
+                                <span class="prCommentDel">Delete</span>
+                            </form>
+                            {/}
+                        </div>
+                        <div class="txt" style="word-break: break-all; overflow: hidden; clear: both; font-size: 12px;"><pre>{.pbcoContent}</pre></div>
+                        <div class="good-bad"><span class="prCommentReply" mbNick={.mbNick}>Reply</span></div>
+                    </div>
+                </div>
+                {/}
+                {/}
+                <div class="replay-txtbox"></div>
+                {@comment}
+                {?.pbcoIsDelete=="YES"}
+                <div class="replay-txtbox">
+                    {? .pbcoDepth }
+                    <div style="margin:0 10px 10px 0; float: left;">
+                        <img src="/images/common/blank.png" style="width:{=(.pbcoDepth-1)*40}px;height:15px;">
+                        <img src="/images/godo_admin/board_re.gif">
+                    </div>
+                    {/}
+                    <div class="txtbox">
+                        <div class="txt">Deleted posts.
+                            <span class="date">{.pbcoModDate}</span>
+                        </div>
+                    </div>
+                </div>
+                {:}
+                <div class="replay-txtbox">
+                    {? .pbcoDepth }
+                    <div style="margin:0 10px 10px 0; float: left;">
+                        <img src="/images/common/blank.png" style="width:{=(.pbcoDepth-1)*40}px;height:15px;">
+                        <img src="/images/godo_admin/board_re.gif">
+                    </div>
+                    {/}
+                    {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                    <p class="img">
+                        {? .mbAccountType == "FACEBOOK" }
+                        <img src="/images/common/sns_icon_02.png" style="width:20px;height:20px">
+                        {: .mbAccountType == "TWITTER"}
+                        <img src="/images/common/sns_icon_03.png" style="width:20px;height:20px">
+                        {/}
+
+                        {? .mbAccountType == "FACEBOOK" }
+                            <img src="/uploads/member/thumb/facebook/{.mbThumb}" style="float: left;"/>
+                        {: .mbAccountType == "TWITTER" }
+                            <img src="/uploads/member/thumb/twitter/{.mbThumb}" style="float: left;"/>
+                        {: .mbThumb }
+                            <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+                        {:} <img src="/images/common/none.jpg" style="float: left;"/> {/}
+                    </p>
+                    {? .mbLink } </a> {/}
+
+                    <div class="txtbox">
+                        <div class="mb10">
+                            {? .mbLink } <a href="{.mbLink}" target="_blank"> {/}
+                            <span class="nick">{.mbNick}</span>
+                            {? .mbLink } </a> {/}
+                            <span class="date">{.pbcoRegDate}</span>
+                            { ? member.mbIsAdmin == "YES" || member.mbID == .mbID}
+                            <form method="post" class="frmCommentDel" style="float: right;">
+                                <input type="hidden" name="mode" value="delete">
+                                <input type="hidden" name="prCode" value="{prCode}"/>
+                                <input type="hidden" name="pbcoNO" value="{.pbcoNO}">
+                                <span class="prCommentDel">Delete</span>
+                            </form>
+                            {/}
+                        </div>
+                        <div class="txt" style="word-break: break-all; overflow: hidden; clear: both; font-size: 12px;"><pre>{.pbcoContent}</pre></div>
+                        <div class="good-bad"><span class="prCommentReply" mbNick={.mbNick}>Reply</span></div>
+                    </div>
+                </div>
+                {/}
+                {/}
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+    <div class="mlt30 pt20 mrt30" style="border-top:1px solid #E6E6E6; ">
+        <p class="movietit">Tag</p>
+        <p class="mb10">What is arising word when you see this contents?<br/> Please put the appropriate tags.(1 or more up to 5)</p>
+        <div class="mb10 tagArea">
+        	<form method="post" class="frmTag" onsubmit="return false;">
+         	   <input type="hidden" name="mode" value="addTag">
+         	   <input type="hidden" name="prCode" value="{prCode}">
+         	   {@tag}
+          	   <span class="tagList">
+          	      <span class="tagTxt">{.tgTag}</span>
+          	      <span class="tagDel" tgNO="{.tgNO}"></span>
+            	</span>
+            	{/}
+            	<input class="tagAdd" type="text" name="tagTxt">
+        	</form>
+    	</div>
+    </div>
+
+
+{? ctNO }
+<p class="mb30"></p>
+<div class=" mt20" >
+    <p class="movietit">"{content.ctName}" recent comment </p>
+    <p class="mb10">These are the comments for this video. if you want to leave a comment, click <a href="/content/view/ctNO/{ctNO}"><span style="display:inline-block;font-weight:bold;">more</span></a>. </p>
+    <div class="replybox ">
+        {@ ctComment}
+            <div class="ctComment">
+                <span class="nick">{.mbNick}</span>
+                <span class="txt">{.cbcoContent}</span>
+                <span class="date">{.cbcoRegDate}</span>
+            </div>
+        {/}
+    </div>
+    <p style="text-align:center; border-bottom:1px solid #E6E6E6; margin:0 50px 20px 20px;">
+        <span style="padding:5px; display:block;">
+            <a href="/content/view/ctNO/{ctNO}"><span style="display:inline-block;font-weight:bold;">more</span></a>
+        </span>
+    </p>
+</div>
+{/}
+
+</div>
+
+
+

@@ -1,0 +1,51 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/livecontent/index">방송콘텐츠 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/livecontent/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+            <button class="btn btn-primary" onclick="location.href=('/adm/livecontent/write');" type="button" >등록</button>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="checkbox"/></th>
+                <th>번호</th>
+                <th>프로그램명</th>
+                <th>컨텐츠명</th>
+                <th>등록일</th>
+                <th>수정</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr>
+                <td><input type="checkbox" name="chk[]" value="{.lcNO}"/></td>
+                <td>{listCnt - secParams.page - list.index_}</td>
+                <td>{list.prName}</td>
+                <td><a href="/adm/livecontent/view/lcNO/{list.lcNO}"> {list.lcName}</a></td>
+                <td>{list.lcRegDate}</td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="lcNO" lcNO="{.lcNO}"></span></td>
+            </tr>
+            {:}
+            <tr>
+                <td colspan="12">등록된 데이터가 없습니다.</td>
+            </tr>
+            {/}
+            </tbody>
+        </table>
+    </form>
+    { pager }
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/livecontent/modify" method="post">
+        <input type="hidden" name="lcNO" value="">
+    </form>
+</div>
+
+{ #layout_admin_footer }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title> {title} </title>
+    <meta name="description" content="{metaDescription}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/style/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/common.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/default.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style/adm/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/plugin/video-js/video-js.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="/assets/plugin/SEditer/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/assets/plugin/video-js/video.js"></script>
+    <script src="/assets/script/common.js"></script>
+
+    <script src="/assets/script/jquery.validate.min.js"></script>
+    <script src="/assets/script/jquery.validate.msg_ko.js"></script>
+
+
+    <script src="/assets/script/adm/common.js"></script>
+    {?controller === "main"}
+    <script type="text/javascript" src="/assets/script/adm/main.js"></script>
+    {:controller === "board" || controller === "comment"}
+    <script src="/assets/script/adm/board.js"></script>
+    <script src="/assets/script/adm/comment.js"></script>
+    {:controller === "mainFocus"}
+    <script src="/assets/script/adm/mainFocus.js"></script>
+    {:controller === "news" || controller === "news_category"}
+    <script src="/assets/script/adm/news.js"></script>
+    {:controller === "supportAd"}
+    <script src="/assets/script/adm/supportAd.js"></script>
+    {:controller === "content"}
+    <script src="/assets/script/adm/content.js"></script>
+    {:controller === "program" }
+    <script src="/assets/script/adm/program.js"></script>
+    {:controller === "contentTag" || controller === "programTag"}
+    <script src="/assets/script/adm/tag.js"></script>
+    {:controller === "contentmain"}
+    <script src="/assets/script/adm/contentmain.js"></script>
+    {:controller === "liveschedule"}
+    <script src="/assets/script/adm/liveschedule.js"></script>
+    {:controller === "livecontent"}
+    <script src="/assets/script/adm/livecontent.js"></script>
+    {:controller === "popupschedule"}
+    <script src="/assets/script/adm/popupschedule.js"></script>
+    {:controller === "viewLog"}
+    <script src="/assets/script/adm/viewLog.js"></script>
+    {:controller === "module_slide"}
+    <script src="/assets/script/adm/module_slide.js"></script>
+    {/}
+
+    <link href="../../../../assets/style/jquery.dtpicker.css" type="text/css" rel="stylesheet" />
+    <script src="../../../../assets/script/jquery.dtpicker.js"></script>
+</head>
+<body>
+

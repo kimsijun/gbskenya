@@ -1,0 +1,108 @@
+{ #layout_header }
+<article class="content">
+	<!--div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="/live/index">Live</a>
+        </div>
+    </div-->
+    <input type="hidden" name="chNO" value="{channel.chNO}">
+    <div class="content-live mt40">
+        <div class="live-box">
+            <div class="movie">
+                {? channel.chMainBroad === "USTREAM"}
+                {=stripslashes(channel.chUstream)}
+                {: channel.chMainBroad === "YOUTUBE"}
+                {=stripslashes(channel.chYoutube)}
+                {: channel.chMainBroad === "TVPOT"}
+                {=stripslashes(channel.chTvpot)}
+                {/}
+            </div>
+
+            <div class="live-listbox">
+                <div class="live-titbox">
+                    <img src="/images/common/live_tit.gif" alt="" />
+                    { @channelNames }
+                    <a href="/live/index/chNO/{channelNames.chNO}" class="live_tab">
+                        <span {? channel.chNO == channelNames.chNO || channel.chNO == ""} class="live_tab_hover" {/}>{channelNames.chName}</span>
+                    </a>
+                    {/}
+                </div>
+                <div class="live-list">
+                    <ul>
+                        { @liveSchedule}
+                        <li>
+                            <span class="time">{liveSchedule.lsSTime}</span>
+                            <span class="txt">{liveSchedule.lcName}</span>
+                        </li>
+                        {/}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="movie-selectbox">
+                <dl class="selectbox snsShareBtn">
+                    <dt>Share</dt>
+                    <dd class="snsShareContainer">
+                        <p class="snsShare facebook" url_string="{uri_string}">FaceBook</p>
+                        <p class="snsShare twitter" url_string="{uri_string}">Twitter</p>
+                        <p class="snsShare google" url_string="{uri_string}">Google+</p>
+                    </dd>
+                </dl>
+			<!--
+                <dl class="selectbox videoQualityBtn">
+                    <dt>UStream</dt>
+                    <dd class="videoQualityContainer">
+                        {? channel.chUstream}
+                        <p class="videoQuality chUstream" video="chUstream">UStream</p>
+                        {/}
+                        {? channel.chYoutube}
+                        <p class="videoQuality chYoutube" video="chYoutube">YouTube</p>
+                        {/}
+                        {? channel.chTvpot && environment == "pc"}
+                        <p class="videoQuality chTvpot" video="chTvpot">TVPot</p>
+                        {/}
+                    </dd>
+                </dl>
+
+                {? channel.chLanguageCheck === "YES" && environment == "pc"}
+                <dl class="selectbox videoLanguageBtn">
+                    <dt>Korean</dt>
+                    <dd class="videoLanguageContainer">
+                        {? channel.chLanguage['cn']}
+                        <p class="videoLanguage cn" video="cn">Chinese</p>
+                        {/}
+                        {? channel.chLanguage['es']}
+                        <p class="videoLanguage es" video="es">Spanish</p>
+                        {/}
+                        {? channel.chLanguage['en']}
+                        <p class="videoLanguage en" video="en">English</p>
+                        {/}
+                    </dd>
+                </dl>
+                {/}
+				-->
+            </div>
+
+            <div class="movie-selectbox2">
+               <dl class="selectbox livePopup">
+                    <dt>Open new window</dt>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="content-main">
+
+
+		<div class="mainbox5"></div>
+        
+
+
+    </div>
+
+</article>
+
+{ #layout_footer }

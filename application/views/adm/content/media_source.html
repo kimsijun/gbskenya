@@ -1,0 +1,26 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li class="active">Youtube ID 관리</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate" action="/adm/content/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="media_source">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">Youtube ID</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="source" value="{source}"></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/content/view/prCode/{prCode}');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

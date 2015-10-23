@@ -1,0 +1,80 @@
+{ #layout_popup_header }
+<article class="content" style="padding:0;">
+    <input type="hidden" name="chNO" value="{channel.chNO}">
+    <input type="hidden" class="popupCtNO">
+    <div class="popup-live">
+        <div class="popup-tit">
+            <span style="position:absolute;left:20px;top:10px;font-size:15px;color:#fff;font-weight:bold;">GBS : Good News Broadcasting System</span>
+            <span style="position:absolute;right:0px;padding:12px 15px; border-left:1px solid #444444;color:#8c8c8c;cursor:pointer" onclick="javascript:self.close();">Close X</span>
+        </div>
+        <div class="live-box">
+            <div class="movie">
+                {? channel.chMainBroad === "USTREAM"}
+                {=stripslashes(channel.chUstream)}
+                {: channel.chMainBroad === "YOUTUBE"}
+                {=stripslashes(channel.chYoutube)}
+                {: channel.chMainBroad === "TVPOT"}
+                {=stripslashes(channel.chTvpot)}
+                {/}
+            </div>
+
+            <div class="live-listbox">
+                <div class="livePopupTitle">
+                    <span class="livePopupBtn selected" style="border-right: 1px solid #444444;">Live</span>
+                    <span class="livePopupBtn" style="border-right: 1px solid #444444;">VOD</span>
+                    <span class="livePopupBtn">Programmes</span>
+                </div>
+
+                <div class="livePopupContainer">{# widget_live_popupLive}</div>
+                <div class="livePopupContainer">{# widget_live_popupContent}</div>
+                <div class="livePopupContainer">{# widget_live_popupProgram}</div>
+            </div>
+
+            <div class="movie-selectbox">
+                <dl class="selectbox videoQualityBtn">
+                    <dt>UStream</dt>
+                    <dd class="videoQualityContainer popup">
+                        {? channel.chUstream}
+                        <p class="videoQuality chUstream" video="chUstream">UStream</p>
+                        {/}
+                        {? channel.chYoutube}
+                        <p class="videoQuality chYoutube" video="chYoutube">YouTube</p>
+                        {/}
+                        {? channel.chTvpot && environment == "pc"}
+                        <p class="videoQuality chTvpot" video="chTvpot">TVPot</p>
+                        {/}
+                    </dd>
+                </dl>
+
+                {? channel.chLanguageCheck === "YES" && environment == "pc"}
+                <dl class="selectbox videoLanguageBtn">
+                    <dt>Korean</dt>
+                    <dd class="videoLanguageContainer popup">
+                        {? channel.chLanguage['cn']}
+                        <p class="videoLanguage cn" video="cn">Chinese</p>
+                        {/}
+                        {? channel.chLanguage['es']}
+                        <p class="videoLanguage es" video="es">Spanish</p>
+                        {/}
+                        {? channel.chLanguage['en']}
+                        <p class="videoLanguage en" video="en">English</p>
+                        {/}
+                    </dd>
+                </dl>
+                {/}
+            </div>
+
+            <!--div class="movie-selectbox3">
+                <dl class="selectbox snsShareBtn">
+                    <dt>Share</dt>
+                    <dd class="snsShareContainer popupsns">
+                        <p class="snsShare facebook" url_string="{uri_string}">FaceBook</p>
+                        <p class="snsShare twitter" url_string="{uri_string}">Twitter</p>
+                    </dd>
+                </dl>
+            </div-->
+
+        </div>
+    </div>
+
+    { #common_html_footer }

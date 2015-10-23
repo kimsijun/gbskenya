@@ -1,0 +1,87 @@
+<div class="mainbox2" style="padding-top:20px;height: 446px;">
+    <p class="content-tit fl">News</p>
+
+    <div class="mt40 roll-content mb30 mainContent">
+            <div class="roll-box" style="width:630px;height:410px; overflow: hidden;">
+                <p class="recentArrow prev"><img src="/images/common/roll_prev.png" alt="prev" /></p>
+                <div class="mainContent recentList" style="width:1890px;height:213px;">
+                    <div class="fl ">
+                        { @today1 }
+                        <dl class="livecont mainNews">
+                            <a href="/news/view/nwNO/{.nwNO}">
+                                <dt class="news-tit">{.nwName}</dt>
+                                <dt class="news-cate">{.ncName}</dt>
+                                <dd class="eventDate">{.nwEventDate}</dd>
+                                <dd class="img">
+                                    {?.nwType != "NONE"}
+                                    <img src="/uploads/news/thumbs/{.nwThumbS}"width="200" height="130">
+                                    {:}
+                                    {.photo}
+                                    {/}
+                                    <p class="thumbLeft"></p>
+                                    <p class="thumbRight"></p>
+                                </dd>
+                            </a>
+                        </dl>
+                        {/}
+                    </div>
+                    <div class="fl">
+                        { @today2 }
+                        <dl class="livecont mainNews">
+                            <a href="/news/view/nwNO/{.nwNO}">
+                                <dt class="news-tit">{.nwName}</dt>
+                                <dt class="news-cate">{.ncName}</dt>
+                                <dd class="eventDate">{.nwEventDate}</dd>
+                                <dd class="img">
+                                    <img src="/uploads/news/thumbs/{.nwThumbS}"width="200" height="130">
+                                    <p class="thumbLeft"></p>
+                                    <p class="thumbRight"></p>
+                                </dd>
+                            </a>
+                        </dl>
+                        {/}
+                    </div>
+                </div>
+                <p class="recentArrow next"><img src="/images/common/roll_next.png" alt="next" /></p>
+
+                <div class="btn_box gnTodayBtn">
+                    <span><img src="/images/common/btn_b_on.png" alt="" /></span>
+                    <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+                    <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+                </div>
+
+            </div>
+     </div>
+</div>
+<script type="text/javascript">
+    var todayBulletIdx = 0;
+    $(".gnTodayBtn span").click(function(){
+        var selectIdx = $(".gnTodayBtn span").index(this);
+        if(selectIdx == todayBulletIdx) return false;
+        $(".gnTodayBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".gnTodayBtn span").children("img").eq(selectIdx).attr("src", "/images/common/btn_b_on.png");
+
+        if(selectIdx > todayBulletIdx){
+            for(i=todayBulletIdx; i<selectIdx; i++)
+                $(".recentList").animate({left:"-=632px"});
+        } else {
+            for(i=todayBulletIdx; i>selectIdx; i--)
+                $(".recentList").animate({left:"+=632px"});
+        }
+        todayBulletIdx = selectIdx;
+    });
+
+    $(".recentArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(todayBulletIdx == 0)    return false;
+            todayBulletIdx--;
+            $(".recentList").animate({left:"+=632px"});
+        } else {
+            if(todayBulletIdx == 2)    return false;
+            todayBulletIdx++;
+            $(".recentList").animate({left:"-=632px"});
+        }
+        $(".gnTodayBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".gnTodayBtn span").children("img").eq(todayBulletIdx).attr("src", "/images/common/btn_b_on.png");
+    });
+</script>

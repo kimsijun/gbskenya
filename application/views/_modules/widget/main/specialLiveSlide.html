@@ -1,0 +1,129 @@
+<div class="content-banner mainbox8">
+    <p class="live-tit">Today's major LIVE</p>
+    <div class="roll-box" style="width:{config.snd.perPageWidth}px;height:{config.snd.height + 90}px;">
+        <div class="roll-main livescheduleList" style="width:{config.snd.totalWidth}px;height:{config.snd.height + 70}px;">
+            {@ liveschedule}
+            <dl style="width:{config.snd.width}px;padding:130px {config.snd.margin}px 0 {config.snd.margin}px">
+                <!--dt>[GOODNEWS TODAY]</dt-->
+                <dd>{?liveschedule.lcName}{liveschedule.lcName}{:}(생중계) IYF 월드캠프 {/}</dd>
+                <dd class="img">
+                    {? liveschedule.psNO == "0" }
+                    <a href="/content/view/ctNO/{liveschedule.ctNO}">
+                        <img src="/uploads/content/thumbs/{liveschedule.lcThumb}" width="{config.snd.width}" height="{config.snd.height}">
+                    </a>
+                    {:}
+                    <img src="/uploads/liveschedule/35b77448d7c04370290bbcec4454b6f7.png" width="{config.snd.width}" height="{config.snd.height}">
+                    {/}
+                </dd>
+            </dl>
+            {/}
+        </div>
+
+        <div class="btn_box livescheduleBtn">
+            <span><img src="/images/common/btn_b_on.png" alt="" /></span>
+            {@config.snd.pageControlCount}
+            <span><img src="/images/common/btn_b_off.png" alt="" /></span>
+            {/}
+        </div>
+    </div>
+</div>
+
+<!--
+<span class="specialLiveArrow leftBtn">왼쪽</span> &nbsp;
+
+<div style="width:{config.snd.perPageWidth}px;height:{config.snd.height + 30}px;overflow:hidden;position:relative;">
+    <div style="width:{config.snd.totalWidth}px;height:{config.snd.height}px;position:absolute;left:0;top:0" class="specialLiveList">
+        {@ liveschedule}
+        <div style="width:{config.snd.width}px;float:left;padding:0 {config.snd.margin}px">
+            {? liveschedule.ctNO != "0" }
+            <a href="/content/view/ctNO/{liveschedule.ctNO}">
+                <img src="/uploads/liveschedule/35b77448d7c04370290bbcec4454b6f7.png" width="{config.snd.width}" height="{config.snd.height}">
+            </a>
+            {:}
+            <img src="/uploads/liveschedule/35b77448d7c04370290bbcec4454b6f7.png" width="{config.snd.width}" height="{config.snd.height}">
+            {/}
+            <div style="text-align:center;">
+                <span style="font-size:11px">{liveschedule.lcName}</span>
+            </div>
+        </div>
+        {/}
+    </div>
+</div>
+
+<span class="specialLiveArrow rightBtn">오른쪽</span>
+
+
+
+<div class="mainbox1">
+    <p class="live-tit">오늘의 주요 LIVE </p>
+    <div class="roll-live">
+        <dl>
+            <dt>영상교제</dt>
+            <dt>제694회 토요영상교제</dt>
+            <dd>재생시간 45:10</dd>
+            <dd class="img"><img width="152" height="114" src="" alt="" /></dd>
+        </dl>
+    </div>
+    <div class="btn_box livescheduleBtn">
+        <span><a href="#"><img src="./images/common/btn_b_off.png" alt="" /></a></span>
+        <span><a href="#"><img src="./images/common/btn_b_on.png" alt="" /></a></span>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+var specialLiveArrowIdx = 0;
+$(".specialLiveArrow").click(function(){
+    if($(this).hasClass("leftBtn") == true){
+        if(specialLiveArrowIdx == 0)    return false;
+        specialLiveArrowIdx--;
+        $(".specialLiveList").animate({left:"+={config.snd.perPageWidth}px"});
+    } else {
+        if(specialLiveArrowIdx == {config.snd.slideCount})    return false;
+        specialLiveArrowIdx++;
+        $(".specialLiveList").animate({left:"-={config.snd.perPageWidth}px"});
+    }
+});
+
+ $(".programArrow").click(function(){
+        if($(this).hasClass("prev") == true){
+            if(specialLiveArrowIdx == 0)    return false;
+            specialLiveArrowIdx--;
+            $(".livescheduleList").animate({left:"+={config.snd.perPageWidth}px"});
+        } else {
+            if(specialLiveArrowIdx == {config.snd.slideCount})    return false;
+            specialLiveArrowIdx++;
+            $(".livescheduleList").animate({left:"-={config.snd.perPageWidth}px"});
+        }
+        $(".livescheduleBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".livescheduleBtn span").children("img").eq(specialLiveArrowIdx).attr("src", "/images/common/btn_b_on.png");
+    });
+
+</script>
+
+-->
+
+
+<script type="text/javascript">
+    var specialLiveArrowIdx = 0;
+    $(".livescheduleBtn span").click(function(){
+        var selectIdx = $(".livescheduleBtn span").index(this);
+        if(selectIdx == specialLiveArrowIdx) return false;
+        $(".livescheduleBtn span").children("img").attr("src", "/images/common/btn_b_off.png");
+        $(".livescheduleBtn span").children("img").eq(selectIdx).attr("src", "/images/common/btn_b_on.png");
+
+        if(selectIdx > specialLiveArrowIdx){
+            for(i=specialLiveArrowIdx; i<selectIdx; i++)
+                $(".livescheduleList").animate({left:"-={config.snd.perPageWidth}px"});
+        } else {
+            for(i=specialLiveArrowIdx; i>selectIdx; i--)
+                $(".livescheduleList").animate({left:"+={config.snd.perPageWidth}px"});
+        }
+        specialLiveArrowIdx = selectIdx;
+    });
+</script>
+
+
+
+

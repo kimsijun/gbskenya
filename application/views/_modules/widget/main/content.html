@@ -1,0 +1,30 @@
+<div class="mainbox2">
+    <p class="content-tit fl">콘텐츠 리스트</p>
+    <ul class="tabMenu content-tab">
+        <li class="selected">최신</li><span> | </span>
+        <li>추천</li><span> | </span>
+        <li>인기</li>
+    </ul>
+
+    <div class="mt30">
+        <div class="tabContainer">
+            { #widget_main_recentContent }
+        </div>
+        <div class="tabContainer">
+            { #widget_main_likeContent }
+        </div>
+        <div class="tabContainer">
+            { #widget_main_viewContent }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".tabMenu > li").click(function(){
+        $(".tabMenu > li").removeClass("selected");
+        var tabIndex = $(".tabMenu > li").index(this);
+        $(this).addClass("selected");
+        $(".tabContainer").css("display", "none");
+        $(".tabContainer").eq(tabIndex).css("display", "block");
+    });
+</script>

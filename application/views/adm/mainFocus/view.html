@@ -1,0 +1,57 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/mainFocus/index">메인포커스 관리</a></li>
+    <li class="active">정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/mainFocus/modify" method="post">
+        <input type="hidden" name="mFNO" value="{mFNO}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">번호</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mFNO}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">타입</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mFType}</span></div>
+        </div>
+        {? mFType =='BANNER'}
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">링크</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mFLink}</span></div>
+        </div>
+        {/}
+        {? mFThumb}
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">썸네일</span></div>
+            <div class="col-lg-10"><span class="mlt20"><img src="/uploads/mainFocus/{mFThumb}" width="500px" ></span></div>
+        </div>
+        {/}
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">제목</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mFName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">기간</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mFSDate} ~ {mFEDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">순서</span></div>
+            <div class="col-lg-10"><span class="mlt20">{mFOrder}</span></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/mainFocus/index');" type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/adm/mainFocus/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="mFNO" value="{mFNO}">
+        <button type="submit" class="btn btn-danger pull-right">삭제</button>
+    </form>
+</div>
+{ #layout_admin_footer }

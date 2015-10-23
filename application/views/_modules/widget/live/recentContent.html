@@ -1,0 +1,15 @@
+<div class="mainbox6">
+    <p class="event-tit">Video list</p>
+    { @recentContent}
+    <dl class="event-imglist">
+        <dt>
+            <a href="/content/view/ctNO/{recentContent.ctNO}"><p>{recentContent.ctName}</p></a></dt>
+        <dd>
+            <p>조회수 {recentContent.ctViewCount}</p>
+        </dd>
+        <dd class="img">
+            <a href="/content/view/ctNO/{recentContent.ctNO}"><img width="86" height="44" src="/uploads/content/thumbs/{recentContent.ctThumbS}" alt="" /></a>
+        </dd>
+    </dl>
+    {/}
+</div>

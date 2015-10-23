@@ -1,0 +1,41 @@
+<div class="comment_text">
+    <form method="post" class="frmCommentAdd">
+        <p>
+            <input type="hidden" name="mode" value="write"/>
+            <input type="hidden" name="prCode" value="{prCode}"/>
+        <p class="replay-txt">
+            <img src="/images/common/none.jpg" style="float: left;padding:0 10px 10px 0;height:40px"/>
+            <textarea name="pbcoContent" class="prCommentTxt" onkeyup="getsize(pbcoContent.value);" maxlength="250" style="width:490px;height:30px"></textarea>
+            <span class="prCommentSubmit" mode="add"  style="height:16px;padding:12px 10px;">Submit</span>
+        </p>
+    </form>
+</div>
+<div class="CommentList">
+    { @ data }
+    <div class="replay-txtbox">
+        <p class="img">
+            {? .mbThumb }   <img src="/uploads/member/thumb/{.mbThumb}" style="float: left;"/>
+            { : }           <img src="/images/common/none.jpg" style="float: left;"/>       {/}
+        </p>
+
+        <div class="txtbox">
+            <div class="mb100">
+                <span class="nick">{.mbNick}</span>
+                <span class="date">{.pbcoRegDate}</span>
+
+                {? mbIsAdmin == "YES" || mbID == .mbID}
+                <form method="post" class="frmCommentDel" style="float: right;">
+                    <input type="hidden" name="mode" value="delete">
+                    <input type="hidden" name="prCode" value="{.prCode}"/>
+                    <input type="hidden" name="pbcoNO" value="{.pbcoNO}">
+                    <span class="prCommentDel btn btn-mini">Delete</span>
+                </form>
+                <span class="prCommentMod btn btn-mini" prCode="{.prCode}" pbcoNO="{.pbcoNO}">Modify</span>
+                {/}
+            </div>
+            <div class="txt" pbcoContent="{.pbcoContent}">{.pbcoContent}</div>
+        </div>
+    </div>
+    {/}
+</div>
+

@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+header,footer,section,article,nav,aside,details,figure,figcaption{display:block}
+html,body{min-height:100%;margin:0}
+.header{margin:0 0 15px 0}
+.header>h1{text-shadow:1px 1px 0 #fff}
+.content, .lnb, .aside{background:#fff;border-radius:5px;margin:0 0 15px 0}
+.lnb>h2{background:#666;margin:0 0 1px 0;padding:7px 10px;color:#fff;font-size:16px;border-radius:5px 5px 0 0}
+.lnb>ul{margin:0;padding:0;list-style:none}
+.lnb li{margin:0 0 1px 0}
+.lnb li:last-child>a{border-radius:0 0 5px 5px}
+.lnb a{display:block;padding:7px 10px;background:#666;color:#fff;text-decoration:none}
+
+
+@font-face{font-family:NG;src:url(NanumGothic.eot); src:local('*'), url(NanumGothic.woff) format('woff')}
+body,table,input,select,button,textarea{font-family:'나눔고딕',NanumGothic,NG,Tahoma,Sans-serif}
+.skip{display:block}
+.skip>a{height:1px;overflow:hidden;display:block;}
+.skip>a:focus{height:auto}
+.gnb>ul{display:block;/*border-bottom:35px solid #444;*/position:relative}
+.gnb ul{margin:0;padding:0;list-style:none;zoom:1}
+.gnb ul:after{content:"";clear:both;display:block;}
+.gnb ul ul{display:none;position:absolute;top:40px;left:10px}
+.gnb>ul>li{float:left;margin:0 1px 0 0;}
+.gnb>ul>li>a{padding:7px 15px;display:block;background:#666;color:#fff;text-decoration:none;border-radius:4px 4px 0 0;}
+.gnb>ul>li.active>a{background:#444}
+.gnb>ul>li.active>ul{display:block}
+.lnb>ul>li.active>a{background:#444}
+.gnb li li{float:left;margin:0 20px 0 0}
+.gnb li li:before{content:"|";color:#999}
+.gnb li li:first-child:before{content:""}
+.gnb li li>a{color:#fff;text-decoration:none;margin:0 0 0 20px}
+.gnb>select{display:none;}
+.adm_member_modify{cursor:pointer}
+
+.container{width:95%;margin:0 auto}
+.body{zoom:1;padding:0 0 0 220px}
+.body:after{content:"";display:block;clear:both}
+.content{float:left;width:100%;margin:0 -100% 0 0 }
+.lnb{float:left;width:200px;left:-220px}
+.aside{float:right;width:160px;position:relative;right:-180px}
+
+.bs{height:20px;width:100px;}
+.ti{height:30px}
+.ct{height:400px;word-break:break-all; vertical-align:top;}
+.ct td{padding:10px;}
+.bs10{width:500px;height:50px;}
+.btn_area{margin-left:400px;}
+.admBoardList {border:1px solid gray;width:500px;}
+.admBoardList pre{width:500px;white-space:pre-line;}
+.admBoardList textarea{width:500px;height:500px;white-space:pre-line;}
+.admBoardList .bsText{width:50%;}
+.admBoardList .tiText{width:80%;}
+.admCommentWrite {height:150px;width:500px;}
+.admCommentWrite textarea{width:99%;height:108px}
+.cfg_write {width:500px;}
+.cfg_write input{width:90%}
+.adm_comment_list {width:600px;}
+.adm_comment_list .bcoContent_area{min-height:100px}
+.adm_comment_list .bcoRegDate_area{margin-left:20px;}
+.adm_comment_list .btnReply, .adm_comment_list .btnBcoModify, .adm_comment_list .btnBcoDelete{float:right;margin-left:5px}
+.adm_comment_list > div {min-height:100px;margin-bottom:10px;width:500px;}
+.adm_comment_list > div  div {border:1px solid gray}
+.bcoReply_area {display: none}
+
+/*  관리자   */
+/*회원*/
+.member_view, .member_view td {border:1px solid black}
+.frmAdmMemberSearch {margin:20px 0 50px 100px}
+.frmAdmMemberSearch table, .frmAdmMemberSearch table td{border: 1px solid gray;}
+.frmAdmWithdrawSearch {margin:20px 0 50px 100px}
+.frmAdmWithdrawSearch table, .frmAdmWithdrawSearch table td{border: 1px solid gray;}
+/*  게시판    */
+.frmAdmBoardCfgSearch {margin:20px 0 50px 100px}
+.frmAdmBoardCfgSearch table, .frmAdmBoardCfgSearch table td{border: 1px solid gray;}
+.frmAdmBoardSearch {margin:20px 0 50px 100px}
+.frmAdmBoardSearch table, .frmAdmBoardSearch table td{border: 1px solid gray;}
+/*  댓글    */
+.frmAdmCommentSearch {margin:20px 0 50px 100px}
+.frmAdmCommentSearch table, .frmAdmCommentSearch table td{border: 1px solid gray;}
+
+.pgnation {margin-top:20px;text-align:center;}
+.add_element{float:right;margin-right:30px;}
+.admContent {width:600px}
+.admContent textarea{width:400px;height:400px;white-space:pre-line;}
+.wt500 {width:500px}
+.ht200 {height:200px}
+.tabMenu {list-style: none;}
+.tabMenu > li{float:left;margin-left:10px}
+
+.tabContainer {display:none;}
+.tabContainer:first-child {display:block;}

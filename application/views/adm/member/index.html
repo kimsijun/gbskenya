@@ -1,0 +1,144 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/member/index">회원관리</a></li>
+    <li class="active">회원 리스트</li>
+</ol>
+
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                상세검색
+            </h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal mt20 mb20" role="form" action="/adm/member/index" method="post">
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">키워드검색</label>
+                    <div class="col-lg-2">
+                        <select class="form-control" name="secKey">
+                            <option {? !secParams.secKey} selected="" {/} value=""> 전체 </option>
+                            <option {? secParams.secKey === "mbFirstName"} selected="" {/} value="mbFirstName"> FirstName </option>
+                            <option {? secParams.secKey === "mbLastName"} selected="" {/} value="mbLastName"> LastName </option>
+                            <option {? secParams.secKey === "mbNick"} selected="" {/} value="mbNick"> 닉네임 </option>
+                            <option {? secParams.secKey === "mbID"} selected="" {/} value="mbID"> 아이디 </option>
+                            <option {? secParams.secKey === "mbCellPhone"} selected="" {/} value="mbCellPhone"> 핸드폰번호 </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3"><input type="text" class="form-control" name="secTxt" value="{secParams.secTxt}" placeholder=""></div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">가입일</label>
+                    <div class="col-lg-2"><input type="text" class="form-control" name="mbRegDate[]" value="{secParams.mbRegDate_0}"></div>
+                    <div class="col-lg-1 btn"> ~ </div>
+                    <div class="col-lg-2"><input type="text" class="form-control" name="mbRegDate[]" value="{secParams.mbRegDate_1}"></div>
+                    <div class="col-lg-5">
+                        <button onclick="setDate('mbRegDate[]','{today}','{today}');"type="button" class="btn btn-sm btn-default">오늘</button>
+                        <button onclick="setDate('mbRegDate[]','{today7day}','{today}');" type="button" class="btn btn-sm btn-default">일주일</button>
+                        <button onclick="setDate('mbRegDate[]','{today15day}','{today}');" type="button" class="btn btn-sm btn-default">15일</button>
+                        <button onclick="setDate('mbRegDate[]','{today1month}','{today}');" type="button" class="btn btn-sm btn-default">한달</button>
+                        <button onclick="setDate('mbRegDate[]','{today2month}','{today}');" type="button" class="btn btn-sm btn-default">두달</button>
+                        <button onclick="setDate('mbRegDate[]');" type="button" class="btn btn-sm btn-default">전체</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">최종로그인</label>
+                    <div class="col-lg-2"><input type="text" class="form-control" name="mbLastLoginDate[]" value="{secParams.mbLastLoginDate_0}"></div>
+                    <div class="col-lg-1 btn"> ~ </div>
+                    <div class="col-lg-2"><input type="text" class="form-control" name="mbLastLoginDate[]" value="{secParams.mbLastLoginDate_1}"></div>
+                    <div class="col-lg-5">
+                        <button onclick="setDate('mbLastLoginDate[]','{today}','{today}');"type="button" class="btn btn-sm btn-default">오늘</button>
+                        <button onclick="setDate('mbLastLoginDate[]','{today7day}','{today}');" type="button" class="btn btn-sm btn-default">일주일</button>
+                        <button onclick="setDate('mbLastLoginDate[]','{today15day}','{today}');" type="button" class="btn btn-sm btn-default">15일</button>
+                        <button onclick="setDate('mbLastLoginDate[]','{today1month}','{today}');" type="button" class="btn btn-sm btn-default">한달</button>
+                        <button onclick="setDate('mbLastLoginDate[]','{today2month}','{today}');" type="button" class="btn btn-sm btn-default">두달</button>
+                        <button onclick="setDate('mbLastLoginDate[]');" type="button" class="btn btn-sm btn-default">전체</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">성별</label>
+                    <div class="col-lg-3">
+                        <label class="radio-inline"><input type="radio"{? !secParams.mbSex} checked="checked" {/} value="" name="mbSex">전체</label>
+                        <label class="radio-inline"><input type="radio"{? secParams.mbSex === 'M'} checked="checked" {/}  value="M" name="mbSex">남자</label>
+                        <label class="radio-inline"><input type="radio"{? secParams.mbSex === 'F'} checked="checked" {/}  value="F" name="mbSex">여자</label>
+                    </div>
+                    <label class="col-lg-2 control-label">연령층</label>
+                    <div class="col-lg-2">
+                        <select class="form-control" name="mbAge">
+                            <option {? !secParams.mbAge} selected="" {/} value=""> 전체 </option>
+                            <option {? secParams.mbAge === "10"} selected="" {/} value="10"> 10대 </option>
+                            <option {? secParams.mbAge === "20"} selected="" {/} value="20"> 20대 </option>
+                            <option {? secParams.mbAge === "30"} selected="" {/} value="30"> 30대 </option>
+                            <option {? secParams.mbAge === "40"} selected="" {/} value="40"> 40대 </option>
+                            <option {? secParams.mbAge === "50"} selected="" {/} value="50"> 50대 </option>
+                            <option {? secParams.mbAge === "60"} selected="" {/} value="60"> 60대이상 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">방문횟수</label>
+                    <div class="col-lg-2"><input type="text" class="form-control" size="10" name="mbVisitCount[]" value="{secParams.mbVisitCount_0}"></div>
+                    <div class="col-lg-1 btn"> ~ </div>
+                    <div class="col-lg-2"><input type="text" class="form-control" size="10" name="mbVisitCount[]" value="{secParams.mbVisitCount_1}"></div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-2 control-label">휴면회원검색</label>
+                    <div class="col-lg-1"><input type="text" class="form-control" maxlength="8" size="8" name="mbHumanStatus" value="{secParams.mbHumanStatus}"></div>
+                    <div class="col-lg-2 btn"> 일 이상 미접속 회원검색 </div>
+                </div>
+                <div class="form-group row mt20">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-success">검색</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr role="row">
+            <th>번호</th>
+            <th>이름 (닉네임)</th>
+            <th>아이디</th>
+            <th>구분</th>
+            <th>방문수</th>
+            <th>가입일</th>
+            <th>최종로그인</th>
+            <th>수정</th>
+        </tr>
+        </thead>
+        <tbody role="alert" aria-live="polite" aria-relevant="all">
+        {@ list}
+        <tr>
+            <td>{listCnt - secParams.page - list.index_}</td>
+            <td>
+                <a href="/adm/member/view/mbID/{list.mbID}" no="0"><b>{list.mbFirstName} {list.mbLastName}</b> ({list.mbNick})</a>
+            </td>
+            <td>
+                <b><a href="/adm/member/view/mbID/{list.mbID}" no="0">{list.mbID}</a></b>
+            </td>
+            <td>{? list.mbIsAdmin === "YES"}관리자{:}일반회원{/}</td>
+            <td>{list.mbVisitCount}</font></td>
+            <td>{list.mbRegDate}</td>
+            <td>{list.mbLastLoginDate}</td>
+            <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="mbID" mbID="{.mbID}"></span></td>
+        </tr>
+        { / }
+        </tbody>
+    </table>
+    { pager }
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/member/modify" method="post">
+        <input type="hidden" name="mbID" value="">
+    </form>
+
+</div>
+
+{ #layout_admin_footer }

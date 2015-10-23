@@ -1,0 +1,49 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/mainFocus/index">메인포커스 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+
+<div class="content">
+    <form method="post" name="boList" action="/adm/mainFocus/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+            <button class="btn btn-primary" onclick="location.href=('/adm/mainFocus/write');" type="button" >등록</button>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="checkbox"/></th>
+                <th>노출순서</th>
+                <th>타입</th>
+                <th>제목</th>
+                <th>수정</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr>
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{.mFNO}" /></td>
+                <td>{.mFOrder}</td>
+                <td>{.mFType}</td>
+                <td><a href="/adm/mainFocus/view/mFNO/{.mFNO}">{.mFName}</a></td>
+                <td><span class="icon12 icomoon-icon-pencil btn-link btnMod" param="mFNO" mFNO="{.mFNO}"></span></td>
+                <td>{.mFRegDate}</td>
+            </tr>
+            {/}
+            </tbody>
+        </table>
+    </form>
+    {pager}
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/mainFocus/modify" method="post">
+        <input type="hidden" name="mFNO" value="">
+    </form>
+</div>
+
+{ #layout_admin_footer }
+

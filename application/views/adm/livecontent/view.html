@@ -1,0 +1,45 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/livecontent/index">방송콘텐츠 관리</a></li>
+    <li class="active">정보보기</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" role="form" id="form-validate" action="/adm/livecontent/modify" method="post">
+        <input type="hidden" name="lcNO" value="{lcNO}">
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">프로그램명</span></div>
+            <div class="col-lg-10"><span class="mlt20">{prName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">콘텐츠명</span></div>
+            <div class="col-lg-10"><span class="mlt20">{lcName}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">재생시간</span></div>
+            <div class="col-lg-10"><span class="mlt20">{lcDuration}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">최종 수정일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{lcModDate}</span></div>
+        </div>
+        <div class="row bordered">
+            <div class="col-lg-2 text-right"><span class="mrt20">등록일</span></div>
+            <div class="col-lg-10"><span class="mlt20">{lcRegDate}</span></div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">수정</button>
+                <button onclick="location.href=('/adm/livecontent/index');" type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/adm/livecontent/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <input type="hidden" name="lcNO" value="{lcNO}">
+        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+</div>
+{ #layout_admin_footer }

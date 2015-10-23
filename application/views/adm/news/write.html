@@ -1,0 +1,140 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/news/index">뉴스</a></li>
+    <li class="active">등록</li>
+</ol>
+
+<div class="content container">
+    <form class="form-horizontal" id="form-validate" action="/adm/news/process" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mode" value="write">
+        <input type="hidden" name="isChangeContent" value="">
+        <input type="hidden" name="nwDuration">
+        <input type="hidden" name="nwThumbS">
+        <input type="hidden" name="nwThumbL">
+        <input type="hidden" name="nwViewCount">
+        <input type="hidden" name="nwLikeCount">
+        <input type="hidden" name="nwRegDate">
+        <input type="hidden" name="nwSource">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 영상 타입</label>
+            <div class="col-lg-4">
+                <select name="nwType" class="form-control">
+                    <option value="">선택</option>
+                    <option value="NONE">없음</option>
+                    <option value="VIMEO">비메오</option>
+                    <option value="YOUTUBE">유투브</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 카테고리</label>
+            <div class="col-lg-6">
+                <select class ="YOUTUBE_cate media_cate form-control" style="display:none;">
+                    <option value="">선택</option>
+                    {@ youtube_cate}
+                    <option value="{youtube_cate->playlistId}">{youtube_cate->title}</option>
+                    {/}
+                </select>
+                <select class="VIMEO_cate media_cate form-control" style="display:none;">
+                    <option value="">선택</option>
+                    {@ vimeo_cate}
+                    <option value="{vimeo_cate->channelId}">{vimeo_cate->title}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 영상</label>
+            <div class="col-lg-6 nwSource"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 제목</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="nwName"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스 소제목</label>
+            <div class="col-lg-6"><input type="text" class="form-control" name="nwSmallName"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">헤드라인</label>
+            <div class="col-lg-6">
+                <input type="radio" name="nwIsHeadline" value="YES"> YES
+                <input type="radio" name="nwIsHeadline" value="NO" checked="checked" > NO
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">중요기사</label>
+            <div class="col-lg-6">
+                <input type="radio" name="nwIsSpecial" value="YES"> YES
+                <input type="radio" name="nwIsSpecial" value="NO" checked="checked" > NO
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">보도일</label>
+            <div class="col-lg-6"><input type="text" class="form-control popDtpicker" name="nwEventDate"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">뉴스내용</label>
+            <div class="col-lg-8">
+                <textarea style="height:300px;width:100%" class="col-lg-11" id="nwContent" name="nwContent"></textarea>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">카테고리명</label>
+            <div class="col-lg-6">
+                <select name="ncCode" class="form-control">
+                    <option value="">선택</option>
+                    {@ newsCategory}
+                    <option value="{.ncCode}">{.ncName}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <!--div class="row bordered">
+            <label class="col-lg-2 control-label">관련 뉴스 모드</label>
+            <div class="col-lg-6">
+                <input type="radio" name="nwRelativeMode" value="AUTO" checked="checked" > AUTO
+                <input type="radio" name="nwRelativeMode" value="MANUAL"> MANUAL
+            </div>
+        </div-->
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" onclick="submitContents(this);" class="btn marginR10 btn-success">등록</button>
+                <button onclick="location.href=('/adm/content/view/prCode/{prCode}');"  type="button" class="btn btn-default">뒤로</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<script>
+    $('#MANUAL').bind("click",function(){
+        if( $(this).is(':checked') ){
+            $('#ctRelativeContents').css("display","");
+        }
+    });
+    $('#AUTO').click(function(){
+        if( $(this).is(':checked') ){
+            $('#ctRelativeContents').css("display","none");
+        }
+    });
+    $('.popDtpicker').appendDtpicker({
+        "inline": true,
+        "dateOnly": true,
+        "dateFormat": "YYYY-MM-DD"
+    });
+
+    $("input[name=videoCheck]").change(function(){
+        if($(this).val() == "YES") $(".videoContainer").fadeIn();
+        else $(".videoContainer").fadeOut();
+    });
+ 
+</script>
+
+
+{ #layout_admin_footer } 

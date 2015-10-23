@@ -1,0 +1,12 @@
+{? !prCode }
+<p class="content-tit">{?programRecent}{programRecent.size_} Result in program.{:}No results were found for your search.{/}</p>
+<div class="prSearchList">
+    { @ programRecent}
+    <div class="programRecent{.index_}">
+        <a href="/program/{?.prIsSub=='YES'}index{:}view{/}/prCode/{.prCode}" target="_blank">
+            <li>- {.prName} { ? .prIsSub == 'YES'}+{/}</li>
+        </a>
+    </div>
+    {/}
+</div>
+{/}

@@ -1,0 +1,84 @@
+{ #layout_header }
+<article class="content">
+    <div id="navi" class="navigation">
+        <div class="navi_wrap">
+            <a href="" class="home">Home</a> >
+            <a href="">Support</a> >
+            <a href="/board/index/bodID/{bodID}">{cfg_bodName}</a> >
+            <a href="">Reply</a>
+        </div>
+    </div>
+    <div class="content-mypage">
+        <div class="mypageinfor">
+            <p class="customer_tit"><strong>Support</strong></p>
+        </div>
+
+        <div class="infor-cont">
+            <div class="mymenu">
+                <ul>
+                    <li><a href="/board/index/bodID/notice" {?bodID=="notice"}class="on"{/}>Notice</a></li>
+                    <!--li><a href="/board/index/bodID/report" {?bodID=="report"}class="on"{/}>Report</a></li-->
+                </ul>
+            </div>
+            <div class="customerlist">
+
+                <table width="100%">
+                    <tbody>
+                    <tr>
+
+                        <td valign="top" height="100%" width="100%">
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="white">
+                                <tbody>
+                                <tr>
+                                    <td valign="top">
+                                        <form action="/board/process" method="post" name="boReply">
+                                            <input type="hidden" name="mode" value="reply">
+                                            <input type="hidden" name="bodID" value="{bodID}">
+                                            <input type="hidden" name="boNO" value="{boNO}">
+
+                                            <table cellpadding="5"class="tb" style="width: 100%; border-collapse: collapse;">
+                                                <tbody>
+                                                <tr height="35">
+                                                    <td align="left" class="input_txt">* Name</td>
+                                                    <td class="cell_L">{mbFirstName} {mbLastName}</td>
+                                                </tr>
+                                                <tr height="35">
+                                                    <td align="left" class="input_txt">Email</td>
+                                                    <td class="cell_L">
+                                                        {?mbID}
+                                                        <input name="mbID" style="width:90%;padding:5px;" class="linebg" value="{mbID}" >
+                                                        {:}
+                                                        <input name="mbID" style="width:90%;padding:5px;" class="linebg" >
+                                                        {/}
+                                                    </td>
+                                                </tr>
+                                                <tr height="35">
+                                                    <td align="left" class="input_txt">* Title</td>
+                                                    <td class="cell_L"><input name="boName" style="width:90%;padding:5px;" class="linebg" required="" fld_esssential=""></td>
+                                                </tr>
+                                                <tr height="35">
+                                                    <td align="left" class="input_txt">* Content</td>
+                                                    <td class="cell_L">
+                                                        <div style="height:400px;padding-top:5px;">
+                                                            <textarea id="boContent" name="boContent" rows="10" cols="100" style=" height:350px;width:600px; padding:10px;"></textarea>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <button type="submit" class="btn btn-mini mt30">Save</button>
+                                            <button onclick="location.href='/board/index/bodID/{bodID}';"class="btn btn-mini mt30">List</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody></table>
+            </div>
+        </div>
+    </div>
+</article>
+{ #layout_footer }

@@ -1,0 +1,83 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/liveschedule/index">편성표 관리</a></li>
+    <li class="active">정보수정</li>
+</ol>
+<div class="content container">
+    <form class="form-horizontal" id="form-validate"  action="/adm/liveschedule/process" method="post">
+        <input type="hidden" name="mode" value="modify">
+        <input type="hidden" name="lsNO" value="{lsNO}">
+
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">채널명</label>
+            <div class="col-lg-4">
+                <select class="form-control" name="chNO">
+                    { @ channel }
+                    <option value="{channel.chNO}" {?channel.chNO == chNO} selected="selected" {/}>{channel.chName}</option>
+                    {/}
+                </select>
+            </div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">방송 날짜</label>
+            <div class="col-lg-4"><input type="date" class="form-control" name="" placeholder="" value="{lsDate}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">시작 시간</label>
+            <div class="col-lg-10"><input type="text" class="form-control" id="lsSTime" name="lsSTime" placeholder="시작 시간" value="{lsSTime}"></div>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">기존 콘텐츠명</label>
+            <label class="col-lg-10" style="padding-top: 7px;">{livecontent.lcName}</label>
+        </div>
+        <div class="row bordered">
+            <label class="col-lg-2 control-label">프로그램에 속한 여부</label>
+            <div class="col-lg-3">
+                <label class="radio-inline"><input type="radio" name="lsIsProgram" checked="checked" value="YES">YES</label>
+                <label class="radio-inline"><input type="radio" name="lsIsProgram" value="NO"> NO</label>
+            </div>
+        </div>
+        <div class="inProgram">
+            <div class="row bordered">
+                <label class="col-lg-2 control-label">변경할 프로그램 선택</label>
+                <div class="col-lg-4">
+                    <select class="form-control prCode" name="prCode">
+                        <option value="">선택</option>
+                        {@ prList}
+                        <option {? .prCode === prCode} selected="selected" {/} value="{.prCode}">{.prName}</option>
+                        {/}
+                        <option value="{prPreCode}back">뒤로</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row bordered">
+                <label class="col-lg-2 control-label">콘텐츠</label>
+                <div class="col-lg-6 contents_container"> </div>
+            </div>
+        </div>
+        <div class="outProgram hide">
+            <div class="row bordered">
+                <label class="col-lg-2 control-label">변경할 콘텐츠 선택</label>
+                <div class="col-lg-4">
+                    <select class="form-control slc_content" name="out_lcNO">
+                        <option value="">선택</option>
+                        {@ outProgram}
+                        <option value="{.lcNO}">{.lcName}</option>
+                        {/}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt20">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn marginR10 btn-success">저장</button>
+                <button onclick="location.href=('/adm/liveschedule/index/chNO/{chNO}/lsDate/{lsDate}');"  type="button" class="btn btn-default">취소</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{ #layout_admin_footer }

@@ -1,0 +1,59 @@
+{ #layout_admin_header }
+<ol class="breadcrumb">
+    <li><a href="/adm/main/index">HOME</a></li>
+    <li><a href="/adm/content_comment/index">콘텐츠 댓글 관리</a></li>
+    <li class="active">리스트</li>
+</ol>
+<div class="content">
+    <form method="post" name="boList" action="/adm/content_comment/process" onsubmit="return confirm('삭제하시겠습니까?');">
+        <input type="hidden" name="mode" value="delete">
+        <div class="mb10">
+            <button class="btn btn-default uncheck_all" type="button" >선택해제</button>
+            <button class="btn btn-default" type="submit" >선택삭제</button>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover" >
+            <thead>
+            <tr>
+                <th id="masterCh" class="ch"><input type="checkbox" name="checkbox" value="all" class="styled" /></th>
+                <th>콘텐츠명</th>
+                <th>타입</th>
+                <th>내용</th>
+                <th>삭제여부</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {@ list}
+            <tr height="35" align="center">
+                <td class="chChildren"><input type="checkbox" name="chk[]" value="{.cbcoNO}" class="styled" /></td>
+                <td><a href="/content/view/ctNO/{.ctNO}" target="_blank">{.content.ctName}</a></td>
+                <td>{.mbAccountType}</td>
+                <td style="padding-left:30px; text-align:left;">
+                    {? .cbcoDepth }<img src="/images/common/blank.png" style="width:{(.cbcoDepth-1)*20}px;height:15px;"><img src="/images/godo_admin/board_re.gif">{/}
+                    <a href="/content/view/ctNO/{.ctNO}" target="_blank">{.cbcoContent}</a>
+                </td>
+                <td>{.cbcoIsDelete}</td>
+                <td><b><a href="/content/view/ctNO/{.ctNO}" target="_blank">{.member.mbNick}</a></b></td>
+                <td>{.cbcoRegDate}</td>
+            </tr>
+            <!--{:}-->
+            <tr>
+                <td colspan="12">등록된 데이터가 없습니다.</td>
+            </tr>
+            <!--{/}-->
+
+            </tbody>
+        </table>
+    </form>
+    {pager}
+    <form name="frmMod" class="form-horizontal frmMod" role="form" action="/adm/content_comment/modify" method="post">
+        <input type="hidden" name="cbcoNO" value="">
+    </form>
+</div>
+
+
+{ #layout_admin_footer }
+
+
