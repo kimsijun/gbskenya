@@ -5,3 +5,4 @@ assets/json/
 _cache/
 application/logs/
 assets/plugin/SEditer/upload/
+application/config/database.php
